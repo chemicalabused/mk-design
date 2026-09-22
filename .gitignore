@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# playwright-cli session artifacts
+.playwright-cli/
+
+# Reference materials from the previous project (large binaries); only README stays tracked
+design/reference/*
+!design/reference/README.md

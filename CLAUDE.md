@@ -11,6 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Vite + React** (TypeScript). Not Next.js; there is no server or App Router.
 - **Tailwind CSS v4** via `@tailwindcss/vite`. No `tailwind.config.js`; theme customization goes in `src/index.css` using `@theme`.
 - **Linting** with oxlint (config in `.oxlintrc.json`). No test runner yet.
+- **Browser checks** with `@playwright/cli` (devDependency). Not a test framework; the agent drives a real browser to inspect pages. See "Checking the page in a browser" below.
 
 ## Commands
 
@@ -20,6 +21,21 @@ npm run build     # tsc -b && vite build  -> dist/
 npm run lint      # oxlint
 npm run preview   # serve the production build
 ```
+
+## Checking the page in a browser
+
+Use playwright-cli (skill `playwright-cli` in `.claude/skills/`) rather than guessing how the page renders.
+
+```
+npm run dev -- --port 5173 &          # start Vite in the background
+npx playwright-cli open http://localhost:5173
+npx playwright-cli snapshot            # accessibility tree with element refs
+npx playwright-cli screenshot          # PNG, read it with the Read tool
+npx playwright-cli resize 390 844      # mobile viewport, then screenshot again
+npx playwright-cli close
+```
+
+Headless is the default; pass `--headed` to watch it. Session files land in `.playwright-cli/` (gitignored). Chromium lives in the user cache, not the repo.
 
 ## Layout
 
