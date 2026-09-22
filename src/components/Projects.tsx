@@ -18,8 +18,8 @@ export function Projects() {
   return (
     <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="heading-lg" data-reveal>Realizacje</h2>
-        <div className="flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filtruj realizacje">
+        <h2 className="heading-lg">Realizacje</h2>
+        <div className="-mx-5 flex gap-x-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]" role="group" aria-label="Filtruj realizacje">
           {categories.map((c) => {
             const on = c.id === filter
             return (
@@ -28,7 +28,7 @@ export function Projects() {
                 type="button"
                 aria-pressed={on}
                 onClick={() => setFilter(c.id)}
-                className={`border-b pb-0.5 text-sm transition-colors ${
+                className={`shrink-0 border-b pb-0.5 text-sm transition-colors ${
                   on ? 'border-graphite text-ink' : 'border-transparent text-slate hover:text-ink'
                 }`}
               >
@@ -55,10 +55,10 @@ export function Projects() {
                   <Picture
                     src={p.images[0].src}
                     alt={p.images[0].alt}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <h3 className="heading-sm mt-4 max-w-[28ch]">{p.title}</h3>
+                <h3 className="heading-sm mt-4 max-w-[28ch] underline decoration-transparent underline-offset-[5px] transition-colors duration-300 group-hover:decoration-graphite/60">{p.title}</h3>
                 <p className="mt-1.5 text-sm text-slate">
                   {p.kind}, {p.place}, {p.year}
                   {p.area ? `, ${p.area}` : ''}

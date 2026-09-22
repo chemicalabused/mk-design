@@ -2,7 +2,8 @@ import { useGSAP } from '@gsap/react'
 import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 
 /**
- * Page-wide scroll motion. Elements opt in with data attributes:
+ * Page-wide scroll motion. Elements opt in with data attributes; use them
+ * sparingly (media and grids, not body text):
  *  - data-reveal            fade and rise once when scrolled into view
  *  - data-parallax          drift slightly against scroll (wrap in overflow-hidden)
  * Everything is skipped when the visitor prefers reduced motion.

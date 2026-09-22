@@ -49,7 +49,7 @@ export function Hero() {
           <p className="mt-6 max-w-[42ch] text-base leading-relaxed text-slate sm:text-lg" data-hero-fade>
             {hero.lead}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3" data-hero-fade>
+          <div className="mt-8 flex flex-wrap items-center gap-3" data-hero-fade>
             <a
               href={hero.primary.href}
               className="rounded-full bg-graphite px-6 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-ink"
@@ -58,16 +58,11 @@ export function Hero() {
             </a>
             <a
               href={hero.secondary.href}
-              className="rounded-full border border-graphite/40 px-6 py-3.5 text-sm font-medium transition-colors hover:border-graphite"
+              className="px-2 py-3.5 text-sm font-medium underline decoration-line underline-offset-[6px] transition-colors hover:decoration-graphite"
             >
               {hero.secondary.label}
             </a>
           </div>
-          <ul className="mt-12 flex flex-col gap-1.5 border-t border-line pt-6 text-sm text-slate" data-hero-fade>
-            {hero.facts.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

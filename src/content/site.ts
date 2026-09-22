@@ -27,11 +27,10 @@ export const nav = [
 export const hero = {
   headline: ['Projektujemy', 'i budujemy domy,', 'wnętrza i ogrody.'],
   lead:
-    'Od pierwszej rozmowy przez koncepcję i dokumentację po realizację pod klucz. Jedna pracownia, jedna osoba do kontaktu, ten sam zespół na budowie.',
+    'Pracownia z Nysy, od 2015 roku. Od pierwszej rozmowy przez koncepcję i dokumentację po realizację pod klucz, z jedną osobą do kontaktu i tym samym zespołem na budowie.',
   primary: { label: 'Umów bezpłatną konsultację', href: '#kontakt' },
-  secondary: { label: 'Zobacz realizacje', href: '#realizacje' },
+  secondary: { label: 'Realizacje', href: '#realizacje' },
   image: { src: '/images/hero-stalis', alt: 'Parterowy dom z kamienną elewacją i drewnianym podbiciem dachu, oświetlony o zmierzchu' },
-  facts: ['W branży od 2015 roku', 'Projekt, budowa i nadzór w jednej pracowni', 'Realizacje w Polsce i Hiszpanii'],
 }
 
 export type Category = 'domy' | 'wnętrza' | 'inwestycje' | 'ogrody'
@@ -188,9 +187,9 @@ export const caseStudy = {
   ],
   caption: 'Rezydencja 750 m², Skrzypiec. Projekt i realizacja, oddana 2023.',
   images: [
-    { src: '/images/skrzypiec-dom', alt: 'Zbudowana rezydencja z czerwonym dachem wśród pól' },
     { src: '/images/skrzypiec-kuchnia', alt: 'Kuchnia z marmurową wyspą i szklanymi lampami' },
     { src: '/images/skrzypiec-jadalnia', alt: 'Jadalnia z drewnianymi lamelami' },
+    { src: '/images/skrzypiec-dom', alt: 'Zbudowana rezydencja z czerwonym dachem wśród pól' },
   ],
 }
 
@@ -239,11 +238,6 @@ export const studio = {
   bio: [
     'Projektuję przestrzenie, które łączą formę, funkcję i dobre rzemiosło. Każdy projekt traktuję jak osobne zadanie: z własnym detalem, ergonomią i doborem materiałów.',
     'Prowadzę pracownię w Nysie od 2015 roku. Projektuję domy, inwestycje i wnętrza na Opolszczyźnie, we Wrocławiu i w Hiszpanii, a moja ekipa buduje to, co narysuję.',
-  ],
-  principles: [
-    { title: 'Materiał przed dekoracją', text: 'Dąb, kamień, tynk. Pokazujemy powierzchnię, nie ozdobę.' },
-    { title: 'Proporcja przed efektem', text: 'Stała siatka, jeden rytm, dużo pustej przestrzeni. Pusta ściana to decyzja.' },
-    { title: 'Detal jako podpis', text: 'Jeden akcent na kadr. Drugi akcent kasuje pierwszy.' },
   ],
   earlier: {
     heading: 'Wcześniejsze prace',

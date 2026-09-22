@@ -34,7 +34,7 @@ export function Contact() {
     <section id="kontakt" className="bg-plaster">
       <div className="container-page section">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5" data-reveal>
+          <div className="lg:col-span-5">
             <h2 className="heading-lg">{contact.heading}</h2>
             <p className="mt-6 max-w-[44ch] leading-relaxed text-slate">{contact.text}</p>
 
@@ -61,7 +61,7 @@ export function Contact() {
             </dl>
           </div>
 
-          <form onSubmit={onSubmit} className="lg:col-span-7" aria-label="Formularz kontaktowy" data-reveal>
+          <form onSubmit={onSubmit} className="lg:col-span-7" aria-label="Formularz kontaktowy">
             <div className="grid gap-6 sm:grid-cols-2">
               <label className="block">
                 <span className="text-sm text-slate">Imię i nazwisko</span>

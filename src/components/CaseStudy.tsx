@@ -7,7 +7,7 @@ export function CaseStudy() {
     <section className="bg-graphite text-plaster">
       <div className="container-page section">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5" data-reveal>
+          <div className="lg:col-span-5">
             <h2 className="heading-lg">{caseStudy.heading}</h2>
             {caseStudy.text.map((t) => (
               <p key={t} className="mt-6 max-w-[52ch] leading-relaxed text-plaster/80">

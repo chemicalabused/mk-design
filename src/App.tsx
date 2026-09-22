@@ -12,8 +12,14 @@ import { Motion } from './components/Motion'
 function App() {
   return (
     <Motion>
+      <a
+        href="#tresc"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-graphite focus:px-4 focus:py-2 focus:text-sm focus:text-plaster"
+      >
+        Przejdź do treści
+      </a>
       <Nav />
-      <main>
+      <main id="tresc">
         <Hero />
         <Projects />
         <CaseStudy />

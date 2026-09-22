@@ -70,7 +70,7 @@ Cztery kroki poziomo: Konsultacja (bezpłatna) → Koncepcja i wizualizacje → 
 
 ### 6. Pracownia
 - Zdjęcie Petra Mikuli (**brakuje w materiałach**), krótkie bio w pierwszej osobie oparte na tekście z portfolio PDF.
-- Trzy zasady z szablonu.
+- Trzy zasady z szablonu: **usunięte po audycie 2026-09-22** (patrz `design/audit-2026-09-22.md`), bo wymyślił je szablon, nie Petro. Wrócą tylko jako jego własne słowa.
 - Wzmianka o zasięgu: Nysa i Opolszczyzna, Wrocław, Hiszpania; wcześniejsze projekty w Ukrainie.
 
 ### 7. Kontakt
