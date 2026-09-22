@@ -64,4 +64,4 @@ Headless is the default; pass `--headed` to watch it. Session files land in `.pl
   `npx skills add <repo> --skill <name> -a claude-code`
 - `skills-lock.json` at the repo root is maintained by skills.sh and tracks installed skill sources.
 - The `frontend-design` plugin (Anthropic marketplace) is enabled in `.claude/settings.json` and applies automatically to UI work.
-- Installed project skills (see `skills-lock.json`): `vercel-react-best-practices`, `vercel-react-view-transitions`, `web-design-guidelines`, `accessibility`, `better-typography`, `animation-vocabulary`, `improve-animations`, `tailwind-css-patterns`, `gsap-core`, `gsap-scrolltrigger`, `playwright-cli`, `find-skills`.
+- Installed project skills (see `skills-lock.json`): `vercel-react-best-practices`, `vercel-react-view-transitions`, `web-design-guidelines`, `accessibility`, `better-typography`, `animation-vocabulary`, `improve-animations`, `tailwind-css-patterns`, `gsap-core`, `gsap-scrolltrigger`, `redesign-existing-projects`, `audit-ai-design-slop`, `no-ai-design-slop`, `playwright-cli`, `find-skills`.
