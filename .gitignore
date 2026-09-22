@@ -29,3 +29,6 @@ dist-ssr
 # Reference materials from the previous project (large binaries); only README stays tracked
 design/reference/*
 !design/reference/README.md
+
+# Vercel project link (contains project ids)
+.vercel/
