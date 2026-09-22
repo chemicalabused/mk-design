@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-`mk-design` is a landing page / portfolio site for a designer. Scaffolded 2026-09-22 with Vite (react-ts template); nothing is committed yet.
+`mk-design` is the landing page for **M Design House**, an architecture, interiors and landscape studio in Nysa run by Petro Mikula. Single page, Polish only (EN may come later). The content plan and client decisions live in `design/structure.md`; source materials (gitignored, large) in `design/reference/`.
 
 ## Stack (decided 2026-09-22)
 
@@ -39,9 +39,12 @@ Headless is the default; pass `--headed` to watch it. Session files land in `.pl
 
 ## Layout
 
-- `index.html` is the entry (`lang="pl"`); `src/main.tsx` mounts `src/App.tsx`.
-- `src/index.css` imports Tailwind and holds design tokens.
-- Static files go in `public/`.
+- `index.html` is the entry (`lang="pl"`, Google Fonts: Newsreader display + Manrope body); `src/main.tsx` mounts `src/App.tsx`.
+- `src/content/site.ts` holds **all copy and data** (brand, nav, hero, projects, services, process, studio, contact). Edit text there, not in components. Empty `brand.*` fields (address, NIP, company, instagram) are placeholders awaiting the client; components hide them when empty.
+- `src/components/` one file per section: Nav, Hero, Projects (grid + filter + `<dialog>` lightbox), CaseStudy, Services, Process, Studio, Contact, Footer, plus `Picture`.
+- `src/index.css` has the Tailwind `@theme` tokens (colors stone/plaster/graphite/ink/slate/brass, fonts) and the `heading-xl/lg/md`, `container-page`, `reveal` utilities.
+- `public/images/` is **generated**: run `node scripts/images.mjs` to rebuild WebP images (and the knocked-out logo PNGs) from `design/reference/`. Edit the manifest in that script to add or swap images; do not hand-edit the output.
+- Contact form has no backend yet: it opens a prefilled `mailto:` link. Replace with a form service before launch.
 
 ## Guidance
 

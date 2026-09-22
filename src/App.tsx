@@ -1,8 +1,28 @@
+import { Nav } from './components/Nav'
+import { Hero } from './components/Hero'
+import { Projects } from './components/Projects'
+import { CaseStudy } from './components/CaseStudy'
+import { Services } from './components/Services'
+import { Process } from './components/Process'
+import { Studio } from './components/Studio'
+import { Contact } from './components/Contact'
+import { Footer } from './components/Footer'
+
 function App() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-neutral-50 text-neutral-900">
-      <h1 className="text-4xl font-semibold tracking-tight">mk-design</h1>
-    </main>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <Projects />
+        <CaseStudy />
+        <Services />
+        <Process />
+        <Studio />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   )
 }
 

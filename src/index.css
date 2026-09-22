@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+@theme {
+  --color-stone: #e8e3da;
+  --color-plaster: #f6f3ee;
+  --color-graphite: #1e1c1a;
+  --color-ink: #2a2724;
+  --color-slate: #625c54;
+  --color-brass: #a8873f;
+  --color-brass-light: #c9a85a;
+  --color-line: rgb(30 28 26 / 0.16);
+  --color-line-dark: rgb(246 243 238 / 0.18);
+
+  --font-display: "Newsreader", "Times New Roman", serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-stone font-sans text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--color-brass-light);
+    color: var(--color-graphite);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+  .font-display {
+    font-optical-sizing: auto;
+    font-feature-settings: "liga", "kern";
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+  .heading-xl {
+    @apply font-display font-normal leading-[0.98] tracking-[-0.015em];
+    font-size: clamp(2.75rem, 6.3vw, 5.5rem);
+  }
+  .heading-lg {
+    @apply font-display font-normal leading-[1.02] tracking-[-0.01em];
+    font-size: clamp(2.125rem, 4.6vw, 3.75rem);
+  }
+  .heading-md {
+    @apply font-display font-normal leading-[1.1];
+    font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  }
+  .reveal {
+    animation: reveal 0.9s var(--ease-out-soft) both;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(0.6em); }
+    to { opacity: 1; transform: none; }
+  }
+}
