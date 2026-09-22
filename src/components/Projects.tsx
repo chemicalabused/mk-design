@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { gsap, ScrollTrigger } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
 
@@ -7,10 +8,17 @@ export function Projects() {
   const [active, setActive] = useState<Project | null>(null)
   const visible = filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter)
 
+  useEffect(() => {
+    // Cards re-mount on filter change; make sure the new ones are visible and
+    // scroll positions below are recalculated.
+    gsap.set('#realizacje [data-reveal]', { clearProps: 'opacity,visibility,transform' })
+    ScrollTrigger.refresh()
+  }, [filter])
+
   return (
     <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="heading-lg">Realizacje</h2>
+        <h2 className="heading-lg" data-reveal>Realizacje</h2>
         <div className="flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filtruj realizacje">
           {categories.map((c) => {
             const on = c.id === filter
@@ -36,7 +44,7 @@ export function Projects() {
           // alternate 7/5 and 5/7 columns so the grid has a rhythm without cards
           const wide = i % 4 === 0 || i % 4 === 3
           return (
-            <li key={p.id} className={wide ? 'sm:col-span-7' : 'sm:col-span-5'}>
+            <li key={p.id} className={wide ? 'sm:col-span-7' : 'sm:col-span-5'} data-reveal>
               <button
                 type="button"
                 onClick={() => setActive(p)}

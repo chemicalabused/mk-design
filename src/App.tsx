@@ -7,10 +7,11 @@ import { Process } from './components/Process'
 import { Studio } from './components/Studio'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { Motion } from './components/Motion'
 
 function App() {
   return (
-    <>
+    <Motion>
       <Nav />
       <main>
         <Hero />
@@ -22,7 +23,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </Motion>
   )
 }
 

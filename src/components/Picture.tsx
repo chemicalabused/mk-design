@@ -1,14 +1,15 @@
-interface Props {
+import type { ImgHTMLAttributes } from 'react'
+
+interface Props extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'loading' | 'decoding'> {
   src: string // base path without extension, e.g. /images/hero-stalis
   alt: string
-  className?: string
-  sizes?: string
   priority?: boolean
 }
 
-export function Picture({ src, alt, className, priority }: Props) {
+export function Picture({ src, alt, className, priority, ...rest }: Props) {
   return (
     <img
+      {...rest}
       src={`${src}.webp`}
       alt={alt}
       className={className}

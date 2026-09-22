@@ -49,6 +49,7 @@ Headless is the default; pass `--headed` to watch it. Session files land in `.pl
 - `src/components/` one file per section: Nav, Hero, Projects (grid + filter + `<dialog>` lightbox), CaseStudy, Services, Process, Studio, Contact, Footer, plus `Picture`.
 - `src/index.css` has the Tailwind `@theme` tokens (colors stone/plaster/graphite/ink/slate/brass, fonts) and the `heading-xl/lg/md`, `container-page`, `reveal` utilities.
 - `public/images/` is **generated**: run `node scripts/images.mjs` to rebuild WebP images (and the knocked-out logo PNGs) from `design/reference/`. Edit the manifest in that script to add or swap images; do not hand-edit the output.
+- Motion: GSAP + ScrollTrigger via `@gsap/react`. `src/lib/motion.ts` registers the plugin and defaults; `src/components/Motion.tsx` wraps the app and drives two opt-in attributes: `data-reveal` (fade/rise once on enter, batched) and `data-parallax` (slight drift, needs an `overflow-hidden` parent and `scale-[1.14]` on the image). Hero has its own load timeline; Nav hides on scroll down. All motion is inside `gsap.matchMedia` and skipped under `prefers-reduced-motion`. Use the `gsap-core` / `gsap-scrolltrigger` skills when touching this.
 - Contact form has no backend yet: it opens a prefilled `mailto:` link. Replace with a form service before launch.
 
 ## Guidance
@@ -63,4 +64,4 @@ Headless is the default; pass `--headed` to watch it. Session files land in `.pl
   `npx skills add <repo> --skill <name> -a claude-code`
 - `skills-lock.json` at the repo root is maintained by skills.sh and tracks installed skill sources.
 - The `frontend-design` plugin (Anthropic marketplace) is enabled in `.claude/settings.json` and applies automatically to UI work.
-- Installed project skills (see `skills-lock.json`): `vercel-react-best-practices`, `vercel-react-view-transitions`, `web-design-guidelines`, `accessibility`, `better-typography`, `animation-vocabulary`, `improve-animations`, `tailwind-css-patterns`, `find-skills`.
+- Installed project skills (see `skills-lock.json`): `vercel-react-best-practices`, `vercel-react-view-transitions`, `web-design-guidelines`, `accessibility`, `better-typography`, `animation-vocabulary`, `improve-animations`, `tailwind-css-patterns`, `gsap-core`, `gsap-scrolltrigger`, `playwright-cli`, `find-skills`.
