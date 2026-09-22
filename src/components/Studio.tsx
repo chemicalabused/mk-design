@@ -3,7 +3,7 @@ import { Picture } from './Picture'
 
 export function Studio() {
   return (
-    <section id="pracownia" className="container-page py-20 sm:py-28">
+    <section id="pracownia" className="container-page section">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Picture src={studio.portrait.src} alt={studio.portrait.alt} className="aspect-[4/5] w-full object-cover object-top" />

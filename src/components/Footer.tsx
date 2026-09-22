@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="bg-graphite text-plaster">
       <div className="container-page flex flex-col gap-10 py-14 md:flex-row md:items-start md:justify-between">
         <div>
-          <img src="/images/logo.png" alt={brand.name} className="h-20 w-auto invert" />
+          <img src="/images/logo-light.png" alt={brand.name} className="h-20 w-auto" />
           <p className="mt-4 max-w-[36ch] text-sm text-plaster/70">
             Architektura, wnętrza, ogrody i realizacja pod klucz. {brand.tagline}.
           </p>
@@ -27,9 +27,11 @@ export function Footer() {
           )}
         </div>
       </div>
-      <div className="container-page flex flex-col gap-2 border-t border-line-dark py-6 text-xs text-plaster/50 sm:flex-row sm:justify-between">
-        <p>© {new Date().getFullYear()} {brand.name}</p>
-        {legal.length > 0 && <p>{legal.join(', ')}</p>}
+      <div className="container-page">
+        <div className="flex flex-col gap-2 border-t border-line-dark py-6 text-xs text-plaster/50 sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} {brand.name}</p>
+          {legal.length > 0 && <p>{legal.join(', ')}</p>}
+        </div>
       </div>
     </footer>
   )

@@ -59,4 +59,12 @@ await sharp(logoPng).trim().resize({ width: 800 }).png().toFile(path.join(OUT, '
 // The mark occupies roughly the top 45% of the square
 const markPng = await sharp(logoPng).extract({ left: 0, top: 0, width: info.width, height: Math.round(info.height * 0.52) }).png().toBuffer()
 await sharp(markPng).trim().resize({ width: 400 }).png().toFile(path.join(OUT, 'logo-mark.png'))
+// Light version for dark backgrounds: dark pixels -> plaster, gold stays gold.
+const light = Buffer.from(data)
+for (let i = 0; i < light.length; i += 4) {
+  const isGold = light[i] > 150 && light[i + 2] < 140 && light[i] - light[i + 2] > 40
+  if (!isGold && light[i + 3] > 0) { light[i] = 246; light[i + 1] = 243; light[i + 2] = 238 }
+}
+await sharp(light, { raw: { width: info.width, height: info.height, channels: 4 } })
+  .trim().resize({ width: 800 }).png().toFile(path.join(OUT, 'logo-light.png'))
 console.log('ok logo')

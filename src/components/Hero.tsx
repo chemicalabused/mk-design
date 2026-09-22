@@ -12,6 +12,7 @@ export function Hero() {
             priority
             className="absolute inset-0 h-full w-full object-cover"
           />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-stone/80 to-transparent" />
         </div>
 
         <div className="flex flex-col justify-end px-5 pb-10 pt-10 sm:px-8 lg:col-span-5 lg:justify-center lg:px-12 lg:pt-28">
@@ -39,7 +40,7 @@ export function Hero() {
               {hero.secondary.label}
             </a>
           </div>
-          <ul className="reveal mt-12 flex flex-col gap-2 border-t border-line pt-6 text-sm text-slate sm:flex-row sm:flex-wrap sm:gap-x-8" style={{ animationDelay: '520ms' }}>
+          <ul className="reveal mt-12 flex flex-col gap-1.5 border-t border-line pt-6 text-sm text-slate" style={{ animationDelay: '520ms' }}>
             {hero.facts.map((f) => (
               <li key={f}>{f}</li>
             ))}

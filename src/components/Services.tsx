@@ -2,7 +2,7 @@ import { services } from '../content/site'
 
 export function Services() {
   return (
-    <section id="uslugi" className="container-page py-20 sm:py-28">
+    <section id="uslugi" className="container-page section">
       <div className="grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <h2 className="heading-lg">Co robimy</h2>

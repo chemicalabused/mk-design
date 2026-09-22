@@ -5,7 +5,7 @@ export function CaseStudy() {
   const [main, ...rest] = caseStudy.images
   return (
     <section className="bg-graphite text-plaster">
-      <div className="container-page py-20 sm:py-28">
+      <div className="container-page section">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <h2 className="heading-lg">{caseStudy.heading}</h2>

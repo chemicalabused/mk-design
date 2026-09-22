@@ -8,7 +8,7 @@ export function Projects() {
   const visible = filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter)
 
   return (
-    <section id="realizacje" className="container-page py-20 sm:py-28">
+    <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <h2 className="heading-lg">Realizacje</h2>
         <div className="flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filtruj realizacje">
@@ -31,7 +31,7 @@ export function Projects() {
         </div>
       </div>
 
-      <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-12">
+      <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-12">
         {visible.map((p, i) => {
           // alternate 7/5 and 5/7 columns so the grid has a rhythm without cards
           const wide = i % 4 === 0 || i % 4 === 3
@@ -50,12 +50,9 @@ export function Projects() {
                     className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="mt-4 flex items-baseline justify-between gap-4">
-                  <h3 className="heading-md">{p.title}</h3>
-                  <span className="shrink-0 text-sm text-slate">{p.year}</span>
-                </div>
-                <p className="mt-1 text-sm text-slate">
-                  {p.kind}, {p.place}
+                <h3 className="heading-sm mt-4 max-w-[28ch]">{p.title}</h3>
+                <p className="mt-1.5 text-sm text-slate">
+                  {p.kind}, {p.place}, {p.year}
                   {p.area ? `, ${p.area}` : ''}
                   {p.status ? `, ${p.status}` : ''}
                 </p>

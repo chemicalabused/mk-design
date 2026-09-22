@@ -3,7 +3,7 @@ import { process } from '../content/site'
 export function Process() {
   return (
     <section id="proces" className="bg-plaster">
-      <div className="container-page py-20 sm:py-28">
+      <div className="container-page section">
         <h2 className="heading-lg">Jak przebiega współpraca</h2>
         <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {process.map((step, i) => (

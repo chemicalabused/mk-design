@@ -32,7 +32,7 @@ export function Contact() {
 
   return (
     <section id="kontakt" className="bg-plaster">
-      <div className="container-page py-20 sm:py-28">
+      <div className="container-page section">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <h2 className="heading-lg">{contact.heading}</h2>
@@ -101,7 +101,7 @@ export function Contact() {
 
             <label className="mt-8 block">
               <span className="text-sm text-slate">Opowiedzcie o projekcie</span>
-              <textarea name="message" rows={5} required className={`${field} resize-y`} />
+              <textarea name="message" rows={4} required className={`${field} resize-y`} />
             </label>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
