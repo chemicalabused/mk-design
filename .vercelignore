@@ -1,0 +1,6 @@
+design/reference
+node_modules
+dist
+.playwright-cli
+.claude
+.git

@@ -37,6 +37,11 @@ npx playwright-cli close
 
 Headless is the default; pass `--headed` to watch it. Session files land in `.playwright-cli/` (gitignored). Chromium lives in the user cache, not the repo.
 
+## Hosting
+
+- Vercel, project `mk-design`, production URL https://mk-design-snowy.vercel.app. GitHub repo `chemicalabused/mk-design` is connected: every push to `main` deploys to production automatically.
+- Manual deploy: `npx vercel --prod` (needs `npx vercel login` once per machine). `.vercelignore` keeps `design/reference` (1.2 GB) out of uploads; `.vercel/` is gitignored.
+
 ## Layout
 
 - `index.html` is the entry (`lang="pl"`, Google Fonts: Newsreader display + Manrope body); `src/main.tsx` mounts `src/App.tsx`.

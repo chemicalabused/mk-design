@@ -32,3 +32,4 @@ design/reference/*
 
 # Vercel project link (contains project ids)
 .vercel/
+.vercel
