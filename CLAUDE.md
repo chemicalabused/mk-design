@@ -41,6 +41,7 @@ Headless is the default; pass `--headed` to watch it. Session files land in `.pl
 
 - Vercel, project `mk-design`, production URL https://mk-design-snowy.vercel.app. GitHub repo `chemicalabused/mk-design` is connected: every push to `main` deploys to production automatically.
 - Manual deploy: `npx vercel --prod` (needs `npx vercel login` once per machine). `.vercelignore` keeps `design/reference` (1.2 GB) out of uploads; `.vercel/` is gitignored.
+- `vercel.json` sets caching: `/assets/*` (hashed build output) is immutable for a year; `/fonts`, `/images`, `/videos` keep their file names, so they cache for 30 days. To push a changed font, image or video to returning visitors sooner, give it a new file name.
 
 ## Layout
 
