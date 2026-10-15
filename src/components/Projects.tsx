@@ -277,11 +277,17 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
   )
 }
 
+// Card cover: a responsive, lazy image that is always there, with the
+// project's video layered on top only once the card is near the viewport.
+// Until then no poster or video bytes are fetched. Touch devices play the
+// loop while the card is on screen; pointer devices play it on hover.
 function ProjectCover({ project, active }: { project: Project; active: boolean }) {
-  const { t } = useLanguage()
+  const root = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [clipIndex, setClipIndex] = useState(0)
+  const [near, setNear] = useState(false)
   const [visible, setVisible] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const [hoverless, setHoverless] = useState(false)
   const clips = project.videos ?? []
   const clip = clips[clipIndex]
@@ -296,52 +302,60 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
   }, [])
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video || !clip) return
-
-    const observer = new IntersectionObserver(([entry]) => {
+    const el = root.current
+    if (!el || !clip) return
+    const nearby = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setNear(true)
+        nearby.disconnect()
+      }
+    }, { rootMargin: '400px 0px' })
+    const onScreen = new IntersectionObserver(([entry]) => {
       setVisible(entry.intersectionRatio >= 0.3)
     }, { threshold: [0, 0.3] })
-    observer.observe(video)
-    return () => observer.disconnect()
+    nearby.observe(el)
+    onScreen.observe(el)
+    return () => {
+      nearby.disconnect()
+      onScreen.disconnect()
+    }
   }, [clip])
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !clip) return
+    if (!video) return
     if (visible && (hoverless || active)) void video.play().catch(() => {})
     else video.pause()
-  }, [active, clip, hoverless, visible])
+  }, [active, hoverless, near, visible, clipIndex])
 
-  if (!clip) {
-    return (
+  return (
+    <div ref={root} className="relative h-full w-full">
       <Picture
         src={cover.src}
         alt={cover.alt}
         sizes={CARD_SIZES}
         className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
       />
-    )
-  }
-
-  return (
-    <video
-      ref={videoRef}
-      key={clip.src}
-      src={clip.src}
-      poster={imageAt(cover.src, 1200)}
-      muted
-      playsInline
-      loop={clips.length === 1}
-      preload="metadata"
-      onLoadedMetadata={(event) => {
-        event.currentTarget.playbackRate = clip.playbackRate ?? 1
-        if (clip.startAt > 0) event.currentTarget.currentTime = clip.startAt
-      }}
-      onEnded={() => { if (clips.length > 1) setClipIndex((index) => (index + 1) % clips.length) }}
-      className="h-full w-full object-cover"
-      aria-label={`${t('projects.animated')}: ${project.title}`}
-    />
+      {clip && near && (
+        <video
+          ref={videoRef}
+          key={clip.src}
+          src={clip.src}
+          muted
+          playsInline
+          loop={clips.length === 1}
+          preload={hoverless ? 'metadata' : 'none'}
+          onLoadedMetadata={(event) => {
+            event.currentTarget.playbackRate = clip.playbackRate ?? 1
+            if (clip.startAt > 0) event.currentTarget.currentTime = clip.startAt
+          }}
+          onPlaying={() => setPlaying(true)}
+          onEnded={() => { if (clips.length > 1) setClipIndex((index) => (index + 1) % clips.length) }}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? 'opacity-100' : 'opacity-0'}`}
+          aria-hidden="true"
+        />
+      )}
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, REDUCE } from '../lib/motion'
 import { hero } from '../content/site'
@@ -8,6 +8,22 @@ import { useLanguage } from '../lib/i18n'
 export function Hero() {
   const { t } = useLanguage()
   const root = useRef<HTMLElement>(null)
+  // The loop is 1.4 MB. Attach it only after the page has loaded so it does
+  // not compete with the app bundle on slow connections; the poster shows
+  // until then. Skipped entirely when the visitor asked to save data.
+  const [videoSrc, setVideoSrc] = useState<string>()
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    if (connection?.saveData) return
+    const attach = () => setVideoSrc(hero.video)
+    if (document.readyState === 'complete') {
+      attach()
+      return
+    }
+    window.addEventListener('load', attach, { once: true })
+    return () => window.removeEventListener('load', attach)
+  }, [])
 
   useGSAP(
     () => {
@@ -17,7 +33,9 @@ export function Hero() {
           .timeline({ defaults: { ease: 'power3.out' } })
           .from('[data-hero-image]', { scale: 1.08, duration: 2.2, ease: 'expo.out' }, 0)
           .from('[data-hero-line]', { yPercent: 110, duration: 1.1, stagger: 0.09 }, 0.1)
-          .from('[data-hero-fade]', { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.1 }, 0.55)
+          // Rise only, no fade: text that starts at opacity 0 is not counted as
+          // painted, which pushed mobile LCP from 3.2 s to 5.6 s.
+          .from('[data-hero-fade]', { y: 18, duration: 0.9, stagger: 0.1 }, 0.55)
       })
       return () => mm.revert()
     },
@@ -41,13 +59,12 @@ export function Hero() {
         loop
         playsInline
         preload="auto"
+        src={videoSrc}
         poster={`${hero.image.src}.webp`}
         aria-hidden="true"
         tabIndex={-1}
         data-hero-image
-      >
-        <source src={hero.video} type="video/mp4" />
-      </video>
+      />
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/25 to-graphite/10"
