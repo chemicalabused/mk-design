@@ -4,6 +4,7 @@ import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 import { brand, nav } from '../content/site'
 import { languageOptions, useLanguage } from '../lib/i18n'
 import { LanguageMenu } from './LanguageMenu'
+import { Flag } from './Flag'
 
 export function Nav() {
   const [open, setOpen] = useState(false)
@@ -39,7 +40,31 @@ export function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  // Escape closes the mobile menu and returns focus to its toggle.
+  const menuButton = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!open) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setOpen(false)
+      menuButton.current?.focus()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   return (
+    <>
+    {/* Tapping anywhere outside the open mobile menu closes it. Rendered
+        outside the header: GSAP transforms the header, which would make a
+        fixed child position against it instead of the viewport. */}
+    {open && (
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 z-30 bg-graphite/40 backdrop-blur-sm lg:hidden"
+        onClick={() => setOpen(false)}
+      />
+    )}
     <header
       ref={header}
       onMouseEnter={() => setHovered(true)}
@@ -66,11 +91,12 @@ export function Nav() {
         <nav className="hidden items-center gap-6 lg:flex" aria-label={t('nav.main')}>
           {nav.map((item) => <a key={item.href} href={item.href} className="text-sm text-current/85 transition-opacity hover:opacity-65">{t(item.key)}</a>)}
           <LanguageMenu />
+          <span aria-hidden="true" className="-mx-1 h-5 w-px bg-current/25" />
           <a href="#kontakt" className="rounded-full border border-current/75 px-4 py-2 text-sm font-medium transition-colors hover:bg-graphite hover:text-plaster">{t('nav.book')}</a>
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
-          <button type="button" className="min-w-12 px-2 py-2 text-sm" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((v) => !v)}>
+          <button ref={menuButton} type="button" className="min-w-12 px-2 py-2 text-sm" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((v) => !v)}>
             {open ? t('nav.close') : t('nav.open')}
           </button>
         </div>
@@ -81,7 +107,7 @@ export function Nav() {
           <nav className="flex flex-col border-t border-line py-4" aria-label={t('nav.main')}>
             {nav.map((item) => <a key={item.href} href={item.href} className="py-3 font-display text-2xl" onClick={() => setOpen(false)}>{t(item.key)}</a>)}
             <p className="mt-4 text-xs uppercase tracking-[0.14em] text-slate" id="language-mobile">{t('nav.language')}</p>
-            <div className="mt-3 flex gap-2" role="group" aria-labelledby="language-mobile">
+            <div className="mt-3 flex flex-wrap gap-2" role="group" aria-labelledby="language-mobile">
               {languageOptions.map(([code, label]) => (
                 <button
                   key={code}
@@ -89,8 +115,11 @@ export function Nav() {
                   lang={code}
                   aria-pressed={code === language}
                   onClick={() => setLanguage(code)}
-                  className={`min-h-11 rounded-full border px-4 text-sm transition-colors ${code === language ? 'border-graphite bg-graphite text-plaster' : 'border-line text-ink hover:border-graphite'}`}
+                  // Selected = outlined, not filled, so it does not compete with
+                  // the filled consultation button below.
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-3.5 text-sm transition-colors ${code === language ? 'border-graphite bg-white font-medium text-ink' : 'border-line text-slate hover:border-graphite'}`}
                 >
+                  <Flag language={code} />
                   {label}
                 </button>
               ))}
@@ -100,5 +129,6 @@ export function Nav() {
         </div>
       )}
     </header>
+    </>
   )
 }
