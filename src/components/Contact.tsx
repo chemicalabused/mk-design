@@ -19,9 +19,10 @@ function check(field: Field, value: string) {
 }
 
 export function Contact() {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
   const [scopes, setScopes] = useState<string[]>([])
-  const [sent, setSent] = useState(false)
+  // idle -> sending -> delivered | failed; 'mailto' when no form key is set.
+  const [status, setStatus] = useState<'idle' | 'sending' | 'delivered' | 'failed' | 'mailto'>('idle')
   // Keys, not text, so a language switch re-translates visible errors.
   const [errors, setErrors] = useState<Errors>({})
 
@@ -29,9 +30,9 @@ export function Contact() {
     setScopes((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]))
   }
 
-  // Until a form backend is chosen, the form opens the visitor's mail client
-  // with everything pre-filled, so it works on a static host.
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  // Sends through Web3Forms when brand.formKey is set; otherwise opens the
+  // visitor's mail client with everything pre-filled.
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const f = new FormData(form)
@@ -43,10 +44,47 @@ export function Contact() {
     setErrors(found)
     const first = Object.keys(found)[0]
     if (first) {
-      setSent(false)
+      setStatus('idle')
       form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus()
       return
     }
+    if (status === 'sending') return
+    // Honeypot: real visitors never see or tick this box.
+    if (f.get('botcheck')) return
+
+    if (brand.formKey) {
+      setStatus('sending')
+      const contact = String(f.get('contact')).trim()
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: brand.formKey,
+            subject: `${t('contact.subject')}: ${String(f.get('name')).trim()}`,
+            from_name: brand.name,
+            ...(EMAIL.test(contact) ? { replyto: contact } : {}),
+            // Field names below arrive as-is in the studio's inbox, so they
+            // stay Polish whatever language the visitor used.
+            'Imię i nazwisko': f.get('name'),
+            Kontakt: contact,
+            'Lokalizacja i metraż': f.get('where') || '—',
+            Zakres: scopes.join(', ') || '—',
+            Wiadomość: f.get('message'),
+            'Język strony': language.toUpperCase(),
+          }),
+        })
+        const result = (await response.json()) as { success?: boolean }
+        if (!response.ok || !result.success) throw new Error('Web3Forms rejected the submission')
+        form.reset()
+        setScopes([])
+        setStatus('delivered')
+      } catch {
+        setStatus('failed')
+      }
+      return
+    }
+
     const body = [
       `${t('contact.mailName')}: ${f.get('name')}`,
       `${t('contact.mailContact')}: ${f.get('contact')}`,
@@ -57,7 +95,7 @@ export function Contact() {
     ].join('\n')
     const url = `mailto:${brand.email}?subject=${encodeURIComponent(t('contact.subject'))}&body=${encodeURIComponent(body)}`
     window.location.href = url
-    setSent(true)
+    setStatus('mailto')
   }
 
   // Once a field has an error, re-check it as the visitor types so the
@@ -174,14 +212,27 @@ export function Contact() {
               {error('message')}
             </div>
 
+            {/* Honeypot for bots; Web3Forms also rejects submissions that tick it. */}
+            <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
                 type="submit"
-                className="rounded-full bg-graphite px-6 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-ink"
+                disabled={status === 'sending'}
+                className="rounded-full bg-graphite px-6 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-ink disabled:cursor-wait disabled:opacity-70"
               >
-                {t('contact.send')}
+                {status === 'sending' ? t('contact.sending') : t('contact.send')}
               </button>
-              {sent && <p className="text-sm text-slate" role="status">{t('contact.sent')}</p>}
+              <p className={`text-sm ${status === 'failed' ? 'text-error' : 'text-slate'}`} role="status">
+                {status === 'mailto' && t('contact.sent')}
+                {status === 'delivered' && t('contact.delivered')}
+                {status === 'failed' && (
+                  <>
+                    {t('contact.failed')}{' '}
+                    <a href={`mailto:${brand.email}`} className="underline underline-offset-4">{brand.email}</a>.
+                  </>
+                )}
+              </p>
             </div>
           </form>
         </div>

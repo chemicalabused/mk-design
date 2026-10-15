@@ -14,6 +14,10 @@ export const brand = {
   address: '' as string, // np. "ul. Piłsudskiego 62/205, 48-303 Nysa"
   company: '' as string, // nazwa firmy do stopki
   nip: '' as string,
+  // Web3Forms access key for the contact form (public by design: it can only
+  // deliver to the inbox it was issued for). Empty = fall back to mailto:.
+  // Get one at https://web3forms.com with the studio's address above.
+  formKey: '' as string,
 }
 
 export const nav = [
