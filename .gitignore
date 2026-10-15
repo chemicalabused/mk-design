@@ -33,3 +33,8 @@ design/reference/*
 # Vercel project link (contains project ids)
 .vercel/
 .vercel
+
+# Designer hand-off (built site and v52 source export); everything needed is
+# already in src/ and public/. Ignored so Tailwind does not scan them either.
+mdh-site/
+MDesignHouse-source-v52/

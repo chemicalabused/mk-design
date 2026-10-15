@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Skill docs contain example class names; keep them out of the build so
+   local CSS matches Vercel, where .claude is excluded by .vercelignore. */
+@source not "../.claude";
 
 @theme {
   --color-stone: #e8e3da;
