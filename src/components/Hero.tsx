@@ -29,6 +29,8 @@ export function Hero() {
       <Picture
         src={hero.image.src}
         alt={hero.image.alt}
+        // 16:9 cover: on portrait screens the image is as wide as 16/9 of the height.
+        sizes="(min-aspect-ratio: 16/9) min(100vw, 1920px), 178vh"
         priority
         className="absolute inset-0 h-full w-full object-cover object-center"
       />

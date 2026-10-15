@@ -19,12 +19,12 @@ export function CaseStudy() {
           </div>
           <figure className="lg:col-span-7">
             <div className="isolate aspect-[16/10] overflow-hidden rounded-media" data-reveal>
-              <Picture src={main.src} alt={main.alt} className="h-full w-full scale-[1.14] object-cover" data-parallax />
+              <Picture src={main.src} alt={main.alt} sizes="(min-width: 1600px) 940px, (min-width: 1024px) 60vw, 100vw" className="h-full w-full scale-[1.14] object-cover" data-parallax />
             </div>
             <div className="mt-3 grid grid-cols-2 gap-3">
               {rest.map((img) => (
                 <div key={img.src} className="isolate aspect-[4/3] overflow-hidden rounded-media" data-reveal>
-                  <Picture src={img.src} alt={img.alt} className="h-full w-full scale-[1.14] object-cover" data-parallax />
+                  <Picture src={img.src} alt={img.alt} sizes="(min-width: 1600px) 470px, (min-width: 1024px) 30vw, 50vw" className="h-full w-full scale-[1.14] object-cover" data-parallax />
                 </div>
               ))}
             </div>

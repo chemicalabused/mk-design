@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
+import { imageAt } from '../lib/images'
 import { useLanguage } from '../lib/i18n'
+
+// Rendered widths for srcset. Cards take ~7/12 of the 1472px content box at
+// most; gallery tiles are half of the 1024px dialog minus padding.
+const CARD_SIZES = '(min-width: 1600px) 860px, (min-width: 640px) 58vw, calc(100vw - 2.5rem)'
+const TILE_SIZES = '(min-width: 1072px) 475px, (min-width: 640px) calc(50vw - 3.5rem), calc(100vw - 2.5rem)'
 
 export function Projects() {
   const { t, localizeProject } = useLanguage()
@@ -94,6 +100,7 @@ export function Projects() {
                           <Picture
                             src={p.images[0].src}
                             alt={p.images[0].alt}
+                            sizes={CARD_SIZES}
                             className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
                           />
                         )}
@@ -192,7 +199,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
                     src={clip.src}
                     startAt={clip.startAt}
                     playbackRate={clip.playbackRate ?? 1}
-                    poster={`${(project.coverImage ?? project.images[0]).src}.webp`}
+                    poster={imageAt((project.coverImage ?? project.images[0]).src, 1200)}
                     label={`${project.title}, ${t('projects.film')} ${index + 1}`}
                   />
                 </div>
@@ -216,6 +223,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
                   <Picture
                     src={img.src}
                     alt={img.alt}
+                    sizes={TILE_SIZES}
                     className={`h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04] ${img.type === 'plan' || img.type === 'elevation' ? 'object-contain' : 'object-cover'}`}
                   />
                     <span className="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-graphite/75 text-white opacity-80 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-graphite group-hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100" aria-hidden="true">
@@ -310,6 +318,7 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
       <Picture
         src={cover.src}
         alt={cover.alt}
+        sizes={CARD_SIZES}
         className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
       />
     )
@@ -320,7 +329,7 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
       ref={videoRef}
       key={clip.src}
       src={clip.src}
-      poster={`${cover.src}.webp`}
+      poster={imageAt(cover.src, 1200)}
       muted
       playsInline
       loop={clips.length === 1}
