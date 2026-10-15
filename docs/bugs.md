@@ -7,3 +7,4 @@
 6	Scroll w scrollu w sekcji projektów	Projekty	Zrobione (4945c46)
 7	Brak drop-down wyboru jezyka - jest  tylko brzydki systemowy	Header	Zrobione (9c36cf1)
 8	Walidacja formularza jest systemowa (zob. SCR-20261015-tbsd.png)	Formularz	Zrobione (926ae3b)
+9	W stopce tekst pod logiem zle sie sklada, jedno slowo zostaje (zob. SCR-20261015-uomu.png)	Stopka	Zrobione (b641ff7)
