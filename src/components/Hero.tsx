@@ -1,21 +1,49 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, REDUCE } from '../lib/motion'
 import { hero } from '../content/site'
 import { Picture } from './Picture'
+import { useLanguage } from '../lib/i18n'
 
 export function Hero() {
+  const { t } = useLanguage()
   const root = useRef<HTMLElement>(null)
+  // The loop is 1.4 MB. Attach it only after the page has loaded so it does
+  // not compete with the app bundle on slow connections; the poster shows
+  // until then. Skipped when the visitor asked to save data, and under reduced
+  // motion, where the video is hidden anyway (index.css).
+  const [videoSrc, setVideoSrc] = useState<string>()
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    if (connection?.saveData || window.matchMedia(REDUCE).matches) return
+    const attach = () => setVideoSrc(hero.video)
+    if (document.readyState === 'complete') {
+      attach()
+      return
+    }
+    window.addEventListener('load', attach, { once: true })
+    return () => window.removeEventListener('load', attach)
+  }, [])
 
   useGSAP(
     () => {
+      // Hand the start pose over from CSS (.js rules in index.css, which hold
+      // the prerendered hero still) to GSAP. Dropping the class in the same
+      // tick as the fromTo calls below set the pose inline means no frame is
+      // painted in between, and the CSS failsafe can no longer cut the
+      // timeline short on slow devices.
+      document.documentElement.classList.remove('js')
       const mm = gsap.matchMedia()
       mm.add(`not all and ${REDUCE}`, () => {
         gsap
           .timeline({ defaults: { ease: 'power3.out' } })
-          .from('[data-hero-image]', { scale: 1.08, duration: 2.2, ease: 'expo.out' }, 0)
-          .from('[data-hero-line]', { yPercent: 110, duration: 1.1, stagger: 0.09 }, 0.1)
-          .from('[data-hero-fade]', { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.1 }, 0.55)
+          // fromTo so the start pose is explicit and rendered immediately.
+          .fromTo('[data-hero-image]', { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'expo.out' }, 0)
+          .fromTo('[data-hero-line]', { yPercent: 110 }, { yPercent: 0, duration: 1.1, stagger: 0.09 }, 0.1)
+          // Rise only, no fade: text that starts at opacity 0 is not counted as
+          // painted, which pushed mobile LCP from 3.2 s to 5.6 s.
+          .fromTo('[data-hero-fade]', { y: 18 }, { y: 0, duration: 0.9, stagger: 0.1 }, 0.55)
       })
       return () => mm.revert()
     },
@@ -23,46 +51,74 @@ export function Hero() {
   )
 
   return (
-    <section id="top" ref={root} className="relative">
-      <div className="grid min-h-svh grid-cols-1 lg:grid-cols-12">
-        <div className="relative order-first h-[58svh] overflow-hidden lg:order-last lg:col-span-7 lg:h-auto lg:min-h-svh">
-          <Picture
-            src={hero.image.src}
-            alt={hero.image.alt}
-            priority
-            className="absolute inset-0 h-full w-full object-cover"
-            data-hero-image
-          />
-          <div aria-hidden className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-stone/80 to-transparent" />
-        </div>
+    <section id="top" ref={root} className="relative mx-auto flex min-h-svh w-full max-w-[1920px] items-end overflow-hidden bg-graphite">
+      {/* The entrance zoom scales this wrapper, so the poster image and the
+          video (which may attach mid-animation) always share one scale. */}
+      <div className="absolute inset-0" data-hero-image>
+      <Picture
+        src={hero.image.src}
+        alt={t(hero.image.altKey)}
+        // 16:9 cover: on portrait screens the image is as wide as 16/9 of the height.
+        sizes="(min-aspect-ratio: 16/9) min(100vw, 1920px), 178vh"
+        priority
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <video
+        className="md-hero-video absolute inset-0 h-full w-full object-cover object-center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        // No poster: the responsive <Picture> above already sits underneath
+        // and stays visible until the video has frames.
+        src={videoSrc}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      </div>
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/25 to-graphite/10"
+      />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-graphite/30 via-transparent to-transparent" />
 
-        <div className="flex flex-col justify-end px-5 pb-10 pt-10 sm:px-8 lg:col-span-5 lg:justify-center lg:px-12 lg:pt-28">
-          <h1 className="heading-xl">
-            {hero.headline.map((line) => (
-              <span key={line} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+      <div className="container-page relative z-10 w-full pb-14 pt-36 text-white sm:pb-20 lg:pb-24">
+        <div className="max-w-5xl">
+          <h1 className="hero-heading font-display text-[clamp(3rem,5.6vw,5rem)] font-normal leading-[1.08] tracking-[-0.01em]">
+            {[t('hero.head1'), t('hero.head2'), t('hero.head3')].map((line, index) => (
+              <span
+                // Index, not text: the saved language is applied after
+                // hydration, and text keys would swap in new, unanimated nodes.
+                key={index}
+                className={`hero-heading-line block overflow-hidden pb-[0.17em] -mb-[0.17em] ${index === 0 ? 'hero-heading-topic' : 'hero-heading-main'}`}
+              >
                 <span className="block" data-hero-line>
                   {line}
                 </span>
               </span>
             ))}
           </h1>
-          <p className="mt-6 max-w-[42ch] text-base leading-relaxed text-slate sm:text-lg" data-hero-fade>
-            {hero.lead}
+          <p className="mt-6 max-w-[54ch] text-base leading-relaxed text-white/85 sm:text-lg" data-hero-fade>
+            {t('hero.lead')}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3" data-hero-fade>
             <a
               href={hero.primary.href}
-              className="rounded-full bg-graphite px-6 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-ink"
+              className="rounded-full bg-white px-6 py-3.5 text-sm font-medium text-graphite transition-colors hover:bg-plaster"
             >
-              {hero.primary.label}
+              {t('hero.primary')}
             </a>
             <a
               href={hero.secondary.href}
-              className="px-2 py-3.5 text-sm font-medium underline decoration-line underline-offset-[6px] transition-colors hover:decoration-graphite"
+              className="px-2 py-3.5 text-sm font-medium text-white underline decoration-white/50 underline-offset-[6px] transition-colors hover:decoration-white"
             >
-              {hero.secondary.label}
+              {t('hero.secondary')}
             </a>
           </div>
+          <p className="mt-7 text-[10px] uppercase tracking-[0.16em] text-white/75 sm:text-xs" data-hero-fade>
+            {t('hero.meta')}
+          </p>
         </div>
       </div>
     </section>

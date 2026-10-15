@@ -1,20 +1,22 @@
 import { brand, nav } from '../content/site'
+import { useLanguage } from '../lib/i18n'
 
 export function Footer() {
+  const { t } = useLanguage()
   const legal = [brand.company, brand.nip && `NIP ${brand.nip}`, brand.address].filter(Boolean)
   return (
     <footer className="bg-graphite text-plaster">
       <div className="container-page flex flex-col gap-10 py-14 md:flex-row md:items-start md:justify-between">
         <div>
-          <img src="/images/logo-light.png" alt={brand.name} className="h-20 w-auto" />
-          <p className="mt-4 max-w-[36ch] text-sm text-plaster/70">
-            Architektura, wnętrza, ogrody i realizacja pod klucz. {brand.tagline}.
+          <img src="/images/mdh-logo-light.png" alt={brand.name} width={720} height={165} className="h-20 w-auto" />
+          <p className="mt-4 max-w-[36ch] text-balance text-sm text-plaster/70">
+            {t('footer.tagline')}
           </p>
         </div>
-        <nav className="flex flex-col gap-2 text-sm" aria-label="Stopka">
+        <nav className="flex flex-col gap-2 text-sm" aria-label={t('footer.nav')}>
           {nav.map((i) => (
             <a key={i.href} href={i.href} className="text-plaster/80 hover:text-plaster">
-              {i.label}
+              {t(i.key)}
             </a>
           ))}
         </nav>

@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "./fonts.css";
+/* Skill docs contain example class names; keep them out of the build so
+   local CSS matches Vercel, where .claude is excluded by .vercelignore. */
+@source not "../.claude";
 
 @theme {
   --color-stone: #e8e3da;
@@ -6,10 +10,15 @@
   --color-graphite: #1e1c1a;
   --color-ink: #2a2724;
   --color-slate: #625c54;
-  --color-brass: #a8873f;
+  --color-brass: #7a5f24;
   --color-brass-light: #c9a85a;
+  --color-error: #9f2f24;
   --color-line: rgb(30 28 26 / 0.16);
   --color-line-dark: rgb(246 243 238 / 0.18);
+
+  /* One corner radius for every photo, video and gallery tile. Buttons are
+     pills; images use this softer radius so the two read as one family. */
+  --radius-media: 1rem;
 
   --font-display: "Newsreader", "Times New Roman", serif;
   --font-sans: "Manrope", system-ui, sans-serif;
@@ -18,6 +27,11 @@
 }
 
 @layer base {
+  /* No lone word on the last line: balance short headings, and let
+     paragraphs avoid orphans (e.g. the footer tagline left "klucz."
+     alone). Browsers without support simply wrap as before. */
+  h1, h2, h3, dt { text-wrap: balance; }
+  p, dd, li, figcaption, legend { text-wrap: pretty; }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
@@ -34,7 +48,10 @@
     outline: 2px solid var(--color-brass);
     outline-offset: 3px;
   }
-  .font-display {
+  /* The body's ss01/cv11 are Manrope alternates. Serif text must not inherit
+     them: in Source Serif 4 (Ukrainian headings) ss01 switches to Bulgarian
+     letterforms, e.g. т drawn like m. */
+  .font-display, .heading-xl, .heading-lg, .heading-md, .heading-sm, .hero-heading {
     font-optical-sizing: auto;
     font-feature-settings: "liga", "kern";
   }
@@ -47,9 +64,66 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .md-hero-video { display: none; }
+}
+
+/* The page is prerendered, so the hero is in the HTML before the app runs.
+   Hold it in the entrance animation's start pose until GSAP takes over
+   (Hero.tsx removes .js as it does), so it does not show, jump back and
+   animate in again. If the app never starts, the failsafe releases
+   everything after 6 s. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-hero-line] { transform: translateY(110%); }
+  .js [data-hero-fade] { transform: translateY(18px); }
+  .js [data-hero-image] { transform: scale(1.08); }
+  .js :is([data-hero-line], [data-hero-fade], [data-hero-image]) {
+    animation: hero-failsafe 0s 6s forwards;
+  }
+}
+@keyframes hero-failsafe {
+  to { transform: none; }
+}
+
+@media (max-width: 767px) {
+  #top [data-hero-image] > img,
+  #top .md-hero-video {
+    object-position: 38% center;
+  }
+
+  .hero-heading {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-heading-main {
+    order: 1;
+  }
+
+  /* Keep the mask (overflow hidden) the entrance slide relies on; the
+     padding/negative margin pair leaves room for descenders. */
+  .hero-heading-topic {
+    order: 2;
+    margin-top: 0.42rem;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+
+  .hero-heading-topic [data-hero-line] {
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 5.2vw, 1.55rem);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+}
+
 @layer utilities {
+  .hero-heading {
+    font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-optical-sizing: auto;
+  }
   .container-page {
-    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-16;
   }
   .heading-xl {
     @apply font-display font-normal leading-[0.98] tracking-[-0.015em];

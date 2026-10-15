@@ -1,0 +1,960 @@
+{
+  "/images/hero-pergola-poster": [
+    480,
+    800,
+    1200,
+    1600
+  ],
+  "/images/projects/altea-01": [
+    480,
+    800,
+    1200,
+    2400
+  ],
+  "/images/projects/altea-02": [
+    480,
+    800,
+    1200,
+    1472
+  ],
+  "/images/projects/altea-03": [
+    480,
+    800,
+    1200,
+    1474
+  ],
+  "/images/projects/altea-04": [
+    480,
+    800,
+    1200,
+    1392
+  ],
+  "/images/projects/apartament-torrevieja-01": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/apartament-torrevieja-02": [
+    480,
+    800,
+    1200,
+    1437
+  ],
+  "/images/projects/apartament-torrevieja-03": [
+    480,
+    800,
+    1200,
+    1387
+  ],
+  "/images/projects/apartament-torrevieja-04": [
+    480,
+    800,
+    1200,
+    1510
+  ],
+  "/images/projects/apartament-witolda-bathroom-replacement": [
+    480,
+    800,
+    1200,
+    1587
+  ],
+  "/images/projects/apartament-witolda-wroclaw-01": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/apartament-witolda-wroclaw-03": [
+    480,
+    800,
+    1200,
+    1668
+  ],
+  "/images/projects/apartament-witolda-wroclaw-04": [
+    480,
+    800,
+    991
+  ],
+  "/images/projects/apartament-witolda-wroclaw-05": [
+    480,
+    800,
+    1119
+  ],
+  "/images/projects/apartament-witolda-wroclaw-06": [
+    480,
+    800,
+    1200,
+    1393
+  ],
+  "/images/projects/dom-110-wroclaw-01": [
+    480,
+    800,
+    1200,
+    1521
+  ],
+  "/images/projects/dom-110-wroclaw-02": [
+    480,
+    800,
+    1200,
+    1500
+  ],
+  "/images/projects/dom-110-wroclaw-03": [
+    480,
+    800,
+    1200,
+    1543
+  ],
+  "/images/projects/dom-110-wroclaw-04": [
+    480,
+    800,
+    1200,
+    1600
+  ],
+  "/images/projects/dom-110-wroclaw-05": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/dom-110-wroclaw-06": [
+    480,
+    800,
+    1200,
+    1659
+  ],
+  "/images/projects/dom-110-wroclaw-electrical-plan": [
+    480,
+    800,
+    1200,
+    1363
+  ],
+  "/images/projects/dom-110-wroclaw-elevations": [
+    480,
+    800,
+    1200,
+    1367
+  ],
+  "/images/projects/dom-glucholazy-01": [
+    480,
+    800,
+    1200,
+    1545
+  ],
+  "/images/projects/dom-glucholazy-02": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/dom-glucholazy-03": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/dom-glucholazy-04": [
+    480,
+    800,
+    1200,
+    1545
+  ],
+  "/images/projects/dom-glucholazy-05": [
+    480,
+    800,
+    1200,
+    1545
+  ],
+  "/images/projects/dom-glucholazy-06": [
+    480,
+    800,
+    1200,
+    1545
+  ],
+  "/images/projects/dom-na-stoku-prudnik-01": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/dom-na-stoku-prudnik-02": [
+    480,
+    800,
+    1164
+  ],
+  "/images/projects/dom-na-stoku-prudnik-03": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/dom-na-stoku-prudnik-04": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/dom-na-stoku-prudnik-05": [
+    480,
+    800,
+    1200,
+    1776
+  ],
+  "/images/projects/dom-na-stoku-prudnik-06": [
+    480,
+    800,
+    1200,
+    2400
+  ],
+  "/images/projects/dom-stalis-180-01": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/dom-stalis-180-02": [
+    480,
+    800,
+    1200,
+    1679
+  ],
+  "/images/projects/dom-stalis-180-03": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/dom-stalis-180-04": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/dom-stalis-180-05": [
+    480,
+    800,
+    1200,
+    1484
+  ],
+  "/images/projects/dom-stalis-180-06": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-07": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-08": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-09": [
+    480,
+    800,
+    1200,
+    1519
+  ],
+  "/images/projects/dom-stalis-180-10": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-11": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-12": [
+    480,
+    800,
+    1200,
+    1549
+  ],
+  "/images/projects/dom-stalis-180-13": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/dom-stalis-180-14": [
+    480,
+    800,
+    1200,
+    1447
+  ],
+  "/images/projects/dom-stalis-180-plan": [
+    480,
+    800,
+    1030
+  ],
+  "/images/projects/kawalerka-35m-nysa-01": [
+    480,
+    800,
+    1200,
+    1590
+  ],
+  "/images/projects/kawalerka-35m-nysa-02": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/kawalerka-35m-nysa-03": [
+    480,
+    800,
+    1200,
+    1984
+  ],
+  "/images/projects/kawalerka-35m-nysa-04": [
+    480,
+    800,
+    1125
+  ],
+  "/images/projects/kawalerka-35m-nysa-05": [
+    480,
+    800,
+    1200,
+    2400
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-01": [
+    480,
+    800,
+    1200,
+    2047
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-02": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-03": [
+    480,
+    800,
+    1200,
+    1533
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-04": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-05": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/klubowy-dom-kosciuszki-25-06": [
+    480,
+    800,
+    1200,
+    1365
+  ],
+  "/images/projects/kompleks-nad-woda-01": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-02": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/kompleks-nad-woda-03": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-04": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-05": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-06": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-07": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-08": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/kompleks-nad-woda-09": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-10": [
+    480,
+    842
+  ],
+  "/images/projects/kompleks-nad-woda-11": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/kompleks-nad-woda-12": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/loft-wroclaw-01": [
+    480,
+    800,
+    1200,
+    1690
+  ],
+  "/images/projects/loft-wroclaw-02": [
+    480,
+    800,
+    1200,
+    1662
+  ],
+  "/images/projects/loft-wroclaw-03": [
+    480,
+    800,
+    1200,
+    1649
+  ],
+  "/images/projects/loft-wroclaw-04": [
+    480,
+    800,
+    1217
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-01": [
+    480,
+    800,
+    1200,
+    1667
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-02": [
+    480,
+    800,
+    1200,
+    1663
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-03": [
+    480,
+    800,
+    1009
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-04": [
+    480,
+    800,
+    1269
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-05": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/mieszkanie-2-pokoje-nysa-06": [
+    480,
+    800,
+    1200,
+    1476
+  ],
+  "/images/projects/ogrod-rezydencjonalny-01": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/ogrod-rezydencjonalny-02": [
+    480,
+    800,
+    1122
+  ],
+  "/images/projects/ogrod-rezydencjonalny-03": [
+    480,
+    830
+  ],
+  "/images/projects/ogrod-rezydencjonalny-04": [
+    480,
+    800,
+    1200,
+    1620
+  ],
+  "/images/projects/ogrod-rezydencjonalny-evening": [
+    480,
+    800,
+    1200,
+    1454
+  ],
+  "/images/projects/ogrod-rezydencjonalny-pergola-day": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/ogrod-w-lubrzy-01": [
+    480,
+    800,
+    1200,
+    1713
+  ],
+  "/images/projects/ogrod-w-lubrzy-02": [
+    480,
+    800,
+    1200,
+    1714
+  ],
+  "/images/projects/ogrod-w-lubrzy-03": [
+    480,
+    800,
+    1200,
+    1628
+  ],
+  "/images/projects/ogrod-w-lubrzy-04": [
+    480,
+    800,
+    1200,
+    1714
+  ],
+  "/images/projects/ogrod-w-lubrzy-05": [
+    480,
+    800,
+    1024
+  ],
+  "/images/projects/ogrod-w-lubrzy-07": [
+    480,
+    800,
+    1200,
+    1628
+  ],
+  "/images/projects/ogrod-w-lubrzy-08": [
+    480,
+    800,
+    1200,
+    1714
+  ],
+  "/images/projects/ogrod-w-lubrzy-09": [
+    480,
+    800,
+    1200,
+    1713
+  ],
+  "/images/projects/ogrod-w-lubrzy-10": [
+    480,
+    800,
+    1200,
+    1652
+  ],
+  "/images/projects/ogrod-w-lubrzy-11": [
+    480,
+    800,
+    1200,
+    1714
+  ],
+  "/images/projects/ogrod-w-lubrzy-12": [
+    480,
+    800,
+    1200,
+    1695
+  ],
+  "/images/projects/ogrod-w-lubrzy-13": [
+    480,
+    800,
+    1200,
+    1713
+  ],
+  "/images/projects/ogrod-w-lubrzy-14": [
+    480,
+    800,
+    1200,
+    1714
+  ],
+  "/images/projects/ogrod-w-lubrzy-15": [
+    480,
+    800,
+    1200,
+    1695
+  ],
+  "/images/projects/palac-kachanowka-aerial": [
+    480,
+    800,
+    1200,
+    1735
+  ],
+  "/images/projects/palac-kachanowka-cover-new": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/palac-kachanowka-elevation-materials": [
+    480,
+    800,
+    1200,
+    1973
+  ],
+  "/images/projects/palac-kachanowka-front": [
+    480,
+    800,
+    1200,
+    1696
+  ],
+  "/images/projects/palac-kachanowka-front-elevation": [
+    480,
+    800,
+    1200,
+    2048
+  ],
+  "/images/projects/palac-kachanowka-landscape-plan": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/palac-kachanowka-side-elevation": [
+    480,
+    800,
+    1200,
+    2048
+  ],
+  "/images/projects/park-biala-cerkiew-01": [
+    480,
+    800,
+    1200,
+    1524
+  ],
+  "/images/projects/park-biala-cerkiew-02": [
+    480,
+    800,
+    1200,
+    1540
+  ],
+  "/images/projects/park-biala-cerkiew-03": [
+    480,
+    800,
+    1200,
+    1542
+  ],
+  "/images/projects/park-biala-cerkiew-04": [
+    480,
+    800,
+    1200,
+    1520
+  ],
+  "/images/projects/park-biala-cerkiew-05": [
+    480,
+    800,
+    1024
+  ],
+  "/images/projects/park-biala-cerkiew-07": [
+    480,
+    800,
+    1200,
+    1557
+  ],
+  "/images/projects/park-biala-cerkiew-08": [
+    480,
+    800,
+    1200,
+    1570
+  ],
+  "/images/projects/park-biala-cerkiew-09": [
+    480,
+    800,
+    1200,
+    1517
+  ],
+  "/images/projects/park-biala-cerkiew-concept": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/park-biala-cerkiew-overview": [
+    480,
+    800,
+    1200,
+    1436
+  ],
+  "/images/projects/pietrowice-evening": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/pietrowice-family-front": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/pietrowice-garden": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/pietrowice-interior": [
+    480,
+    800,
+    1200,
+    1672
+  ],
+  "/images/projects/pietrowice-pergola": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/pietrowice-site-plan": [
+    480,
+    800,
+    1200,
+    1532
+  ],
+  "/images/projects/pietrowice-street": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/rezydencja-skrzypiec-01": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/rezydencja-skrzypiec-02": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/rezydencja-skrzypiec-03": [
+    480,
+    800,
+    1200,
+    2000
+  ],
+  "/images/projects/rezydencja-skrzypiec-04": [
+    480,
+    800,
+    960
+  ],
+  "/images/projects/rezydencja-skrzypiec-05": [
+    480,
+    800,
+    1200,
+    1774
+  ],
+  "/images/projects/rezydencja-skrzypiec-06": [
+    480,
+    800,
+    1200,
+    1448
+  ],
+  "/images/projects/rezydencja-skrzypiec-07": [
+    480,
+    800,
+    1200,
+    1438
+  ],
+  "/images/projects/rezydencja-skrzypiec-08": [
+    480,
+    800,
+    1200,
+    1456
+  ],
+  "/images/projects/rezydencja-skrzypiec-09": [
+    480,
+    800,
+    1200,
+    1440
+  ],
+  "/images/projects/rezydencja-skrzypiec-10": [
+    480,
+    800,
+    1200,
+    1391
+  ],
+  "/images/projects/rezydencja-skrzypiec-11": [
+    480,
+    800,
+    1200,
+    1662
+  ],
+  "/images/projects/rezydencja-skrzypiec-12": [
+    480,
+    800,
+    1200,
+    1774
+  ],
+  "/images/projects/rezydencja-skrzypiec-13": [
+    480,
+    800,
+    1200,
+    1551
+  ],
+  "/images/projects/rezydencja-skrzypiec-14": [
+    480,
+    800,
+    1200,
+    1782
+  ],
+  "/images/projects/rezydencja-skrzypiec-15": [
+    480,
+    800,
+    1200,
+    1783
+  ],
+  "/images/projects/rezydencja-skrzypiec-16": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-17": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-18": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-19": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-20": [
+    480,
+    800,
+    1200
+  ],
+  "/images/projects/rezydencja-skrzypiec-21": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-22": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-23": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-24": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-25": [
+    480,
+    800,
+    1280
+  ],
+  "/images/projects/rezydencja-skrzypiec-26": [
+    480,
+    800,
+    1200,
+    1622
+  ],
+  "/images/projects/rezydencja-skrzypiec-27": [
+    480,
+    800,
+    1065
+  ],
+  "/images/projects/rezydencja-skrzypiec-28": [
+    480,
+    800,
+    1200,
+    1627
+  ],
+  "/images/projects/rezydencja-skrzypiec-29": [
+    480,
+    800,
+    1200,
+    1679
+  ],
+  "/images/projects/wnetrze-pod-skosami-01": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/wnetrze-pod-skosami-02": [
+    480,
+    800,
+    1024
+  ],
+  "/images/projects/wnetrze-pod-skosami-03": [
+    480,
+    800,
+    1062
+  ],
+  "/images/projects/wnetrze-pod-skosami-04": [
+    480,
+    800,
+    1200,
+    2400
+  ],
+  "/images/projects/wnetrze-pod-skosami-dining": [
+    480,
+    800,
+    1200,
+    1536
+  ],
+  "/images/projects/wnetrze-pod-skosami-living-room": [
+    480,
+    800,
+    1200,
+    1460
+  ],
+  "/images/skrzypiec-etap-instalacji": [
+    480,
+    800,
+    1280
+  ],
+  "/images/skrzypiec-kuchnia": [
+    480,
+    800,
+    1200,
+    1600
+  ],
+  "/images/skrzypiec-kuchnia-montaz": [
+    480,
+    800,
+    1200,
+    1426
+  ]
+}

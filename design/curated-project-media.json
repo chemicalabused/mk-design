@@ -1,0 +1,784 @@
+{
+  "wnetrze-pod-skosami": [
+    {
+      "file": "/images/projects/wnetrze-pod-skosami-01",
+      "type": "visualization",
+      "alt": "Otwarta strefa dzienna pod drewnianą konstrukcją dachu",
+      "source_archive": "ADAM_NYSA.zip",
+      "source_path": "ADAM_NYSA/02_19_53.png",
+      "source_image_number": 3
+    },
+    {
+      "file": "/images/projects/wnetrze-pod-skosami-02",
+      "type": "visualization",
+      "alt": "Kameralny kąt wypoczynkowy na poddaszu",
+      "source_archive": "ADAM_NYSA.zip",
+      "source_path": "ADAM_NYSA/02_40_57.png",
+      "source_image_number": 5
+    },
+    {
+      "file": "/images/projects/wnetrze-pod-skosami-03",
+      "type": "visualization",
+      "alt": "Łazienka z prysznicem typu walk-in i drewnianą zabudową",
+      "source_archive": "ADAM_NYSA.zip",
+      "source_path": "ADAM_NYSA/9d0058ab-4346-4e77-a7d5-6bbbf735eb29.png",
+      "source_image_number": 8
+    },
+    {
+      "file": "/images/projects/wnetrze-pod-skosami-04",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny mieszkania na poddaszu",
+      "source_archive": "ADAM_NYSA.zip",
+      "source_path": "ADAM_NYSA/1c9kyh1c9kyh1c9k.jpg",
+      "source_image_number": 6
+    }
+  ],
+  "altea": [
+    {
+      "file": "/images/projects/altea-01",
+      "type": "visualization",
+      "alt": "Salon z aneksem kuchennym i wyjściem na taras w Altei",
+      "source_archive": "ALTEA.zip",
+      "source_path": "ALTEA/Gemini_Generated_Image_9qppim9qppim9qpp.jpg",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/altea-02",
+      "type": "visualization",
+      "alt": "Strefa dzienna apartamentu z widokiem na zieleń",
+      "source_archive": "ALTEA.zip",
+      "source_path": "ALTEA/Wizualizacja_Salon2.png",
+      "source_image_number": 6
+    },
+    {
+      "file": "/images/projects/altea-03",
+      "type": "visualization",
+      "alt": "Sypialnia z naturalnymi materiałami i widokiem na taras",
+      "source_archive": "ALTEA.zip",
+      "source_path": "ALTEA/1b2483ae-cf65-4d23-a421-556fe9d70492.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/altea-04",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny apartamentu w Altei",
+      "source_archive": "ALTEA.zip",
+      "source_path": "ALTEA/Без имени-1.png",
+      "source_image_number": 7
+    }
+  ],
+  "klubowy-dom-kosciuszki-25": [
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-01",
+      "type": "visualization",
+      "alt": "Koncepcja kamienicy przy ulicy Kościuszki w Głuchołazach",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/Изображение ChatGPT 29 сент. 2026 г., 20_58_18.png",
+      "source_image_number": 19
+    },
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-02",
+      "type": "visualization",
+      "alt": "Koncepcja budynku mieszkalno-usługowego po zmroku",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/Изображение ChatGPT 29 сент. 2026 г., 20_53_10.png",
+      "source_image_number": 13
+    },
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-03",
+      "type": "visualization",
+      "alt": "Ujęcie z góry kompleksu przy miejskiej ulicy",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/Изображение ChatGPT 29 сент. 2026 г., 20_53_30.png",
+      "source_image_number": 14
+    },
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-04",
+      "type": "visualization",
+      "alt": "Wnętrze części mieszkalnej budynku",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/Изображение ChatGPT 29 сент. 2026 г., 20_54_02.png",
+      "source_image_number": 15
+    },
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-05",
+      "type": "visualization",
+      "alt": "Łazienka apartamentu",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/Изображение ChatGPT 29 сент. 2026 г., 20_54_39.png",
+      "source_image_number": 18
+    },
+    {
+      "file": "/images/projects/klubowy-dom-kosciuszki-25-06",
+      "type": "plan",
+      "alt": "Rzut kondygnacji budynku",
+      "source_archive": "GLUCHOLAZY.zip",
+      "source_path": "GLUCHOLAZY/10.png",
+      "source_image_number": 2
+    }
+  ],
+  "dom-glucholazy": [
+    {
+      "file": "/images/projects/dom-glucholazy-01",
+      "type": "visualization",
+      "alt": "Wizualizacja domu z garażem dwustanowiskowym",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/1de78ca8-03f7-4ae5-ad7e-17eeb2300750.png",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/dom-glucholazy-02",
+      "type": "photo",
+      "alt": "Dom w trakcie budowy, widok od strony elewacji frontowej",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/312534598_556063569859021_462312026953529971_n.jpg",
+      "source_image_number": 4
+    },
+    {
+      "file": "/images/projects/dom-glucholazy-03",
+      "type": "photo",
+      "alt": "Konstrukcja dachu na etapie budowy",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/IMG_20220522_135418_026.jpg",
+      "source_image_number": 8
+    },
+    {
+      "file": "/images/projects/dom-glucholazy-04",
+      "type": "visualization",
+      "alt": "Otwarta strefa dzienna z kuchnią i jadalnią",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/Изображение ChatGPT 28 сент. 2026 г., 22_18_18.png",
+      "source_image_number": 15
+    },
+    {
+      "file": "/images/projects/dom-glucholazy-05",
+      "type": "visualization",
+      "alt": "Łazienka z wolnostojącą wanną",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/Изображение ChatGPT 28 сент. 2026 г., 22_18_04.png",
+      "source_image_number": 13
+    },
+    {
+      "file": "/images/projects/dom-glucholazy-06",
+      "type": "plan",
+      "alt": "Rzut parteru domu",
+      "source_archive": "GLUCHOLAZY_BART.zip",
+      "source_path": "GLUCHOLAZY_BART/Parter copy.jpg",
+      "source_image_number": 9
+    }
+  ],
+  "dom-na-stoku-prudnik": [
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-01",
+      "type": "visualization",
+      "alt": "Dom na pochyłej działce z tarasem i panoramicznym przeszkleniem",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/AI/752903172_122105413917398978_1485729444791055066_n.jpg",
+      "source_image_number": 6
+    },
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-02",
+      "type": "visualization",
+      "alt": "Boczna elewacja domu z kamiennymi akcentami",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/AI/752807537_122105413869398978_736077903701942462_n.jpg",
+      "source_image_number": 5
+    },
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-03",
+      "type": "photo",
+      "alt": "Dom na etapie prac elewacyjnych",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/AI/753164113_122105417079398978_1816273273834271925_n.jpg",
+      "source_image_number": 7
+    },
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-04",
+      "type": "visualization",
+      "alt": "Strefa dzienna z wysokim sufitem i piecem kaflowym",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/Изображение ChatGPT 29 сент. 2026 г., 22_17_15.png",
+      "source_image_number": 44
+    },
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-05",
+      "type": "visualization",
+      "alt": "Wieczorna odsłona strefy dziennej",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/Новая папка/Wizual11.png",
+      "source_image_number": 50
+    },
+    {
+      "file": "/images/projects/dom-na-stoku-prudnik-06",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny domu",
+      "source_archive": "KAMIL.zip",
+      "source_path": "KAMIL/Новая папка/RZUT ELEKTRYKA.png",
+      "source_image_number": 48
+    }
+  ],
+  "kompleks-nad-woda": [
+    {
+      "file": "/images/projects/kompleks-nad-woda-01",
+      "type": "visualization",
+      "alt": "Widok z góry na kompleks nad wodą i otaczającą zieleń",
+      "source_upload": "10411f01-3257-45d9-a5f7-b69a1648ec4c.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-02",
+      "type": "visualization",
+      "alt": "Budynek wielofunkcyjny od strony miejskiego placu",
+      "source_upload": "29b760bb-f8dc-47e6-900e-61a5c2025d27.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-03",
+      "type": "visualization",
+      "alt": "Wieczorna wizualizacja kompleksu i oświetlonej ulicy",
+      "source_upload": "56ecdbbc-7120-4cc6-b7f0-e1a7d62dd671.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-04",
+      "type": "visualization",
+      "alt": "Basen i taras wypoczynkowy nad wodą",
+      "source_upload": "7a8898c0-87db-4327-aaef-46ad5b6f08e3.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-05",
+      "type": "visualization",
+      "alt": "Salon apartamentu z widokiem na wodę",
+      "source_upload": "f2e98f28-f1f5-4fb3-b901-d8260a9fc69c.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-06",
+      "type": "visualization",
+      "alt": "Kuchnia apartamentu z wyspą i panoramicznym widokiem",
+      "source_upload": "85279e42-3855-44f9-91d4-f1cd5683431e.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-07",
+      "type": "visualization",
+      "alt": "Przeszklona strefa fitness z widokiem na rzekę",
+      "source_upload": "39725827-1699-4053-9f15-6183982147c0.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-08",
+      "type": "visualization",
+      "alt": "Detal fasady i parteru usługowego",
+      "source_upload": "7eb1e836-a69a-4acd-9ed5-e2800a22e512(1).png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-09",
+      "type": "visualization",
+      "alt": "Widok kompleksu od strony nabrzeża",
+      "source_upload": "b30415e9-b8b1-411d-942e-f2c696261092.png"
+    },
+    {
+      "file": "/images/projects/kompleks-nad-woda-10",
+      "type": "elevation",
+      "alt": "Rysunek elewacji budynku",
+      "source_upload": "Gemini_Generated_Image_ne4i7lne4i7lne4i.png"
+    }
+  ],
+  "loft-wroclaw": [
+    {
+      "file": "/images/projects/loft-wroclaw-01",
+      "type": "visualization",
+      "alt": "Elewacja lokalu LOFT Bar & Restaurant we Wrocławiu",
+      "source_archive": "LOFT.zip",
+      "source_path": "LOFT/d9472215-7138-4f43-9cc1-c0d284042921.png",
+      "source_image_number": 3
+    },
+    {
+      "file": "/images/projects/loft-wroclaw-02",
+      "type": "visualization",
+      "alt": "Sala restauracyjna z cegłą, czarną stalą i ciepłym światłem",
+      "source_archive": "LOFT.zip",
+      "source_path": "LOFT/ChatGPT Image 24 сент. 2026 г., 00_41_34.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/loft-wroclaw-03",
+      "type": "visualization",
+      "alt": "Wnętrze restauracji z widokiem na ogród",
+      "source_archive": "LOFT.zip",
+      "source_path": "LOFT/ChatGPT Image 24 сент. 2026 г., 00_43_53.png",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/loft-wroclaw-04",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny restauracji i układ ścian",
+      "source_archive": "LOFT.zip",
+      "source_path": "LOFT/Без имени-1.png",
+      "source_image_number": 5
+    }
+  ],
+  "mieszkanie-2-pokoje-nysa": [
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-01",
+      "type": "visualization",
+      "alt": "Salon z aneksem kuchennym w mieszkaniu w Nysie",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/ChatGPT Image 10 сент. 2026 г., 00_50_47.png",
+      "source_image_number": 13
+    },
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-02",
+      "type": "visualization",
+      "alt": "Sypialnia z zabudową na wymiar i miejscem do pracy",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/bc9ebffa-dbba-4bfc-9b4b-47b378d28871.png",
+      "source_image_number": 12
+    },
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-03",
+      "type": "visualization",
+      "alt": "Łazienka z prysznicem i mozaiką",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/3.png",
+      "source_image_number": 7
+    },
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-04",
+      "type": "visualization",
+      "alt": "Jasny korytarz z zabudową i lustrzanymi frontami",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/1.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-05",
+      "type": "photo",
+      "alt": "Mieszkanie przed rozpoczęciem prac",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/1000051134.jpg",
+      "source_image_number": 4
+    },
+    {
+      "file": "/images/projects/mieszkanie-2-pokoje-nysa-06",
+      "type": "plan",
+      "alt": "Rzut mieszkania z układem elektryki",
+      "source_archive": "NYSA_2POKOJE.zip",
+      "source_path": "NYSA_2POKOJE/RZUT.png",
+      "source_image_number": 20
+    }
+  ],
+  "kawalerka-35m-nysa": [
+    {
+      "file": "/images/projects/kawalerka-35m-nysa-01",
+      "type": "visualization",
+      "alt": "Strefa dzienna kompaktowej kawalerki o powierzchni 35 m²",
+      "source_archive": "NYSA_KAW.zip",
+      "source_path": "NYSA_KAW/19a10f94-4748-4030-bebd-3e407dfc456f.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/kawalerka-35m-nysa-02",
+      "type": "photo",
+      "alt": "Kuchnia i strefa dzienna w trakcie realizacji",
+      "source_archive": "NYSA_KAW.zip",
+      "source_path": "NYSA_KAW/attachments/IMG_20240119_150120_307.jpg",
+      "source_image_number": 6
+    },
+    {
+      "file": "/images/projects/kawalerka-35m-nysa-03",
+      "type": "photo",
+      "alt": "Strefa sypialniana i zabudowa meblowa",
+      "source_archive": "NYSA_KAW.zip",
+      "source_path": "NYSA_KAW/attachments/IMG_20240119_150629_936.jpg",
+      "source_image_number": 9
+    },
+    {
+      "file": "/images/projects/kawalerka-35m-nysa-04",
+      "type": "photo",
+      "alt": "Łazienka z podświetlanym lustrem i zabudową",
+      "source_archive": "NYSA_KAW.zip",
+      "source_path": "NYSA_KAW/attachments/IMG_20240119_150357_560.jpg",
+      "source_image_number": 8
+    },
+    {
+      "file": "/images/projects/kawalerka-35m-nysa-05",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny kawalerki",
+      "source_archive": "NYSA_KAW.zip",
+      "source_path": "NYSA_KAW/RZUT.png",
+      "source_image_number": 30
+    }
+  ],
+  "ogrod-rezydencjonalny": [
+    {
+      "file": "/images/projects/ogrod-rezydencjonalny-01",
+      "type": "visualization",
+      "alt": "Widok ogrodu z centralną rabatą i strefą wypoczynku",
+      "source_archive": "PROJEKT_OGROD_1.zip",
+      "source_path": "PROJEKT_OGROD_1/f508aecf-9a85-491a-9b94-83ac9ea07b96.png",
+      "source_image_number": 4
+    },
+    {
+      "file": "/images/projects/ogrod-rezydencjonalny-02",
+      "type": "plan",
+      "alt": "Koncepcja zagospodarowania ogrodu z góry",
+      "source_archive": "PROJEKT_OGROD_1.zip",
+      "source_path": "PROJEKT_OGROD_1/4f20ab49-9c0a-4de0-b347-215e721df176.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/ogrod-rezydencjonalny-03",
+      "type": "plan",
+      "alt": "Plan nasadzeń i materiałów ogrodowych",
+      "source_archive": "PROJEKT_OGROD_1.zip",
+      "source_path": "PROJEKT_OGROD_1/b910d736-98d4-418d-a4c7-3b85b12c52cb.png",
+      "source_image_number": 3
+    },
+    {
+      "file": "/images/projects/ogrod-rezydencjonalny-04",
+      "type": "plan",
+      "alt": "Rzut ogrodu z układem ścieżek i stref",
+      "source_archive": "PROJEKT_OGROD_1.zip",
+      "source_path": "PROJEKT_OGROD_1/variant2.jpg",
+      "source_image_number": 5
+    }
+  ],
+  "ogrod-w-lubrzy": [
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-01",
+      "type": "visualization",
+      "alt": "Ogród w Lubrzy z pergolą i wielopoziomowymi nasadzeniami",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/Изображение ChatGPT 29 сент. 2026 г., 16_56_15.png",
+      "source_image_number": 31
+    },
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-02",
+      "type": "visualization",
+      "alt": "Wieczorne ujęcie ogrodu z góry",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/Изображение ChatGPT 29 сент. 2026 г., 17_02_46.png",
+      "source_image_number": 36
+    },
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-03",
+      "type": "visualization",
+      "alt": "Taras wypoczynkowy przy istniejącym domu",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/Изображение ChatGPT 29 сент. 2026 г., 16_55_48.png",
+      "source_image_number": 29
+    },
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-04",
+      "type": "visualization",
+      "alt": "Ścieżka ogrodowa prowadzona przez drewnianą pergolę",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/Изображение ChatGPT 29 сент. 2026 г., 16_56_23.png",
+      "source_image_number": 33
+    },
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-05",
+      "type": "plan",
+      "alt": "Rzut koncepcyjny ogrodu",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/1793fc58-adfd-4219-9166-9f29cb6730ac.jpg",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/ogrod-w-lubrzy-06",
+      "type": "plan",
+      "alt": "Plansza projektu krajobrazowego",
+      "source_archive": "PROJEKT_OGROD_2.zip",
+      "source_path": "PROJEKT_OGROD_2/5Ogród projekt/ПРОЕКТ 80Х120 copy.jpg",
+      "source_image_number": 19
+    }
+  ],
+  "rezydencja-skrzypiec": [
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-01",
+      "type": "photo",
+      "alt": "Widok ukończonej rezydencji w Skrzypcu",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/IMG_20230714_140221_476~2.jpg",
+      "source_image_number": 38
+    },
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-02",
+      "type": "photo",
+      "alt": "Elewacja frontowa rezydencji i ogród",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/IMG_20230714_140105_439~2.jpg",
+      "source_image_number": 36
+    },
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-03",
+      "type": "photo",
+      "alt": "Kuchnia z wyspą i kamiennym blatem",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/315748161_602297171697267_4506058440165711466_n.jpg",
+      "source_image_number": 6
+    },
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-04",
+      "type": "photo",
+      "alt": "Jadalnia z drewnianą ścianą akcentową",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/316419356_602296901697294_2083605160967036759_n.jpg",
+      "source_image_number": 9
+    },
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-05",
+      "type": "visualization",
+      "alt": "Projekt strefy kąpielowej z wanną wolnostojącą",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/WIZUALIZACJA/04_10_53.png",
+      "source_image_number": 65
+    },
+    {
+      "file": "/images/projects/rezydencja-skrzypiec-06",
+      "type": "visualization",
+      "alt": "Salon z drewnianymi belkami i kamienną ścianą",
+      "source_archive": "REZYDENCJA_750.zip",
+      "source_path": "REZYDENCJA_750/WIZUALIZACJA/95d23afd-e168-4eb8-943c-ce642f244c89.png",
+      "source_image_number": 67
+    }
+  ],
+  "apartament-torrevieja": [
+    {
+      "file": "/images/projects/apartament-torrevieja-01",
+      "type": "visualization",
+      "alt": "Strefa dzienna apartamentu w Torrevieja",
+      "source_archive": "TorreviejaWizual.zip",
+      "source_path": "TorreviejaWizual/Gemini_Generated_Image_8qenbx8qenbx8qen.jpg",
+      "source_image_number": 6
+    },
+    {
+      "file": "/images/projects/apartament-torrevieja-02",
+      "type": "visualization",
+      "alt": "Jadalnia i salon z kolorową mozaiką kuchenną",
+      "source_archive": "TorreviejaWizual.zip",
+      "source_path": "TorreviejaWizual/07_35_57.png",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/apartament-torrevieja-03",
+      "type": "visualization",
+      "alt": "Kuchnia i jadalnia w jasnym apartamencie",
+      "source_archive": "TorreviejaWizual.zip",
+      "source_path": "TorreviejaWizual/04_27_10.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/apartament-torrevieja-04",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny apartamentu o powierzchni 60 m²",
+      "source_archive": "TorreviejaWizual.zip",
+      "source_path": "TorreviejaWizual/07_49_56.png",
+      "source_image_number": 5
+    }
+  ],
+  "dom-110-wroclaw": [
+    {
+      "file": "/images/projects/dom-110-wroclaw-01",
+      "type": "visualization",
+      "alt": "Dom parterowy z ogrodem — widok od frontu",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/Изображение ChatGPT 29 сент. 2026 г., 19_02_14.png",
+      "source_image_number": 20
+    },
+    {
+      "file": "/images/projects/dom-110-wroclaw-02",
+      "type": "visualization",
+      "alt": "Taras z pergolą i otwarciem na ogród",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/Изображение ChatGPT 29 сент. 2026 г., 19_02_11.png",
+      "source_image_number": 19
+    },
+    {
+      "file": "/images/projects/dom-110-wroclaw-03",
+      "type": "visualization",
+      "alt": "Wieczorne oświetlenie domu i tarasu",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/Изображение ChatGPT 29 сент. 2026 г., 19_02_18.png",
+      "source_image_number": 21
+    },
+    {
+      "file": "/images/projects/dom-110-wroclaw-04",
+      "type": "visualization",
+      "alt": "Salon połączony z jadalnią",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/Изображение ChatGPT 29 сент. 2026 г., 19_01_48.png",
+      "source_image_number": 17
+    },
+    {
+      "file": "/images/projects/dom-110-wroclaw-05",
+      "type": "photo",
+      "alt": "Dom i ogród zimą",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/10.png",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/dom-110-wroclaw-06",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny domu parterowego",
+      "source_archive": "WIRT.zip",
+      "source_path": "WIRT/5.png",
+      "source_image_number": 12
+    }
+  ],
+  "dom-stalis-180": [
+    {
+      "file": "/images/projects/dom-stalis-180-01",
+      "type": "visualization",
+      "alt": "Dom parterowy z kamiennym akcentem w świetle wieczornym",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/Gemini_Generated_Image_1o6kmu1o6kmu1o6kпа.jpg",
+      "source_image_number": 17
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-02",
+      "type": "visualization",
+      "alt": "Dzienna wizualizacja domu z zadaszonym tarasem",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/Изображение ChatGPT 27 сент. 2026 г., 23_57_37.png",
+      "source_image_number": 25
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-03",
+      "type": "photo",
+      "alt": "Dom na etapie budowy — konstrukcja dachu",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/IMG_20250902_190814944_AE.jpg",
+      "source_image_number": 22
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-04",
+      "type": "photo",
+      "alt": "Budynek w trakcie realizacji",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/IMG_20250902_192941246_AE.jpg",
+      "source_image_number": 23
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-05",
+      "type": "visualization",
+      "alt": "Jasna strefa dzienna z salonem i jadalnią",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/Изображение ChatGPT 29 сент. 2026 г., 21_52_19.png",
+      "source_image_number": 34
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-06",
+      "type": "visualization",
+      "alt": "Sypialnia w stonowanej palecie",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/Изображение ChatGPT 29 сент. 2026 г., 21_57_12.png",
+      "source_image_number": 35
+    },
+    {
+      "file": "/images/projects/dom-stalis-180-07",
+      "type": "plan",
+      "alt": "Rzut funkcjonalny domu parterowego",
+      "source_archive": "WITEK_STALIS.zip",
+      "source_path": "WITEK_STALIS/Без имени-1.png",
+      "source_image_number": 24
+    }
+  ],
+  "apartament-witolda-wroclaw": [
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-01",
+      "type": "visualization",
+      "alt": "Strefa dzienna apartamentu przy ulicy Księcia Witolda",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Изображение ChatGPT 29 сент. 2026 г., 21_38_56.png",
+      "source_image_number": 14
+    },
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-02",
+      "type": "photo",
+      "alt": "Salon w apartamencie we Wrocławiu",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Wroclaw/1783934836950.png",
+      "source_image_number": 3
+    },
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-03",
+      "type": "photo",
+      "alt": "Kuchnia z ciemną zabudową i drewnianym blatem",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Wroclaw/Screenshot_20260713-112849.Google Files.png",
+      "source_image_number": 5
+    },
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-04",
+      "type": "photo",
+      "alt": "Łazienka z prysznicem typu walk-in",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Wroclaw/1783934826634.png",
+      "source_image_number": 2
+    },
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-05",
+      "type": "visualization",
+      "alt": "Sypialnia w stonowanej palecie barw",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Wroclaw/1783934562454.png",
+      "source_image_number": 1
+    },
+    {
+      "file": "/images/projects/apartament-witolda-wroclaw-06",
+      "type": "plan",
+      "alt": "Rzut mieszkania z układem funkcjonalnym",
+      "source_archive": "WROCLAW_WITOLDA.zip",
+      "source_path": "WROCLAW_WITOLDA/Без имени-1.png",
+      "source_image_number": 11
+    }
+  ],
+  "kameralne-osiedle-pietrowice": [
+    {
+      "file": "/images/projects/pietrowice-01",
+      "type": "visualization",
+      "alt": "Widok ogrodu prywatnego i zespołu domów",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PIETROWICE/attachments/file_00000000723072468b3468195b20c099.png",
+      "source_image_number": 8
+    },
+    {
+      "file": "/images/projects/pietrowice-02",
+      "type": "visualization",
+      "alt": "Widok z góry na trzy działki z projektowanymi domami",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PIETROWICE/attachments (2)/file_0000000015e861f588b9474dd3de4ce1.png",
+      "source_image_number": 14
+    },
+    {
+      "file": "/images/projects/pietrowice-03",
+      "type": "visualization",
+      "alt": "Pergola i taras przy domu",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PIETROWICE/attachments (2)/file_00000000b44461f593fa04b2366e21c4.png",
+      "source_image_number": 16
+    },
+    {
+      "file": "/images/projects/pietrowice-04",
+      "type": "visualization",
+      "alt": "Ulica osiedlowa z powtarzalną, nowoczesną zabudową",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PIETROWICE/attachments (2)/file_00000000c92c61f59e7eaa2d360af3ee.png",
+      "source_image_number": 17
+    },
+    {
+      "file": "/images/projects/pietrowice-05",
+      "type": "elevation",
+      "alt": "Przekrój budynku z podstawowymi wymiarami",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PROJEKT/WYMIARY_BUDYNEK.pdf",
+      "source_image_number": null
+    },
+    {
+      "file": "/images/projects/pietrowice-06",
+      "type": "plan",
+      "alt": "Plan trzech działek i układu dojazdu",
+      "source_archive": "PIETROWICE.zip",
+      "source_path": "PROJEKT/WYMIARY_DZIALKI2.pdf",
+      "source_image_number": null
+    }
+  ]
+}
