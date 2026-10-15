@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 /* Skill docs contain example class names; keep them out of the build so
    local CSS matches Vercel, where .claude is excluded by .vercelignore. */
 @source not "../.claude";
@@ -42,7 +43,10 @@
     outline: 2px solid var(--color-brass);
     outline-offset: 3px;
   }
-  .font-display {
+  /* The body's ss01/cv11 are Manrope alternates. Serif text must not inherit
+     them: in Source Serif 4 (Ukrainian headings) ss01 switches to Bulgarian
+     letterforms, e.g. т drawn like m. */
+  .font-display, .heading-xl, .heading-lg, .heading-md, .heading-sm, .hero-heading {
     font-optical-sizing: auto;
     font-feature-settings: "liga", "kern";
   }
