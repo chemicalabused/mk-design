@@ -107,14 +107,29 @@ const projectCopy: Record<'en' | 'uk', Record<string, ProjectCopy>> = {
 type ContextValue = { language: Language; setLanguage: (language: Language) => void; t: (key: string) => string; localizeProject: (project: Project) => Project }
 const LanguageContext = createContext<ContextValue | null>(null)
 
+function readStoredLanguage(): Language | undefined {
+  try {
+    const stored = window.localStorage.getItem('mdh-language')
+    return stored === 'en' || stored === 'uk' ? stored : undefined
+  } catch {
+    return undefined
+  }
+}
+
+// Text in a given language, outside the current one (e.g. the Polish
+// labels in the email the studio receives).
+export function translate(language: Language, key: string) {
+  return messages[language][key] ?? messages.pl[key] ?? key
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   // Always start in Polish so the client matches the prerendered HTML, then
   // switch to the visitor's saved choice. Only an explicit choice is saved.
   const [language, setLanguageState] = useState<Language>('pl')
 
   useEffect(() => {
-    const stored = window.localStorage.getItem('mdh-language')
-    if (stored === 'en' || stored === 'uk') setLanguageState(stored)
+    const stored = readStoredLanguage()
+    if (stored) setLanguageState(stored)
   }, [])
 
   useEffect(() => {
@@ -137,7 +152,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     language,
     setLanguage: (next) => {
       setLanguageState(next)
-      window.localStorage.setItem('mdh-language', next)
+      // Storage can be blocked (privacy settings, some webviews); the switch
+      // still works for this visit.
+      try { window.localStorage.setItem('mdh-language', next) } catch { /* not saved */ }
     },
     t: (key) => messages[language][key] ?? messages.pl[key] ?? key,
     localizeProject: (project) => {

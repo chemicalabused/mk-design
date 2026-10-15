@@ -13,8 +13,15 @@ export function Motion({ children }: { children: React.ReactNode }) {
     const mm = gsap.matchMedia()
 
     mm.add(`not all and ${REDUCE}`, () => {
-      gsap.set('[data-reveal]', { autoAlpha: 0, y: 28 })
-      ScrollTrigger.batch('[data-reveal]', {
+      // The page is prerendered, so anything already on screen when the app
+      // starts (deep link, restored scroll) has been painted; hiding it now
+      // would flash. Only elements still below or above the fold reveal.
+      const offscreen = gsap.utils.toArray<HTMLElement>('[data-reveal]').filter((el) => {
+        const { top, bottom } = el.getBoundingClientRect()
+        return bottom <= 0 || top >= window.innerHeight
+      })
+      gsap.set(offscreen, { autoAlpha: 0, y: 28 })
+      ScrollTrigger.batch(offscreen, {
         start: 'top 88%',
         once: true,
         onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, stagger: 0.09, overwrite: true }),

@@ -1,8 +1,10 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { brand } from '../content/site'
-import { useLanguage } from '../lib/i18n'
+import { translate, useLanguage } from '../lib/i18n'
 
 type Field = 'name' | 'contact' | 'message'
+const SCOPES = ['home', 'interior', 'garden', 'investment', 'turnkey'] as const
+type Scope = (typeof SCOPES)[number]
 type Errors = Partial<Record<Field, string>>
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -20,13 +22,15 @@ function check(field: Field, value: string) {
 
 export function Contact() {
   const { language, t } = useLanguage()
-  const [scopes, setScopes] = useState<string[]>([])
+  // Stable ids, translated only for display and sending, so a language
+  // switch keeps the selection.
+  const [scopes, setScopes] = useState<Scope[]>([])
   // idle -> sending -> delivered | failed; 'mailto' when no form key is set.
   const [status, setStatus] = useState<'idle' | 'sending' | 'delivered' | 'failed' | 'mailto'>('idle')
   // Keys, not text, so a language switch re-translates visible errors.
   const [errors, setErrors] = useState<Errors>({})
 
-  function toggle(s: string) {
+  function toggle(s: Scope) {
     setScopes((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]))
   }
 
@@ -69,7 +73,7 @@ export function Contact() {
             'Imię i nazwisko': f.get('name'),
             Kontakt: contact,
             'Lokalizacja i metraż': f.get('where') || '—',
-            Zakres: scopes.join(', ') || '—',
+            Zakres: scopes.map((s) => translate('pl', `scope.${s}`)).join(', ') || '—',
             Wiadomość: f.get('message'),
             'Język strony': language.toUpperCase(),
           }),
@@ -89,7 +93,7 @@ export function Contact() {
       `${t('contact.mailName')}: ${f.get('name')}`,
       `${t('contact.mailContact')}: ${f.get('contact')}`,
       `${t('contact.mailWhere')}: ${f.get('where')}`,
-      `${t('contact.mailScope')}: ${scopes.join(', ') || t('contact.notProvided')}`,
+      `${t('contact.mailScope')}: ${scopes.map((s) => t(`scope.${s}`)).join(', ') || t('contact.notProvided')}`,
       '',
       String(f.get('message') ?? ''),
     ].join('\n')
@@ -184,20 +188,19 @@ export function Contact() {
             <fieldset className="mt-8">
               <legend className="text-sm text-slate">{t('contact.scope')}</legend>
               <div className="mt-3 flex flex-wrap gap-2">
-                {(['home', 'interior', 'garden', 'investment', 'turnkey'] as const).map((scope) => {
-                  const s = t(`scope.${scope}`)
-                  const on = scopes.includes(s)
+                {SCOPES.map((scope) => {
+                  const on = scopes.includes(scope)
                   return (
                     <button
-                      key={s}
+                      key={scope}
                       type="button"
                       aria-pressed={on}
-                      onClick={() => toggle(s)}
+                      onClick={() => toggle(scope)}
                       className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                         on ? 'border-graphite bg-graphite text-plaster' : 'border-slate/70 bg-white hover:border-graphite'
                       }`}
                     >
-                      {s}
+                      {t(`scope.${scope}`)}
                     </button>
                   )
                 })}

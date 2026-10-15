@@ -357,7 +357,12 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
             if (clip.startAt > 0) event.currentTarget.currentTime = clip.startAt
           }}
           onPlaying={() => setPlaying(true)}
-          onEnded={() => { if (clips.length > 1) setClipIndex((index) => (index + 1) % clips.length) }}
+          onEnded={() => {
+            if (clips.length < 2) return
+            // Hide until the next clip has a frame, or it shows black.
+            setPlaying(false)
+            setClipIndex((index) => (index + 1) % clips.length)
+          }}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? 'opacity-100' : 'opacity-0'}`}
           aria-hidden="true"
         />

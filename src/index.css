@@ -61,8 +61,9 @@
 
 /* The page is prerendered, so the hero is in the HTML before the app runs.
    Hold it in the entrance animation's start pose until GSAP takes over
-   (Hero.tsx), so it does not show, jump back and animate in again. If the
-   app never starts, the failsafe releases everything after 6 s. */
+   (Hero.tsx removes .js as it does), so it does not show, jump back and
+   animate in again. If the app never starts, the failsafe releases
+   everything after 6 s. */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-hero-line] { transform: translateY(110%); }
   .js [data-hero-fade] { transform: translateY(18px); }

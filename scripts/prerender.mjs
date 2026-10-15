@@ -18,6 +18,7 @@ const { render } = await import(pathToFileURL(path.resolve(OUT, 'entry-server.js
 const html = await readFile('dist/index.html', 'utf8')
 const empty = '<div id="root"></div>'
 if (!html.includes(empty)) throw new Error(`dist/index.html has no ${empty}`)
-await writeFile('dist/index.html', html.replace(empty, `<div id="root">${render()}</div>`))
+// Function replacer: a string one would treat $& / $' in the page as patterns.
+await writeFile('dist/index.html', html.replace(empty, () => `<div id="root">${render()}</div>`))
 await rm(OUT, { recursive: true, force: true })
 console.log('prerendered dist/index.html')

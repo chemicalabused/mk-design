@@ -10,12 +10,13 @@ export function Hero() {
   const root = useRef<HTMLElement>(null)
   // The loop is 1.4 MB. Attach it only after the page has loaded so it does
   // not compete with the app bundle on slow connections; the poster shows
-  // until then. Skipped entirely when the visitor asked to save data.
+  // until then. Skipped when the visitor asked to save data, and under reduced
+  // motion, where the video is hidden anyway (index.css).
   const [videoSrc, setVideoSrc] = useState<string>()
 
   useEffect(() => {
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    if (connection?.saveData) return
+    if (connection?.saveData || window.matchMedia(REDUCE).matches) return
     const attach = () => setVideoSrc(hero.video)
     if (document.readyState === 'complete') {
       attach()
@@ -27,16 +28,19 @@ export function Hero() {
 
   useGSAP(
     () => {
+      // Hand the start pose over from CSS (.js rules in index.css, which hold
+      // the prerendered hero still) to GSAP. Dropping the class in the same
+      // tick as the fromTo calls below set the pose inline means no frame is
+      // painted in between, and the CSS failsafe can no longer cut the
+      // timeline short on slow devices.
+      document.documentElement.classList.remove('js')
       const mm = gsap.matchMedia()
       mm.add(`not all and ${REDUCE}`, () => {
         gsap
           .timeline({ defaults: { ease: 'power3.out' } })
-          // fromTo, not from: the start pose is already applied by CSS for
-          // the prerendered HTML (index.css), so `from` would read it as the
-          // end state and animate nowhere. GSAP also parses that CSS
-          // translate into `y` px, hence the explicit y: 0 on the lines.
+          // fromTo so the start pose is explicit and rendered immediately.
           .fromTo('[data-hero-image]', { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'expo.out' }, 0)
-          .fromTo('[data-hero-line]', { yPercent: 110, y: 0 }, { yPercent: 0, y: 0, duration: 1.1, stagger: 0.09 }, 0.1)
+          .fromTo('[data-hero-line]', { yPercent: 110 }, { yPercent: 0, duration: 1.1, stagger: 0.09 }, 0.1)
           // Rise only, no fade: text that starts at opacity 0 is not counted as
           // painted, which pushed mobile LCP from 3.2 s to 5.6 s.
           .fromTo('[data-hero-fade]', { y: 18 }, { y: 0, duration: 0.9, stagger: 0.1 }, 0.55)
@@ -63,8 +67,9 @@ export function Hero() {
         loop
         playsInline
         preload="auto"
+        // No poster: the responsive <Picture> above already sits underneath
+        // and stays visible until the video has frames.
         src={videoSrc}
-        poster={`${hero.image.src}.webp`}
         aria-hidden="true"
         tabIndex={-1}
         data-hero-image
