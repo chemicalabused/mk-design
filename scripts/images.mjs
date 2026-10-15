@@ -9,6 +9,8 @@ const MDH = `${REF}/M-DESIGN HOUSE`
 const OUT = 'public/images'
 
 // name -> [source, maxWidth]
+// skrzypiec-kuchnia is not listed: the committed file is the designer's v52
+// version and must not be overwritten.
 const images = {
   'hero-stalis': [`${MDH}/WITEK_STALIS/4a246048-d001-480d-958e-b2f9456778de.png`, 2000],
   'stalis-salon': [`${MDH}/WITEK_STALIS/a786b391-aec6-4fa0-af62-bdedb43d2331.png`, 1600],
@@ -27,7 +29,6 @@ const images = {
   'ogrod-pergola': [`${MDH}/PROJEKT_OGROD_1/f508aecf-9a85-491a-9b94-83ac9ea07b96.png`, 1600],
   'ogrod-plan': [`${MDH}/PROJEKT_OGROD_1/4f20ab49-9c0a-4de0-b347-215e721df176.png`, 1200],
   'skrzypiec-dom': [`${MDH}/REZYDENCJA_750/IMG_20230714_140042_872~2.jpg`, 1600],
-  'skrzypiec-kuchnia': [`${MDH}/REZYDENCJA_750/316692641_602297075030610_1327830406966149343_n.jpg`, 1600],
   'skrzypiec-jadalnia': [`${MDH}/REZYDENCJA_750/316214211_602297271697257_3675976036604636096_n.jpg`, 1600],
   'nysa-kaw-render': [`${MDH}/NYSA_KAW/19a10f94-4748-4030-bebd-3e407dfc456f.png`, 1600],
   'nysa-kaw-foto': [`${MDH}/NYSA_KAW/IMG_20240119_150120_307.jpg`, 1600],
