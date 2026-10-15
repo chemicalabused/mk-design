@@ -23,7 +23,7 @@ const messages: Record<Language, Record<string, string>> = {
     'contact.heading': 'Porozmawiajmy o Waszym projekcie', 'contact.text': 'Napiszcie, co chcecie zbudować lub urządzić. Odpowiadamy w ciągu dwóch dni roboczych z propozycją terminu bezpłatnej konsultacji.', 'contact.phone': 'Telefon', 'contact.email': 'E-mail', 'contact.studio': 'Pracownia', 'contact.address': 'Nysa, spotkania po umówieniu terminu', 'contact.name': 'Imię i nazwisko', 'contact.channel': 'Telefon lub e-mail', 'contact.location': 'Lokalizacja i metraż', 'contact.locationPlaceholder': 'np. Nysa, działka 8 arów, dom ok. 150 m²', 'contact.scope': 'Czego dotyczy zapytanie', 'contact.message': 'Opowiedzcie o projekcie', 'contact.send': 'Wyślij zapytanie', 'contact.sent': 'Otworzyliśmy Wasz program pocztowy z gotową wiadomością.', 'contact.subject': 'Zapytanie ze strony', 'contact.mailName': 'Imię i nazwisko', 'contact.mailContact': 'Kontakt', 'contact.mailWhere': 'Lokalizacja i metraż', 'contact.mailScope': 'Zakres', 'contact.notProvided': 'nie podano',
     'scope.home': 'Dom', 'scope.interior': 'Wnętrze', 'scope.garden': 'Ogród', 'scope.investment': 'Inwestycja', 'scope.turnkey': 'Budowa pod klucz',
     'footer.tagline': 'Architektura, wnętrza, ogrody i realizacja pod klucz.', 'footer.nav': 'Stopka',
-    'music.on': 'Włącz delikatną muzykę w tle', 'music.off': 'Wyłącz muzykę w tle', 'music.unavailable': 'Przeglądarka nie udostępnia dźwięku', 'project.heading': 'Projekt',
+    'project.heading': 'Projekt',
   },
   en: {
     'skip': 'Skip to content', 'nav.realizations': 'Projects', 'nav.services': 'Services', 'nav.process': 'Process', 'nav.studio': 'Studio', 'nav.contact': 'Contact',
@@ -38,7 +38,7 @@ const messages: Record<Language, Record<string, string>> = {
     'contact.heading': 'Tell us about your project', 'contact.text': 'Write to us about what you would like to build or redesign. We reply within two working days with a suggested time for a free consultation.', 'contact.phone': 'Phone', 'contact.email': 'Email', 'contact.studio': 'Studio', 'contact.address': 'Nysa, meetings by appointment', 'contact.name': 'Full name', 'contact.channel': 'Phone or email', 'contact.location': 'Location and floor area', 'contact.locationPlaceholder': 'e.g. Nysa, 800 m² plot, home approx. 150 m²', 'contact.scope': 'What is your enquiry about?', 'contact.message': 'Tell us about the project', 'contact.send': 'Send enquiry', 'contact.sent': 'Your email app has opened with a prepared message.', 'contact.subject': 'Website enquiry', 'contact.mailName': 'Full name', 'contact.mailContact': 'Contact', 'contact.mailWhere': 'Location and floor area', 'contact.mailScope': 'Scope', 'contact.notProvided': 'not provided',
     'scope.home': 'Home', 'scope.interior': 'Interior', 'scope.garden': 'Garden', 'scope.investment': 'Investment', 'scope.turnkey': 'Turnkey construction',
     'footer.tagline': 'Architecture, interiors, gardens and turnkey delivery.', 'footer.nav': 'Footer navigation',
-    'music.on': 'Turn on soft background music', 'music.off': 'Turn off background music', 'music.unavailable': 'Audio is not available in this browser', 'project.heading': 'Project',
+    'project.heading': 'Project',
   },
   uk: {
     'skip': 'Перейти до вмісту', 'nav.realizations': 'Проєкти', 'nav.services': 'Послуги', 'nav.process': 'Процес', 'nav.studio': 'Студія', 'nav.contact': 'Контакти',
@@ -53,7 +53,7 @@ const messages: Record<Language, Record<string, string>> = {
     'contact.heading': 'Обговорімо ваш проєкт', 'contact.text': 'Напишіть, що ви хочете збудувати або облаштувати. Протягом двох робочих днів ми запропонуємо час для безкоштовної консультації.', 'contact.phone': 'Телефон', 'contact.email': 'Електронна пошта', 'contact.studio': 'Студія', 'contact.address': 'Ниса, зустрічі за попереднім записом', 'contact.name': 'Ім’я та прізвище', 'contact.channel': 'Телефон або електронна пошта', 'contact.location': 'Місце та площа', 'contact.locationPlaceholder': 'наприклад: Ниса, ділянка 8 соток, будинок близько 150 м²', 'contact.scope': 'Що вас цікавить?', 'contact.message': 'Розкажіть про проєкт', 'contact.send': 'Надіслати запит', 'contact.sent': 'Відкрили вашу поштову програму з підготовленим повідомленням.', 'contact.subject': 'Запит із сайту', 'contact.mailName': 'Ім’я та прізвище', 'contact.mailContact': 'Контакт', 'contact.mailWhere': 'Місце та площа', 'contact.mailScope': 'Послуга', 'contact.notProvided': 'не вказано',
     'scope.home': 'Будинок', 'scope.interior': 'Інтер’єр', 'scope.garden': 'Сад', 'scope.investment': 'Інвестиція', 'scope.turnkey': 'Будівництво під ключ',
     'footer.tagline': 'Архітектура, інтер’єри, сади та реалізація під ключ.', 'footer.nav': 'Навігація у футері',
-    'music.on': 'Увімкнути тиху фонову музику', 'music.off': 'Вимкнути фонову музику', 'music.unavailable': 'У цьому браузері звук недоступний', 'project.heading': 'Проєкт',
+    'project.heading': 'Проєкт',
   },
 }
 
