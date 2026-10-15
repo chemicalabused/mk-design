@@ -108,14 +108,16 @@ type ContextValue = { language: Language; setLanguage: (language: Language) => v
 const LanguageContext = createContext<ContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window === 'undefined') return 'pl'
-    const stored = window.localStorage.getItem('mdh-language')
-    return stored === 'en' || stored === 'uk' || stored === 'pl' ? stored : 'pl'
-  })
+  // Always start in Polish so the client matches the prerendered HTML, then
+  // switch to the visitor's saved choice. Only an explicit choice is saved.
+  const [language, setLanguageState] = useState<Language>('pl')
 
   useEffect(() => {
-    window.localStorage.setItem('mdh-language', language)
+    const stored = window.localStorage.getItem('mdh-language')
+    if (stored === 'en' || stored === 'uk') setLanguageState(stored)
+  }, [])
+
+  useEffect(() => {
     document.documentElement.lang = language === 'uk' ? 'uk' : language
     const titles: Record<Language, string> = {
       pl: 'M Design House — Architektura, wnętrza i ogrody | Nysa',
@@ -133,7 +135,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<ContextValue>(() => ({
     language,
-    setLanguage,
+    setLanguage: (next) => {
+      setLanguageState(next)
+      window.localStorage.setItem('mdh-language', next)
+    },
     t: (key) => messages[language][key] ?? messages.pl[key] ?? key,
     localizeProject: (project) => {
       const copy = language === 'pl' ? undefined : projectCopy[language][project.id]

@@ -2,6 +2,9 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
+    <!-- Lets CSS put the prerendered hero in its pre-animation pose before
+         the app hydrates (see .js rules in src/index.css). -->
+    <script>document.documentElement.classList.add('js')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>M Design House — Architektura, wnętrza i ogrody | Nysa</title>
     <meta name="description" content="Projektujemy domy, wnętrza i ogrody jako całość. Architektura, aranżacja wnętrz, nadzór autorski i realizacja pod klucz w Nysie, Opolskiem i we Wrocławiu." />

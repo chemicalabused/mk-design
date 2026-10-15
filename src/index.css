@@ -56,6 +56,22 @@
   .md-hero-video { display: none; }
 }
 
+/* The page is prerendered, so the hero is in the HTML before the app runs.
+   Hold it in the entrance animation's start pose until GSAP takes over
+   (Hero.tsx), so it does not show, jump back and animate in again. If the
+   app never starts, the failsafe releases everything after 6 s. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-hero-line] { transform: translateY(110%); }
+  .js [data-hero-fade] { transform: translateY(18px); }
+  .js [data-hero-image] { transform: scale(1.08); }
+  .js :is([data-hero-line], [data-hero-fade], [data-hero-image]) {
+    animation: hero-failsafe 0s 6s forwards;
+  }
+}
+@keyframes hero-failsafe {
+  to { transform: none; }
+}
+
 @media (max-width: 767px) {
   #top > img,
   #top > .md-hero-video {
