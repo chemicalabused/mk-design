@@ -32,7 +32,7 @@ for (const base of [...EXTRA, ...projects].sort()) {
   for (const w of widths) {
     await sharp(src)
       .resize({ width: w })
-      .webp({ quality: 78 })
+      .webp({ quality: 70 })
       .toFile(path.join(outDir, `${path.basename(base)}-${w}.webp`))
   }
   manifest[`/${base}`] = [...widths, width]

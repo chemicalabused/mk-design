@@ -7,9 +7,12 @@ import { imageAt } from '../lib/images'
 import { useLanguage } from '../lib/i18n'
 
 // Rendered widths for srcset. Cards take ~7/12 of the 1472px content box at
-// most; gallery tiles are half of the 1024px dialog minus padding.
-const CARD_SIZES = '(min-width: 1600px) 860px, (min-width: 640px) 58vw, calc(100vw - 2.5rem)'
-const TILE_SIZES = '(min-width: 1072px) 475px, (min-width: 640px) calc(50vw - 3.5rem), calc(100vw - 2.5rem)'
+// most; gallery tiles are half of the 1024px dialog minus padding. On phones
+// both are ~350px wide, but the hint says 260px: that caps a 3x screen at the
+// 800px variant (260 x 3 = 780; 267 would ask for 801 and get 1200px), which
+// looks the same at that size and is about half the bytes of the 1200px one.
+const CARD_SIZES = '(min-width: 1600px) 860px, (min-width: 640px) 58vw, 260px'
+const TILE_SIZES = '(min-width: 1072px) 475px, (min-width: 640px) calc(50vw - 3.5rem), 260px'
 
 export function Projects() {
   const { t, localizeProject } = useLanguage()
