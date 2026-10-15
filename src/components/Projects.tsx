@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap, ScrollTrigger } from '../lib/motion'
+import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
 import { imageAt } from '../lib/images'
@@ -279,8 +279,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
 
 // Card cover: a responsive, lazy image that is always there, with the
 // project's video layered on top only once the card is near the viewport.
-// Until then no poster or video bytes are fetched. Touch devices play the
-// loop while the card is on screen; pointer devices play it on hover.
+// Until then no poster or video bytes are fetched.
 function ProjectCover({ project, active }: { project: Project; active: boolean }) {
   const root = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -288,17 +287,25 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
   const [near, setNear] = useState(false)
   const [visible, setVisible] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [hoverless, setHoverless] = useState(false)
+  // Touch screens have no hover, so the loop plays while the card is on
+  // screen, unless the visitor prefers reduced motion. Hover-to-play stays,
+  // since the visitor starts it.
+  const [autoplay, setAutoplay] = useState(false)
   const clips = project.videos ?? []
   const clip = clips[clipIndex]
   const cover = project.coverImage ?? project.images[0]
 
   useEffect(() => {
-    const media = window.matchMedia('(hover: none)')
-    const update = () => setHoverless(media.matches)
+    const hoverless = window.matchMedia('(hover: none)')
+    const reduce = window.matchMedia(REDUCE)
+    const update = () => setAutoplay(hoverless.matches && !reduce.matches)
     update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
+    hoverless.addEventListener('change', update)
+    reduce.addEventListener('change', update)
+    return () => {
+      hoverless.removeEventListener('change', update)
+      reduce.removeEventListener('change', update)
+    }
   }, [])
 
   useEffect(() => {
@@ -324,9 +331,9 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (visible && (hoverless || active)) void video.play().catch(() => {})
+    if (visible && (autoplay || active)) void video.play().catch(() => {})
     else video.pause()
-  }, [active, hoverless, near, visible, clipIndex])
+  }, [active, autoplay, near, visible, clipIndex])
 
   return (
     <div ref={root} className="relative h-full w-full">
@@ -344,7 +351,7 @@ function ProjectCover({ project, active }: { project: Project; active: boolean }
           muted
           playsInline
           loop={clips.length === 1}
-          preload={hoverless ? 'metadata' : 'none'}
+          preload={autoplay ? 'metadata' : 'none'}
           onLoadedMetadata={(event) => {
             event.currentTarget.playbackRate = clip.playbackRate ?? 1
             if (clip.startAt > 0) event.currentTarget.currentTime = clip.startAt
