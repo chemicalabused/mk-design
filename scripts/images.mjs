@@ -35,6 +35,8 @@ const images = {
   'palac-kaczanowka': [`${MDH}/PALAC_RENOWACJA/file_000000004e9471f496dc324cd7e74474.png`, 1200],
   'park-biala-cerkiew': [`${MDH}/PARK/file_000000006a8c720aa8b11cc414372eb7.png`, 1200],
   'petro-mikula': [`${REF}/petro_portret.jpg`, 900],
+  // Stalis floor plan; the designer's v52 gallery pointed this slot at a render.
+  'projects/dom-stalis-180-plan': [`${MDH}/WITEK_STALIS/Без имени-1.png`, 1600],
 }
 
 await mkdir(OUT, { recursive: true })

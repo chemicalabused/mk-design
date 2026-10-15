@@ -154,7 +154,7 @@ export const projects: Project[] = [
       { src: '/images/projects/dom-stalis-180-12', alt: 'Plan parteru z układem strefy dziennej i pomieszczeń prywatnych', type: 'plan' },
       { src: '/images/projects/dom-stalis-180-13', alt: 'Salon z kominkiem, dużymi przeszkleniami i widokiem na ogród', type: 'visualization' },
       { src: '/images/projects/dom-stalis-180-14', alt: 'Salon połączony z jadalnią w jasnej klasycznej aranżacji', type: 'visualization' },
-      { src: '/images/projects/dom-stalis-180-07', alt: 'Rzut funkcjonalny domu parterowego', type: 'plan' },
+      { src: '/images/projects/dom-stalis-180-plan', alt: 'Rzut domu z układem pomieszczeń i rozmieszczeniem urządzeń hydraulicznych', type: 'plan' },
     ],
   },
   {
