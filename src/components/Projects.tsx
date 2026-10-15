@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
+import { ImageViewer } from './ImageViewer'
 import { imageAt } from '../lib/images'
 import { useLanguage } from '../lib/i18n'
 
@@ -138,14 +139,15 @@ export function Projects() {
 function Lightbox({ project, onClose }: { project: Project | null; onClose: () => void }) {
   const { t } = useLanguage()
   const ref = useRef<HTMLDialogElement>(null)
-  const zoomCloseRef = useRef<HTMLButtonElement>(null)
-  const zoomReturnRef = useRef<HTMLElement | null>(null)
-  const [zoomImage, setZoomImage] = useState<Project['images'][number] | null>(null)
+  const [zoomIndex, setZoomIndex] = useState<number | null>(null)
 
-  useEffect(() => {
-    if (zoomImage) zoomCloseRef.current?.focus()
-    else if (ref.current?.open) zoomReturnRef.current?.focus()
-  }, [zoomImage])
+  // Leaving the viewer returns focus to the tile of the image the visitor
+  // ended on, which may not be the one they opened.
+  function closeZoom() {
+    const last = zoomIndex
+    setZoomIndex(null)
+    requestAnimationFrame(() => ref.current?.querySelector<HTMLElement>(`[data-zoom-index="${last}"]`)?.focus())
+  }
 
   useEffect(() => {
     const el = ref.current
@@ -170,9 +172,9 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
       ref={ref}
       onClose={onClose}
       onCancel={(event) => {
-        if (zoomImage) {
+        if (zoomIndex !== null) {
           event.preventDefault()
-          setZoomImage(null)
+          closeZoom()
         }
       }}
       onClick={(e) => {
@@ -212,15 +214,13 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
                 </figcaption>
               </figure>
             ))}
-            {project.images.map((img) => (
+            {project.images.map((img, imageIndex) => (
               <figure key={img.src} className="min-w-0">
                 <div className={`isolate aspect-[4/3] overflow-hidden rounded-media ${img.type === 'plan' || img.type === 'elevation' ? 'bg-white' : 'bg-graphite/5'}`}>
                   <button
                     type="button"
-                    onClick={(event) => {
-                      zoomReturnRef.current = event.currentTarget
-                      setZoomImage(img)
-                    }}
+                    data-zoom-index={imageIndex}
+                    onClick={() => setZoomIndex(imageIndex)}
                     className="group relative block h-full w-full overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brass"
                     aria-label={`${t('projects.zoom')}: ${img.alt}`}
                   >
@@ -248,32 +248,8 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
           >
             {t('projects.askSimilar')}
           </a>
-          {zoomImage && (
-            <div
-              className="fixed inset-0 z-50 grid place-items-center bg-graphite/95 p-4 backdrop-blur-md sm:p-8"
-              role="dialog"
-              aria-modal="true"
-              aria-label={`${t('projects.zoom')}: ${zoomImage.alt}`}
-              onClick={(event) => {
-                if (event.target === event.currentTarget) setZoomImage(null)
-              }}
-            >
-              <button
-                ref={zoomCloseRef}
-                type="button"
-                onClick={() => setZoomImage(null)}
-                className="absolute right-4 top-4 z-10 grid size-12 place-items-center rounded-full border border-white/30 bg-black/35 text-white transition-colors hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white sm:right-7 sm:top-7"
-                aria-label={t('projects.closeZoom')}
-              >
-                <svg viewBox="0 0 24 24" fill="none" className="size-6" stroke="currentColor" strokeWidth="1.6"><path d="m6 6 12 12M18 6 6 18" /></svg>
-              </button>
-              <img
-                src={`${zoomImage.src}.webp`}
-                alt={zoomImage.alt}
-                className="max-h-[86svh] max-w-[94vw] rounded-media object-contain shadow-2xl"
-              />
-              <p className="absolute bottom-4 left-4 right-16 text-sm text-white/75 sm:bottom-7 sm:left-8">{zoomImage.alt}</p>
-            </div>
+          {zoomIndex !== null && (
+            <ImageViewer images={project.images} index={zoomIndex} onIndexChange={setZoomIndex} onClose={closeZoom} />
           )}
         </article>
       )}
