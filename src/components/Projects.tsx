@@ -23,9 +23,13 @@ export function Projects() {
     )
   const rows = Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => visible.slice(index * 2, index * 2 + 2))
 
+  // Cards re-mount on filter change; make sure the new ones are visible and
+  // scroll positions below are recalculated. Skipped on first render so the
+  // initial rows keep their scroll reveal (Motion.tsx).
+  const shownFilter = useRef(filter)
   useEffect(() => {
-    // Cards re-mount on filter change; make sure the new ones are visible and
-    // scroll positions below are recalculated.
+    if (shownFilter.current === filter) return
+    shownFilter.current = filter
     gsap.set('#realizacje [data-reveal]', { clearProps: 'opacity,visibility,transform' })
     ScrollTrigger.refresh()
   }, [filter])
@@ -50,7 +54,7 @@ export function Projects() {
                   on ? 'border-graphite text-ink' : 'border-transparent text-slate hover:text-ink'
                 }`}
               >
-                {t(({ wszystkie: 'projects.all', domy: 'projects.homes', 'wnętrza': 'projects.interiors', inwestycje: 'projects.investments', ogrody: 'projects.gardens' } as Record<string, string>)[c.id])}
+                {t(c.key)}
               </button>
             )
           })}

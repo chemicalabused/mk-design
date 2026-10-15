@@ -1,5 +1,7 @@
-// All copy and data for the landing page live here so they can be edited
-// (and later translated) without touching components.
+// Data for the landing page: contact details, links, media and projects.
+// UI copy (headings, intros, labels) lives in src/lib/i18n.tsx in all three
+// languages; entries below that render text carry the i18n key or id the
+// components build keys from, so adding one means adding its strings there.
 
 export const brand = {
   name: 'M Design House',
@@ -21,31 +23,29 @@ export const brand = {
 }
 
 export const nav = [
-  { href: '#realizacje', label: 'Realizacje' },
-  { href: '#uslugi', label: 'Usługi' },
-  { href: '#proces', label: 'Proces' },
-  { href: '#pracownia', label: 'Pracownia' },
-  { href: '#kontakt', label: 'Kontakt' },
+  { href: '#realizacje', key: 'nav.realizations' },
+  { href: '#uslugi', key: 'nav.services' },
+  { href: '#proces', key: 'nav.process' },
+  { href: '#pracownia', key: 'nav.studio' },
+  { href: '#kontakt', key: 'nav.contact' },
 ]
 
 export const hero = {
-  headline: ['Dom, wnętrze i ogród.', 'Zaprojektowane', 'jako całość.'],
-  lead: 'Od pierwszej rozmowy po realizację: jeden zespół, spójna wizja i opieka na każdym etapie.',
-  meta: 'Nysa · Architektura · Wnętrza · Ogrody · Nadzór autorski',
-  primary: { label: 'Umów bezpłatną konsultację', href: '#kontakt' },
-  secondary: { label: 'Realizacje', href: '#realizacje' },
+  // Text: hero.* keys in i18n.tsx.
+  primary: { href: '#kontakt' },
+  secondary: { href: '#realizacje' },
   image: { src: '/images/hero-pergola-poster', alt: 'Pergola ogrodowa z ciepłym oświetleniem' },
   video: '/videos/mdh-hero-loop-pergola.mp4',
 }
 
 export type Category = 'domy' | 'wnętrza' | 'inwestycje' | 'ogrody'
 
-export const categories: { id: Category | 'wszystkie'; label: string }[] = [
-  { id: 'wszystkie', label: 'Wszystkie' },
-  { id: 'domy', label: 'Domy' },
-  { id: 'wnętrza', label: 'Wnętrza' },
-  { id: 'inwestycje', label: 'Inwestycje' },
-  { id: 'ogrody', label: 'Ogrody' },
+export const categories: { id: Category | 'wszystkie'; key: string }[] = [
+  { id: 'wszystkie', key: 'projects.all' },
+  { id: 'domy', key: 'projects.homes' },
+  { id: 'wnętrza', key: 'projects.interiors' },
+  { id: 'inwestycje', key: 'projects.investments' },
+  { id: 'ogrody', key: 'projects.gardens' },
 ]
 
 export type ProjectImageType = 'photo' | 'visualization' | 'plan' | 'elevation'
@@ -537,12 +537,7 @@ export const projects: Project[] = [
 ]
 
 export const caseStudy = {
-  heading: 'Od projektu do klucza',
-  text: [
-    'Nie oddajemy projektu i nie znikamy. Ten sam zespół, który rysuje koncepcję, prowadzi budowę i odbiera prace. Klient rozmawia z jedną osobą od pierwszego spotkania do wręczenia kluczy.',
-    'Rezydencja w Skrzypcu to 750 m² zaprojektowanych i zbudowanych przez nas: od fundamentów, przez instalacje, po marmurową wyspę w kuchni.',
-  ],
-  caption: 'Rezydencja 750 m², Skrzypiec. Projekt i realizacja, oddana 2023.',
+  // Text: case.* keys in i18n.tsx.
   images: [
     { src: '/images/skrzypiec-kuchnia', alt: 'Kuchnia z marmurową wyspą i szklanymi lampami' },
     { src: '/images/skrzypiec-etap-instalacji', alt: 'Wnętrze domu w trakcie montażu instalacji i ogrzewania podłogowego' },
@@ -550,61 +545,19 @@ export const caseStudy = {
   ],
 }
 
-export const services = [
-  {
-    title: 'Architektura',
-    text: 'Domy jednorodzinne i rezydencje, budynki wielorodzinne, osiedla i elewacje. Koncepcja, projekt budowlany i wykonawczy, uzgodnienia.',
-  },
-  {
-    title: 'Wnętrza',
-    text: 'Mieszkania, apartamenty i lokale usługowe. Układ, materiały, meble na wymiar, oświetlenie. Także dobór mebli i dodatków do gotowego wnętrza.',
-  },
-  {
-    title: 'Ogrody i krajobraz',
-    text: 'Ogrody, tarasy, nawierzchnie, zieleń i światło zewnętrzne. Projektowane razem z domem, nie po nim.',
-  },
-  {
-    title: 'Realizacja i nadzór',
-    text: 'Budowa pod klucz własnym zespołem, nadzór autorski, kosztorys, harmonogram i koordynacja wykonawców.',
-  },
-]
+// Each id renders services.<id> and services.<id>Text.
+export const services = ['architecture', 'interiors', 'landscape', 'delivery'] as const
 
-export const process = [
-  {
-    title: 'Konsultacja',
-    text: 'Bezpłatne spotkanie w Nysie lub online. Rozmawiamy o działce, budżecie i tym, jak chcecie mieszkać.',
-  },
-  {
-    title: 'Koncepcja',
-    text: 'Układ, bryła, wizualizacje 3D. Poprawiamy, aż powiecie: to jest to.',
-  },
-  {
-    title: 'Dokumentacja',
-    text: 'Projekt budowlany i wykonawczy, pozwolenia, specyfikacja materiałów i kosztorys.',
-  },
-  {
-    title: 'Realizacja',
-    text: 'Budowa i wykończenie pod klucz albo nadzór autorski nad wybranym przez Was wykonawcą.',
-  },
-]
+// Each id renders process.<id> and process.<id>Text.
+export const process = ['consult', 'concept', 'docs', 'execution'] as const
 
+// Keys of the studio paragraphs and principles (each principle also has
+// <key>Text).
 export const studio = {
-  label: 'M DESIGN HOUSE · NYSA',
-  heading: 'Architektura tworzona z myślą o konkretnym miejscu i człowieku.',
-  bio: [
-    'Każde miejsce i każda rodzina stawiają inne pytania. Dlatego dom, wnętrze i ogród traktujemy jako jeden indywidualny projekt — dopasowany do potrzeb, działki, otoczenia i założeń inwestycji.',
-    'Pracownię tworzy zespół z doświadczeniem w projektowaniu i prowadzeniu realizacji. Łączymy koncepcję, dokumentację i nadzór, dbając o spójność decyzji na kolejnych etapach.',
-    'Zaczynamy od rozmowy i uważnego poznania miejsca. Proporcje, materiały, światło i detal wynikają z konkretnego projektu — dzięki temu powstają przestrzenie zaprojektowane indywidualnie, bez powielania gotowych układów.',
-  ],
-  principles: [
-    { title: 'Indywidualny projekt', text: 'Rozwiązania dopasowane do działki, potrzeb i założeń inwestycji.' },
-    { title: 'Spójne etapy', text: 'Jedna wizja prowadzona od koncepcji i dokumentacji po realizację.' },
-    { title: 'Dopracowany detal', text: 'Materiały, funkcja i światło zaplanowane jako całość.' },
-  ],
+  bio: ['studio.bio1', 'studio.bio2', 'studio.bio3'],
+  principles: ['studio.principle1', 'studio.principle2', 'studio.principle3'],
 }
 
-export const contact = {
-  heading: 'Porozmawiajmy o Waszym projekcie',
-  text: 'Napiszcie, co chcecie zbudować lub urządzić. Odpowiadamy w ciągu dwóch dni roboczych z propozycją terminu bezpłatnej konsultacji.',
-  scopes: ['Dom', 'Wnętrze', 'Ogród', 'Inwestycja', 'Budowa pod klucz'],
-}
+// Contact form scope chips; each id renders scope.<id>.
+export const scopes = ['home', 'interior', 'garden', 'investment', 'turnkey'] as const
+export type Scope = (typeof scopes)[number]

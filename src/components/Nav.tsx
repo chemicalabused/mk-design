@@ -5,14 +5,6 @@ import { brand, nav } from '../content/site'
 import { languageOptions, useLanguage } from '../lib/i18n'
 import { LanguageMenu } from './LanguageMenu'
 
-const navKeys: Record<string, string> = {
-  Realizacje: 'nav.realizations',
-  Usługi: 'nav.services',
-  Proces: 'nav.process',
-  Pracownia: 'nav.studio',
-  Kontakt: 'nav.contact',
-}
-
 export function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -72,7 +64,7 @@ export function Nav() {
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label={t('nav.main')}>
-          {nav.map((item) => <a key={item.href} href={item.href} className="text-sm text-current/85 transition-opacity hover:opacity-65">{t(navKeys[item.label])}</a>)}
+          {nav.map((item) => <a key={item.href} href={item.href} className="text-sm text-current/85 transition-opacity hover:opacity-65">{t(item.key)}</a>)}
           <LanguageMenu />
           <a href="#kontakt" className="rounded-full border border-current/75 px-4 py-2 text-sm font-medium transition-colors hover:bg-graphite hover:text-plaster">{t('nav.book')}</a>
         </nav>
@@ -87,7 +79,7 @@ export function Nav() {
       {open && (
         <div id="menu" className="container-page max-h-[calc(100svh-5rem)] overflow-y-auto text-ink lg:hidden">
           <nav className="flex flex-col border-t border-line py-4" aria-label={t('nav.main')}>
-            {nav.map((item) => <a key={item.href} href={item.href} className="py-3 font-display text-2xl" onClick={() => setOpen(false)}>{t(navKeys[item.label])}</a>)}
+            {nav.map((item) => <a key={item.href} href={item.href} className="py-3 font-display text-2xl" onClick={() => setOpen(false)}>{t(item.key)}</a>)}
             <p className="mt-4 text-xs uppercase tracking-[0.14em] text-slate" id="language-mobile">{t('nav.language')}</p>
             <div className="mt-3 flex gap-2" role="group" aria-labelledby="language-mobile">
               {languageOptions.map(([code, label]) => (

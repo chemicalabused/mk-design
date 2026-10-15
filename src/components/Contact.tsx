@@ -1,10 +1,8 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
-import { brand } from '../content/site'
+import { brand, scopes as SCOPES, type Scope } from '../content/site'
 import { translate, useLanguage } from '../lib/i18n'
 
 type Field = 'name' | 'contact' | 'message'
-const SCOPES = ['home', 'interior', 'garden', 'investment', 'turnkey'] as const
-type Scope = (typeof SCOPES)[number]
 type Errors = Partial<Record<Field, string>>
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

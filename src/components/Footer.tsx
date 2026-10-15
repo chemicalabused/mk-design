@@ -16,7 +16,7 @@ export function Footer() {
         <nav className="flex flex-col gap-2 text-sm" aria-label={t('footer.nav')}>
           {nav.map((i) => (
             <a key={i.href} href={i.href} className="text-plaster/80 hover:text-plaster">
-              {t(({ Realizacje: 'nav.realizations', Usługi: 'nav.services', Proces: 'nav.process', Pracownia: 'nav.studio', Kontakt: 'nav.contact' } as Record<string, string>)[i.label])}
+              {t(i.key)}
             </a>
           ))}
         </nav>
