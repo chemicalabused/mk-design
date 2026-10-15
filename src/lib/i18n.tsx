@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import type { Project } from '../content/site'
+import type { Project, ProjectImage } from '../content/site'
+import { imageAlts } from './image-alts'
 
 export type Language = 'pl' | 'en' | 'uk'
 
@@ -163,8 +164,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return messages[language][key] ?? messages.pl[key] ?? key
     },
     localizeProject: (project) => {
-      const copy = language === 'pl' ? undefined : projectCopy[language][project.id]
-      return copy ? { ...project, ...copy } : project
+      if (language === 'pl') return project
+      const alts = imageAlts[language]
+      const localize = (image: ProjectImage) => {
+        const alt = alts[image.alt]
+        if (import.meta.env.DEV && !alt) console.warn(`i18n: no ${language} alt for "${image.alt}" (src/lib/image-alts.ts)`)
+        return alt ? { ...image, alt } : image
+      }
+      return {
+        ...project,
+        ...projectCopy[language][project.id],
+        images: project.images.map(localize),
+        ...(project.coverImage ? { coverImage: localize(project.coverImage) } : {}),
+      }
     },
   }), [language])
 
