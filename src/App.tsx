@@ -8,15 +8,17 @@ import { Studio } from './components/Studio'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { Motion } from './components/Motion'
+import { useLanguage } from './lib/i18n'
 
 function App() {
+  const { t } = useLanguage()
   return (
     <Motion>
       <a
         href="#tresc"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-graphite focus:px-4 focus:py-2 focus:text-sm focus:text-plaster"
       >
-        Przejdź do treści
+        {t('skip')}
       </a>
       <Nav />
       <main id="tresc">

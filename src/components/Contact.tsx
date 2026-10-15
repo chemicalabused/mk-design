@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react'
-import { brand, contact } from '../content/site'
+import { brand } from '../content/site'
+import { useLanguage } from '../lib/i18n'
 
 export function Contact() {
+  const { t } = useLanguage()
   const [scopes, setScopes] = useState<string[]>([])
   const [sent, setSent] = useState(false)
 
@@ -15,14 +17,14 @@ export function Contact() {
     e.preventDefault()
     const f = new FormData(e.currentTarget)
     const body = [
-      `Imię i nazwisko: ${f.get('name')}`,
-      `Kontakt: ${f.get('contact')}`,
-      `Lokalizacja i metraż: ${f.get('where')}`,
-      `Zakres: ${scopes.join(', ') || 'nie podano'}`,
+      `${t('contact.mailName')}: ${f.get('name')}`,
+      `${t('contact.mailContact')}: ${f.get('contact')}`,
+      `${t('contact.mailWhere')}: ${f.get('where')}`,
+      `${t('contact.mailScope')}: ${scopes.join(', ') || t('contact.notProvided')}`,
       '',
       String(f.get('message') ?? ''),
     ].join('\n')
-    const url = `mailto:${brand.email}?subject=${encodeURIComponent('Zapytanie ze strony')}&body=${encodeURIComponent(body)}`
+    const url = `mailto:${brand.email}?subject=${encodeURIComponent(t('contact.subject'))}&body=${encodeURIComponent(body)}`
     window.location.href = url
     setSent(true)
   }
@@ -35,12 +37,12 @@ export function Contact() {
       <div className="container-page section">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <h2 className="heading-lg">{contact.heading}</h2>
-            <p className="mt-6 max-w-[44ch] leading-relaxed text-slate">{contact.text}</p>
+            <h2 className="heading-lg">{t('contact.heading')}</h2>
+            <p className="mt-6 max-w-[44ch] leading-relaxed text-slate">{t('contact.text')}</p>
 
             <dl className="mt-10 space-y-5 text-base">
               <div>
-                <dt className="text-sm text-slate">Telefon</dt>
+                <dt className="text-sm text-slate">{t('contact.phone')}</dt>
                 <dd className="mt-1 flex flex-wrap gap-x-4">
                   <a href={brand.phoneHref} className="underline-offset-4 hover:underline">{brand.phone}</a>
                   <a href={brand.whatsapp} target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
@@ -49,38 +51,39 @@ export function Contact() {
                 </dd>
               </div>
               <div>
-                <dt className="text-sm text-slate">E-mail</dt>
+                <dt className="text-sm text-slate">{t('contact.email')}</dt>
                 <dd className="mt-1">
                   <a href={`mailto:${brand.email}`} className="underline-offset-4 hover:underline">{brand.email}</a>
                 </dd>
               </div>
               <div>
-                <dt className="text-sm text-slate">Pracownia</dt>
-                <dd className="mt-1">{brand.address || 'Nysa, spotkania po umówieniu terminu'}</dd>
+                <dt className="text-sm text-slate">{t('contact.studio')}</dt>
+                <dd className="mt-1">{brand.address || t('contact.address')}</dd>
               </div>
             </dl>
           </div>
 
-          <form onSubmit={onSubmit} className="lg:col-span-7" aria-label="Formularz kontaktowy">
+          <form onSubmit={onSubmit} className="lg:col-span-7" aria-label={t('contact.heading')}>
             <div className="grid gap-6 sm:grid-cols-2">
               <label className="block">
-                <span className="text-sm text-slate">Imię i nazwisko</span>
+                <span className="text-sm text-slate">{t('contact.name')}</span>
                 <input name="name" required autoComplete="name" className={field} />
               </label>
               <label className="block">
-                <span className="text-sm text-slate">Telefon lub e-mail</span>
+                <span className="text-sm text-slate">{t('contact.channel')}</span>
                 <input name="contact" required autoComplete="email" className={field} />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm text-slate">Lokalizacja i metraż</span>
-                <input name="where" placeholder="np. Nysa, działka 8 arów, dom ok. 150 m²" className={field} />
+                <span className="text-sm text-slate">{t('contact.location')}</span>
+                <input name="where" placeholder={t('contact.locationPlaceholder')} className={field} />
               </label>
             </div>
 
             <fieldset className="mt-8">
-              <legend className="text-sm text-slate">Czego dotyczy zapytanie</legend>
+              <legend className="text-sm text-slate">{t('contact.scope')}</legend>
               <div className="mt-3 flex flex-wrap gap-2">
-                {contact.scopes.map((s) => {
+                {(['home', 'interior', 'garden', 'investment', 'turnkey'] as const).map((scope) => {
+                  const s = t(`scope.${scope}`)
                   const on = scopes.includes(s)
                   return (
                     <button
@@ -100,7 +103,7 @@ export function Contact() {
             </fieldset>
 
             <label className="mt-8 block">
-              <span className="text-sm text-slate">Opowiedzcie o projekcie</span>
+              <span className="text-sm text-slate">{t('contact.message')}</span>
               <textarea name="message" rows={4} required className={`${field} resize-y`} />
             </label>
 
@@ -109,9 +112,9 @@ export function Contact() {
                 type="submit"
                 className="rounded-full bg-graphite px-6 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-ink"
               >
-                Wyślij zapytanie
+                {t('contact.send')}
               </button>
-              {sent && <p className="text-sm text-slate" role="status">Otworzyliśmy Wasz program pocztowy z gotową wiadomością.</p>}
+              {sent && <p className="text-sm text-slate" role="status">{t('contact.sent')}</p>}
             </div>
           </form>
         </div>

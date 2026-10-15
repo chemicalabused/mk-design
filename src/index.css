@@ -47,9 +47,47 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .md-hero-video { display: none; }
+}
+
+@media (max-width: 767px) {
+  #top > img,
+  #top > .md-hero-video {
+    object-position: 38% center;
+  }
+
+  .hero-heading {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-heading-main {
+    order: 1;
+  }
+
+  .hero-heading-topic {
+    order: 2;
+    margin-top: 0.42rem;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .hero-heading-topic [data-hero-line] {
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 5.2vw, 1.55rem);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+}
+
 @layer utilities {
+  .hero-heading {
+    font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-optical-sizing: auto;
+  }
   .container-page {
-    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-16;
   }
   .heading-xl {
     @apply font-display font-normal leading-[0.98] tracking-[-0.015em];

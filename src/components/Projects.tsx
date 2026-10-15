@@ -2,11 +2,20 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
+import { useLanguage } from '../lib/i18n'
 
 export function Projects() {
+  const { t, localizeProject } = useLanguage()
   const [filter, setFilter] = useState<Category | 'wszystkie'>('wszystkie')
   const [active, setActive] = useState<Project | null>(null)
-  const visible = filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter)
+  const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
+  const visible = [...(filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter))]
+    .map(localizeProject)
+    .sort((a, b) =>
+      Number(b.id === 'kompleks-nad-woda') - Number(a.id === 'kompleks-nad-woda') ||
+      Number(b.id === 'park-biala-cerkiew') - Number(a.id === 'park-biala-cerkiew'),
+    )
+  const rows = Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => visible.slice(index * 2, index * 2 + 2))
 
   useEffect(() => {
     // Cards re-mount on filter change; make sure the new ones are visible and
@@ -18,8 +27,8 @@ export function Projects() {
   return (
     <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="heading-lg">Realizacje</h2>
-        <div className="-mx-5 flex gap-x-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]" role="group" aria-label="Filtruj realizacje">
+        <h2 className="heading-lg">{t('projects.heading')}</h2>
+        <div className="-mx-5 flex gap-x-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]" role="group" aria-label={t('projects.filter')}>
           {categories.map((c) => {
             const on = c.id === filter
             return (
@@ -27,56 +36,105 @@ export function Projects() {
                 key={c.id}
                 type="button"
                 aria-pressed={on}
-                onClick={() => setFilter(c.id)}
+                onClick={() => {
+                  setHoveredProjectId(null)
+                  setFilter(c.id)
+                }}
                 className={`shrink-0 border-b pb-0.5 text-sm transition-colors ${
                   on ? 'border-graphite text-ink' : 'border-transparent text-slate hover:text-ink'
                 }`}
               >
-                {c.label}
+                {t(({ wszystkie: 'projects.all', domy: 'projects.homes', 'wnętrza': 'projects.interiors', inwestycje: 'projects.investments', ogrody: 'projects.gardens' } as Record<string, string>)[c.id])}
               </button>
             )
           })}
         </div>
       </div>
 
-      <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-12">
-        {visible.map((p, i) => {
-          // alternate 7/5 and 5/7 columns so the grid has a rhythm without cards
-          const wide = i % 4 === 0 || i % 4 === 3
+      <ul className="mt-10 flex flex-col gap-y-10">
+        {rows.map((pair, rowIndex) => {
+          const hoveredIndex = pair.findIndex((p) => p.id === hoveredProjectId)
+          // Keep the alternating 7/5 composition, but let the hovered card take the wider share.
+          const wideIndex = hoveredIndex >= 0 ? hoveredIndex : rowIndex % 2 === 0 ? 0 : 1
           return (
-            <li key={p.id} className={wide ? 'sm:col-span-7' : 'sm:col-span-5'} data-reveal>
-              <button
-                type="button"
-                onClick={() => setActive(p)}
-                className="group block w-full text-left"
-                aria-label={`${p.title}, ${p.place}, otwórz galerię`}
-              >
-                <div className={`overflow-hidden bg-plaster ${wide ? 'aspect-[4/3]' : 'aspect-[4/3] sm:aspect-[5/4]'}`}>
-                  <Picture
-                    src={p.images[0].src}
-                    alt={p.images[0].alt}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="heading-sm mt-4 max-w-[28ch] underline decoration-transparent underline-offset-[5px] transition-colors duration-300 group-hover:decoration-graphite/60">{p.title}</h3>
-                <p className="mt-1.5 text-sm text-slate">
-                  {p.kind}, {p.place}, {p.year}
-                  {p.area ? `, ${p.area}` : ''}
-                  {p.status ? `, ${p.status}` : ''}
-                </p>
-              </button>
+            <li
+              key={`${filter}-${rowIndex}`}
+              className="flex flex-col gap-y-10 sm:flex-row sm:gap-x-6"
+              data-reveal
+              onPointerLeave={(event) => {
+                if (event.pointerType !== 'touch') setHoveredProjectId(null)
+              }}
+            >
+              {pair.map((p, index) => {
+                const wide = index === wideIndex
+                return (
+                  <div
+                    key={p.id}
+                    className={`w-full min-w-0 sm:basis-0 sm:transition-[flex-grow] sm:duration-700 sm:ease-in-out ${pair.length === 1 ? 'sm:max-w-[58.333%]' : ''}`}
+                    style={{ flexGrow: wide ? 7 : 5 }}
+                  >
+                    <button
+                      type="button"
+                      onPointerEnter={(event) => {
+                        if (event.pointerType !== 'touch') setHoveredProjectId(p.id)
+                      }}
+                      onFocus={() => setHoveredProjectId(p.id)}
+                      onBlur={(event) => {
+                        const row = event.currentTarget.closest('li')
+                        if (!row?.contains(event.relatedTarget as Node | null)) setHoveredProjectId(null)
+                      }}
+                      onClick={() => setActive(p)}
+                      className="group block w-full text-left"
+                      aria-label={`${p.title}${p.place ? `, ${p.place}` : ''}, ${t('projects.openGallery')}`}
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden bg-plaster">
+                        {p.videos?.length ? (
+                          <ProjectCover project={p} active={p.id === hoveredProjectId} />
+                        ) : (
+                          <Picture
+                            src={p.images[0].src}
+                            alt={p.images[0].alt}
+                            className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
+                          />
+                        )}
+                        <span
+                          className="pointer-events-none absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-plaster/95 px-4 py-2.5 text-xs font-medium text-ink shadow-lg transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:translate-y-2 sm:opacity-0"
+                          aria-hidden="true"
+                        >
+                          {t('projects.open')}
+                          <svg viewBox="0 0 20 20" fill="none" className="size-4" stroke="currentColor" strokeWidth="1.5"><path d="M3.5 10h12m-5-5 5 5-5 5" /></svg>
+                        </span>
+                      </div>
+                      <h3 className="heading-sm mt-4 max-w-[28ch] underline decoration-transparent underline-offset-[5px] transition-colors duration-300 group-hover:decoration-graphite/60">{p.title}</h3>
+                      <p className="mt-1.5 text-sm text-slate">
+                        {[p.kind, p.place, p.year, p.area].filter(Boolean).join(' · ')}
+                      </p>
+                      <p className="mt-1 text-xs tracking-wide text-brass">{p.status}</p>
+                    </button>
+                  </div>
+                )
+              })}
             </li>
           )
         })}
       </ul>
 
-      <Lightbox project={active} onClose={() => setActive(null)} />
+      <Lightbox key={active?.id ?? 'closed'} project={active} onClose={() => setActive(null)} />
     </section>
   )
 }
 
 function Lightbox({ project, onClose }: { project: Project | null; onClose: () => void }) {
+  const { t } = useLanguage()
   const ref = useRef<HTMLDialogElement>(null)
+  const zoomCloseRef = useRef<HTMLButtonElement>(null)
+  const zoomReturnRef = useRef<HTMLElement | null>(null)
+  const [zoomImage, setZoomImage] = useState<Project['images'][number] | null>(null)
+
+  useEffect(() => {
+    if (zoomImage) zoomCloseRef.current?.focus()
+    else if (ref.current?.open) zoomReturnRef.current?.focus()
+  }, [zoomImage])
 
   useEffect(() => {
     const el = ref.current
@@ -89,6 +147,12 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
     <dialog
       ref={ref}
       onClose={onClose}
+      onCancel={(event) => {
+        if (zoomImage) {
+          event.preventDefault()
+          setZoomImage(null)
+        }
+      }}
       onClick={(e) => {
         if (e.target === ref.current) onClose()
       }}
@@ -100,18 +164,58 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
             <div>
               <h3 className="heading-md">{project.title}</h3>
               <p className="mt-1 text-sm text-slate">
-                {project.kind}, {project.place}, {project.year}
-                {project.area ? `, ${project.area}` : ''}
+                {[project.kind, project.place, project.year, project.area].filter(Boolean).join(' · ')}
               </p>
+              <p className="mt-1 text-xs tracking-wide text-brass">{project.status}</p>
             </div>
             <button type="button" onClick={onClose} className="shrink-0 text-sm underline-offset-4 hover:underline">
-              Zamknij
+              {t('projects.close')}
             </button>
           </div>
           <p className="mt-5 max-w-[68ch] leading-relaxed">{project.description}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {project.videos?.map((clip, index) => (
+              <figure key={clip.src} className="min-w-0 sm:col-span-2">
+                <div className="aspect-video overflow-hidden bg-graphite">
+                  <VideoFigure
+                    src={clip.src}
+                    startAt={clip.startAt}
+                    playbackRate={clip.playbackRate ?? 1}
+                    poster={`${(project.coverImage ?? project.images[0]).src}.webp`}
+                    label={`${project.title}, ${t('projects.film')} ${index + 1}`}
+                  />
+                </div>
+                <figcaption className="mt-2 text-xs text-slate">
+                  {t('projects.film')} {index + 1}{clip.hasAudio === false ? ` · ${t('projects.noSound')}` : ` · ${t('projects.videoSound')}`}
+                </figcaption>
+              </figure>
+            ))}
             {project.images.map((img) => (
-              <Picture key={img.src} src={img.src} alt={img.alt} className="aspect-[4/3] w-full object-cover" />
+              <figure key={img.src} className="min-w-0">
+                <div className={`aspect-[4/3] overflow-hidden ${img.type === 'plan' || img.type === 'elevation' ? 'bg-white' : 'bg-graphite/5'}`}>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      zoomReturnRef.current = event.currentTarget
+                      setZoomImage(img)
+                    }}
+                    className="group relative block h-full w-full overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brass"
+                    aria-label={`${t('projects.zoom')}: ${img.alt}`}
+                  >
+                  <Picture
+                    src={img.src}
+                    alt={img.alt}
+                    className={`h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04] ${img.type === 'plan' || img.type === 'elevation' ? 'object-contain' : 'object-cover'}`}
+                  />
+                    <span className="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-graphite/75 text-white opacity-80 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-graphite group-hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" className="size-5" stroke="currentColor" strokeWidth="1.7"><path d="M12 5v14M5 12h14" /></svg>
+                    </span>
+                  </button>
+                </div>
+                <figcaption className="mt-2 text-xs text-slate">
+                  {img.type === 'plan' ? t('projects.plan') : img.type === 'elevation' ? t('projects.elevation') : img.type === 'photo' ? t('projects.photo') : t('projects.render')}
+                </figcaption>
+              </figure>
             ))}
           </div>
           <a
@@ -119,10 +223,123 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
             onClick={onClose}
             className="mt-6 inline-block rounded-full bg-graphite px-5 py-3 text-sm font-medium text-plaster"
           >
-            Zapytaj o podobny projekt
+            {t('projects.askSimilar')}
           </a>
+          {zoomImage && (
+            <div
+              className="fixed inset-0 z-50 grid place-items-center bg-graphite/95 p-4 backdrop-blur-md sm:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${t('projects.zoom')}: ${zoomImage.alt}`}
+              onClick={(event) => {
+                if (event.target === event.currentTarget) setZoomImage(null)
+              }}
+            >
+              <button
+                ref={zoomCloseRef}
+                type="button"
+                onClick={() => setZoomImage(null)}
+                className="absolute right-4 top-4 z-10 grid size-12 place-items-center rounded-full border border-white/30 bg-black/35 text-white transition-colors hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white sm:right-7 sm:top-7"
+                aria-label={t('projects.closeZoom')}
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="size-6" stroke="currentColor" strokeWidth="1.6"><path d="m6 6 12 12M18 6 6 18" /></svg>
+              </button>
+              <img
+                src={`${zoomImage.src}.webp`}
+                alt={zoomImage.alt}
+                className="max-h-[86svh] max-w-[94vw] object-contain shadow-2xl"
+              />
+              <p className="absolute bottom-4 left-4 right-16 text-sm text-white/75 sm:bottom-7 sm:left-8">{zoomImage.alt}</p>
+            </div>
+          )}
         </article>
       )}
     </dialog>
+  )
+}
+
+function ProjectCover({ project, active }: { project: Project; active: boolean }) {
+  const { t } = useLanguage()
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [clipIndex, setClipIndex] = useState(0)
+  const [visible, setVisible] = useState(false)
+  const [hoverless, setHoverless] = useState(false)
+  const clips = project.videos ?? []
+  const clip = clips[clipIndex]
+  const cover = project.coverImage ?? project.images[0]
+
+  useEffect(() => {
+    const media = window.matchMedia('(hover: none)')
+    const update = () => setHoverless(media.matches)
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !clip) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.intersectionRatio >= 0.3)
+    }, { threshold: [0, 0.3] })
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [clip])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !clip) return
+    if (visible && (hoverless || active)) void video.play().catch(() => {})
+    else video.pause()
+  }, [active, clip, hoverless, visible])
+
+  if (!clip) {
+    return (
+      <Picture
+        src={cover.src}
+        alt={cover.alt}
+        className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
+      />
+    )
+  }
+
+  return (
+    <video
+      ref={videoRef}
+      key={clip.src}
+      src={clip.src}
+      poster={`${cover.src}.webp`}
+      muted
+      playsInline
+      loop={clips.length === 1}
+      preload="metadata"
+      onLoadedMetadata={(event) => {
+        event.currentTarget.playbackRate = clip.playbackRate ?? 1
+        if (clip.startAt > 0) event.currentTarget.currentTime = clip.startAt
+      }}
+      onEnded={() => { if (clips.length > 1) setClipIndex((index) => (index + 1) % clips.length) }}
+      className="h-full w-full object-cover"
+      aria-label={`${t('projects.animated')}: ${project.title}`}
+    />
+  )
+}
+
+function VideoFigure({ src, startAt, playbackRate, poster, label }: { src: string; startAt: number; playbackRate: number; poster: string; label: string }) {
+  return (
+    <video
+      src={src}
+      poster={poster}
+      controls
+      muted={false}
+      playsInline
+      preload="metadata"
+      onLoadedMetadata={(event) => {
+        event.currentTarget.playbackRate = playbackRate
+        event.currentTarget.currentTime = startAt
+      }}
+      className="h-full w-full object-cover"
+      aria-label={label}
+    />
   )
 }
