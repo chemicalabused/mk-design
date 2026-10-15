@@ -85,7 +85,7 @@ export function Nav() {
       />
       <div className="container-page flex h-20 items-center justify-between gap-3">
         <a href="#top" className="flex min-w-0 items-center gap-3.5" aria-label={`${brand.name}, ${t('nav.main').toLowerCase()}`}>
-          <img src={solid ? '/images/mdh-logo-dark.png' : '/images/mdh-logo-light.png'} alt={brand.name} className="h-auto w-[170px] transition-opacity duration-300 sm:w-[190px] md:w-[230px]" />
+          <img src={solid ? '/images/mdh-logo-dark.png' : '/images/mdh-logo-light.png'} alt={brand.name} width={720} height={165} className="h-auto w-[170px] transition-opacity duration-300 sm:w-[190px] md:w-[230px]" />
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label={t('nav.main')}>
