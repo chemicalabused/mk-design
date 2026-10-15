@@ -79,6 +79,60 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  // Display order: the grid shows projects in this order.
+  {
+    id: 'kompleks-nad-woda',
+    title: 'Kompleks wielofunkcyjny nad wodą',
+    category: 'inwestycje',
+    kind: 'Projekt wielofunkcyjny',
+    status: 'Koncepcja architektoniczna',
+    description:
+      'Koncepcja łączy apartamenty, lokale usługowe, restaurację i strefy rekreacji w jednym założeniu nad wodą. Tarasowe ogrody, basen i duże przeszklenia otwierają architekturę na krajobraz. Projektujemy nie tylko budynki, lecz także pomysły i inwestycje naszych klientów. Jeśli planujesz obiekt deweloperski lub większy kompleks, przeprowadzimy Cię przez cały proces — od pierwszej koncepcji i układu funkcji, przez projekt architektoniczny i dokumentację, aż po koordynację kolejnych etapów realizacji.',
+    coverImage: { src: '/images/projects/kompleks-nad-woda-03', alt: 'Nocna wizualizacja kompleksu widzianego z oddali', type: 'visualization' },
+    videos: [
+      { src: '/videos/kompleks-nad-woda-joined.mp4', startAt: 0 },
+    ],
+    images: [
+      { src: '/images/projects/kompleks-nad-woda-01', alt: 'Widok z góry na kompleks nad wodą i otaczającą zieleń', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-02', alt: 'Budynek wielofunkcyjny od strony miejskiego placu', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-03', alt: 'Wieczorna wizualizacja kompleksu i oświetlonej ulicy', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-04', alt: 'Basen i taras wypoczynkowy nad wodą', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-05', alt: 'Salon apartamentu z widokiem na wodę', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-06', alt: 'Kuchnia apartamentu z wyspą i panoramicznym widokiem', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-07', alt: 'Przeszklona strefa fitness z widokiem na rzekę', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-08', alt: 'Detal fasady i parteru usługowego', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-09', alt: 'Widok kompleksu od strony nabrzeża', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-10', alt: 'Rysunek elewacji budynku', type: 'elevation' },
+      { src: '/images/projects/kompleks-nad-woda-11', alt: 'Hol wejściowy kompleksu z recepcją i windami', type: 'visualization' },
+      { src: '/images/projects/kompleks-nad-woda-12', alt: 'Wnętrze centrum handlowego z pasażem i ruchomymi schodami', type: 'visualization' },
+    ],
+  },
+  {
+    id: 'park-biala-cerkiew',
+    title: 'Park miejski w Białej Cerkwi',
+    place: 'Biała Cerkiew, Ukraina',
+    category: 'ogrody',
+    kind: 'Projekt przestrzeni publicznej',
+    status: 'Koncepcja architektoniczna',
+    description:
+      'Koncepcja parku dziecięcego w Białej Cerkwi łączy miejsca zabawy i aktywności z zielonymi strefami odpoczynku. Aleje spacerowe, place zabaw, elementy wodne, kawiarnia i miejsca spotkań tworzą przyjazną przestrzeń dla mieszkańców w różnym wieku. Projekt obejmuje układ krajobrazowy oraz dobór małej architektury i wyposażenia.',
+    coverImage: { src: '/images/projects/park-biala-cerkiew-01', alt: 'Mostek nad wodą i kwitnące rabaty w parku miejskim', type: 'visualization' },
+    videos: [
+      { src: '/videos/park-biala-cerkiew-loop-from-3s.mp4', startAt: 0 },
+    ],
+    images: [
+      { src: '/images/projects/park-biala-cerkiew-01', alt: 'Mostek nad wodą i kwitnące rabaty w parku miejskim', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-concept', alt: 'Pełna koncepcja parku: plan generalny, układ stref, ścieżki i wizualizacje', type: 'plan' },
+      { src: '/images/projects/park-biala-cerkiew-overview', alt: 'Panorama parku z alejami, zielenią i miejscami do wypoczynku', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-02', alt: 'Widok z góry na układ ścieżek, fontannę i strefy rekreacji', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-03', alt: 'Plac zabaw i ścieżka rowerowa wśród drzew', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-04', alt: 'Kawiarnia i miejsca odpoczynku przy wodzie', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-05', alt: 'Rysunki techniczne elementów wyposażenia parku', type: 'elevation' },
+      { src: '/images/projects/park-biala-cerkiew-07', alt: 'Drewniane urządzenia zabawowe i strefa rekreacji', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-08', alt: 'Jesienny park wieczorem po deszczu, z fontanną i podświetlonymi alejami', type: 'visualization' },
+      { src: '/images/projects/park-biala-cerkiew-09', alt: 'Zimowa odsłona parku z oświetlonymi alejami i śniegiem', type: 'visualization' },
+    ],
+  },
   {
     id: 'rezydencja-skrzypiec',
     title: 'Rezydencja w Skrzypcu',
@@ -437,59 +491,6 @@ export const projects: Project[] = [
       { src: '/images/projects/ogrod-w-lubrzy-13', alt: 'Wieczorny widok ogrodu z ciepłym oświetleniem pergoli', type: 'visualization' },
       { src: '/images/projects/ogrod-w-lubrzy-14', alt: 'Nocny widok z góry na oświetlony ogród', type: 'visualization' },
       { src: '/images/projects/ogrod-w-lubrzy-15', alt: 'Zimowy ogród i oświetlona altana', type: 'visualization' },
-    ],
-  },
-  {
-    id: 'kompleks-nad-woda',
-    title: 'Kompleks wielofunkcyjny nad wodą',
-    category: 'inwestycje',
-    kind: 'Projekt wielofunkcyjny',
-    status: 'Koncepcja architektoniczna',
-    description:
-      'Koncepcja łączy apartamenty, lokale usługowe, restaurację i strefy rekreacji w jednym założeniu nad wodą. Tarasowe ogrody, basen i duże przeszklenia otwierają architekturę na krajobraz. Projektujemy nie tylko budynki, lecz także pomysły i inwestycje naszych klientów. Jeśli planujesz obiekt deweloperski lub większy kompleks, przeprowadzimy Cię przez cały proces — od pierwszej koncepcji i układu funkcji, przez projekt architektoniczny i dokumentację, aż po koordynację kolejnych etapów realizacji.',
-    coverImage: { src: '/images/projects/kompleks-nad-woda-03', alt: 'Nocna wizualizacja kompleksu widzianego z oddali', type: 'visualization' },
-    videos: [
-      { src: '/videos/kompleks-nad-woda-joined.mp4', startAt: 0 },
-    ],
-    images: [
-      { src: '/images/projects/kompleks-nad-woda-01', alt: 'Widok z góry na kompleks nad wodą i otaczającą zieleń', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-02', alt: 'Budynek wielofunkcyjny od strony miejskiego placu', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-03', alt: 'Wieczorna wizualizacja kompleksu i oświetlonej ulicy', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-04', alt: 'Basen i taras wypoczynkowy nad wodą', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-05', alt: 'Salon apartamentu z widokiem na wodę', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-06', alt: 'Kuchnia apartamentu z wyspą i panoramicznym widokiem', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-07', alt: 'Przeszklona strefa fitness z widokiem na rzekę', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-08', alt: 'Detal fasady i parteru usługowego', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-09', alt: 'Widok kompleksu od strony nabrzeża', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-10', alt: 'Rysunek elewacji budynku', type: 'elevation' },
-      { src: '/images/projects/kompleks-nad-woda-11', alt: 'Hol wejściowy kompleksu z recepcją i windami', type: 'visualization' },
-      { src: '/images/projects/kompleks-nad-woda-12', alt: 'Wnętrze centrum handlowego z pasażem i ruchomymi schodami', type: 'visualization' },
-    ],
-  },
-  {
-    id: 'park-biala-cerkiew',
-    title: 'Park miejski w Białej Cerkwi',
-    place: 'Biała Cerkiew, Ukraina',
-    category: 'ogrody',
-    kind: 'Projekt przestrzeni publicznej',
-    status: 'Koncepcja architektoniczna',
-    description:
-      'Koncepcja parku dziecięcego w Białej Cerkwi łączy miejsca zabawy i aktywności z zielonymi strefami odpoczynku. Aleje spacerowe, place zabaw, elementy wodne, kawiarnia i miejsca spotkań tworzą przyjazną przestrzeń dla mieszkańców w różnym wieku. Projekt obejmuje układ krajobrazowy oraz dobór małej architektury i wyposażenia.',
-    coverImage: { src: '/images/projects/park-biala-cerkiew-01', alt: 'Mostek nad wodą i kwitnące rabaty w parku miejskim', type: 'visualization' },
-    videos: [
-      { src: '/videos/park-biala-cerkiew-loop-from-3s.mp4', startAt: 0 },
-    ],
-    images: [
-      { src: '/images/projects/park-biala-cerkiew-01', alt: 'Mostek nad wodą i kwitnące rabaty w parku miejskim', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-concept', alt: 'Pełna koncepcja parku: plan generalny, układ stref, ścieżki i wizualizacje', type: 'plan' },
-      { src: '/images/projects/park-biala-cerkiew-overview', alt: 'Panorama parku z alejami, zielenią i miejscami do wypoczynku', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-02', alt: 'Widok z góry na układ ścieżek, fontannę i strefy rekreacji', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-03', alt: 'Plac zabaw i ścieżka rowerowa wśród drzew', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-04', alt: 'Kawiarnia i miejsca odpoczynku przy wodzie', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-05', alt: 'Rysunki techniczne elementów wyposażenia parku', type: 'elevation' },
-      { src: '/images/projects/park-biala-cerkiew-07', alt: 'Drewniane urządzenia zabawowe i strefa rekreacji', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-08', alt: 'Jesienny park wieczorem po deszczu, z fontanną i podświetlonymi alejami', type: 'visualization' },
-      { src: '/images/projects/park-biala-cerkiew-09', alt: 'Zimowa odsłona parku z oświetlonymi alejami i śniegiem', type: 'visualization' },
     ],
   },
   {

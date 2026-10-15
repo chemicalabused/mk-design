@@ -52,6 +52,9 @@ export function Hero() {
 
   return (
     <section id="top" ref={root} className="relative mx-auto flex min-h-svh w-full max-w-[1920px] items-end overflow-hidden bg-graphite">
+      {/* The entrance zoom scales this wrapper, so the poster image and the
+          video (which may attach mid-animation) always share one scale. */}
+      <div className="absolute inset-0" data-hero-image>
       <Picture
         src={hero.image.src}
         alt={t(hero.image.altKey)}
@@ -72,8 +75,8 @@ export function Hero() {
         src={videoSrc}
         aria-hidden="true"
         tabIndex={-1}
-        data-hero-image
       />
+      </div>
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/25 to-graphite/10"
@@ -85,7 +88,9 @@ export function Hero() {
           <h1 className="hero-heading font-display text-[clamp(3rem,5.6vw,5rem)] font-normal leading-[1.08] tracking-[-0.01em]">
             {[t('hero.head1'), t('hero.head2'), t('hero.head3')].map((line, index) => (
               <span
-                key={line}
+                // Index, not text: the saved language is applied after
+                // hydration, and text keys would swap in new, unanimated nodes.
+                key={index}
                 className={`hero-heading-line block overflow-hidden pb-[0.17em] -mb-[0.17em] ${index === 0 ? 'hero-heading-topic' : 'hero-heading-main'}`}
               >
                 <span className="block" data-hero-line>

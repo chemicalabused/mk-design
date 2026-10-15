@@ -161,7 +161,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       // A key missing from Polish means a new entry in site.ts without its
       // strings; the key itself then shows on the page.
       if (import.meta.env.DEV && !(key in messages.pl)) console.warn(`i18n: missing key "${key}"`)
-      return messages[language][key] ?? messages.pl[key] ?? key
+      return translate(language, key)
     },
     localizeProject: (project) => {
       if (language === 'pl') return project

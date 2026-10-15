@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
@@ -16,12 +16,16 @@ export function Projects() {
   const [filter, setFilter] = useState<Category | 'wszystkie'>('wszystkie')
   const [active, setActive] = useState<Project | null>(null)
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
-  const visible = [...(filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter))]
-    .map(localizeProject)
-    .sort((a, b) =>
-      Number(b.id === 'kompleks-nad-woda') - Number(a.id === 'kompleks-nad-woda') ||
-      Number(b.id === 'park-biala-cerkiew') - Number(a.id === 'park-biala-cerkiew'),
-    )
+  // Order comes from site.ts. Memoised so hovering a card (state above)
+  // does not rebuild every localised project.
+  const visible = useMemo(
+    () => (filter === 'wszystkie' ? projects : projects.filter((p) => p.category === filter)).map(localizeProject),
+    [filter, localizeProject],
+  )
+  // The card that opened the gallery gets focus back when it closes. The
+  // Lightbox remounts per project (key below), so the dialog is gone before
+  // the browser could restore focus itself.
+  const opener = useRef<HTMLElement | null>(null)
   const rows = Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => visible.slice(index * 2, index * 2 + 2))
 
   // Cards re-mount on filter change; make sure the new ones are visible and
@@ -94,7 +98,10 @@ export function Projects() {
                         const row = event.currentTarget.closest('li')
                         if (!row?.contains(event.relatedTarget as Node | null)) setHoveredProjectId(null)
                       }}
-                      onClick={() => setActive(p)}
+                      onClick={(event) => {
+                        opener.current = event.currentTarget
+                        setActive(p)
+                      }}
                       className="group block w-full text-left"
                       aria-label={`${p.title}${p.place ? `, ${p.place}` : ''}, ${t('projects.openGallery')}`}
                     >
@@ -131,7 +138,14 @@ export function Projects() {
         })}
       </ul>
 
-      <Lightbox key={active?.id ?? 'closed'} project={active} onClose={() => setActive(null)} />
+      <Lightbox
+        key={active?.id ?? 'closed'}
+        project={active}
+        onClose={() => {
+          setActive(null)
+          requestAnimationFrame(() => opener.current?.focus())
+        }}
+      />
     </section>
   )
 }
@@ -183,7 +197,9 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
       className="m-auto max-h-[100svh] w-full max-w-5xl overflow-hidden bg-plaster p-0 text-ink backdrop:bg-graphite/80 backdrop:backdrop-blur-sm sm:max-h-[calc(100svh-3rem)] sm:w-[calc(100%-3rem)] sm:rounded-media"
     >
       {project && (
-        <article className="max-h-[100svh] overflow-y-auto overscroll-contain p-5 sm:max-h-[calc(100svh-3rem)] sm:p-8">
+        // inert while the image viewer is open, so Tab cannot reach the
+        // gallery hidden behind it.
+        <article inert={zoomIndex !== null} className="max-h-[100svh] overflow-y-auto overscroll-contain p-5 sm:max-h-[calc(100svh-3rem)] sm:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>
               <h3 className="heading-md">{project.title}</h3>
@@ -248,10 +264,10 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
           >
             {t('projects.askSimilar')}
           </a>
-          {zoomIndex !== null && (
-            <ImageViewer images={project.images} index={zoomIndex} onIndexChange={setZoomIndex} onClose={closeZoom} />
-          )}
         </article>
+      )}
+      {project && zoomIndex !== null && (
+        <ImageViewer images={project.images} index={zoomIndex} onIndexChange={setZoomIndex} onClose={closeZoom} />
       )}
     </dialog>
   )

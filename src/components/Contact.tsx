@@ -63,7 +63,7 @@ export function Contact() {
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             access_key: brand.formKey,
-            subject: `${t('contact.subject')}: ${String(f.get('name')).trim()}`,
+            subject: `${translate('pl', 'contact.subject')}: ${String(f.get('name')).trim()}`,
             from_name: brand.name,
             ...(EMAIL.test(contact) ? { replyto: contact } : {}),
             // Field names below arrive as-is in the studio's inbox, so they

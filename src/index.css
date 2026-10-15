@@ -77,8 +77,8 @@
 }
 
 @media (max-width: 767px) {
-  #top > img,
-  #top > .md-hero-video {
+  #top [data-hero-image] > img,
+  #top .md-hero-video {
     object-position: 38% center;
   }
 
@@ -91,11 +91,13 @@
     order: 1;
   }
 
+  /* Keep the mask (overflow hidden) the entrance slide relies on; the
+     padding/negative margin pair leaves room for descenders. */
   .hero-heading-topic {
     order: 2;
     margin-top: 0.42rem;
-    overflow: visible;
-    padding-bottom: 0;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
   }
 
   .hero-heading-topic [data-hero-line] {
