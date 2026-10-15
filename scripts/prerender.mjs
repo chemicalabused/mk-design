@@ -16,12 +16,16 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: OUT, emptyOutDir: true },
 })
 
-const { render } = await import(pathToFileURL(path.resolve(OUT, 'entry-server.js')).href)
+const { render, head } = await import(pathToFileURL(path.resolve(OUT, 'entry-server.js')).href)
 const html = await readFile('dist/index.html', 'utf8')
 const empty = '<div id="root"></div>'
 if (!html.includes(empty)) throw new Error(`dist/index.html has no ${empty}`)
 // Function replacers: a string one would treat $& / $' in the page as patterns.
 let out = html.replace(empty, () => `<div id="root">${render()}</div>`)
+const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+out = out
+  .replace(/<title>[^<]*<\/title>/, () => `<title>${escape(head.title)}</title>`)
+  .replace(/<meta name="description" content="[^"]*" \/>/, () => `<meta name="description" content="${escape(head.description)}" />`)
 const link = out.match(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/)
 if (!link) throw new Error('dist/index.html has no stylesheet link to inline')
 const css = await readFile(path.join('dist', link[1]), 'utf8')

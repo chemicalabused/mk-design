@@ -12,6 +12,7 @@ export const languageOptions: [Language, string][] = [
 
 const messages: Record<Language, Record<string, string>> = {
   pl: {
+    'meta.title': 'M Design House — Architektura, wnętrza i ogrody | Nysa', 'meta.description': 'Projektujemy domy, wnętrza i ogrody jako całość. Architektura, aranżacja wnętrz, nadzór autorski i realizacja pod klucz w Nysie, Opolskiem i we Wrocławiu.',
     'skip': 'Przejdź do treści', 'nav.realizations': 'Realizacje', 'nav.services': 'Usługi', 'nav.process': 'Proces', 'nav.studio': 'Pracownia', 'nav.contact': 'Kontakt',
     'nav.main': 'Główna', 'nav.chooseLanguage': 'Wybierz język', 'nav.language': 'Język', 'nav.book': 'Umów bezpłatną konsultację', 'nav.bookShort': 'Bezpłatna konsultacja', 'nav.open': 'Menu', 'nav.close': 'Zamknij',
     'hero.head1': 'Dom, wnętrze i ogród.', 'hero.head2': 'Zaprojektowane', 'hero.head3': 'jako całość.', 'hero.lead': 'Od pierwszej rozmowy po realizację: jeden zespół, spójna wizja i opieka na każdym etapie.', 'hero.meta': 'Nysa · Architektura · Wnętrza · Ogrody · Nadzór autorski', 'hero.primary': 'Umów bezpłatną konsultację', 'hero.secondary': 'Realizacje',
@@ -27,6 +28,7 @@ const messages: Record<Language, Record<string, string>> = {
     'project.heading': 'Projekt',
   },
   en: {
+    'meta.title': 'M Design House — Architecture, interiors and gardens | Nysa', 'meta.description': 'We design homes, interiors and gardens as one. Architecture, interior design, site supervision and turnkey delivery in Nysa, Opole region and Wrocław.',
     'skip': 'Skip to content', 'nav.realizations': 'Projects', 'nav.services': 'Services', 'nav.process': 'Process', 'nav.studio': 'Studio', 'nav.contact': 'Contact',
     'nav.main': 'Main navigation', 'nav.chooseLanguage': 'Choose language', 'nav.language': 'Language', 'nav.book': 'Book a free consultation', 'nav.bookShort': 'Free consultation', 'nav.open': 'Menu', 'nav.close': 'Close',
     'hero.head1': 'Home, interiors and garden.', 'hero.head2': 'Designed', 'hero.head3': 'as one.', 'hero.lead': 'From the first conversation to completion: one team, one clear vision and guidance at every stage.', 'hero.meta': 'Nysa · Architecture · Interiors · Gardens · Site supervision', 'hero.primary': 'Book a free consultation', 'hero.secondary': 'Projects',
@@ -42,6 +44,7 @@ const messages: Record<Language, Record<string, string>> = {
     'project.heading': 'Project',
   },
   uk: {
+    'meta.title': 'M Design House — Архітектура, інтер’єри та сади | Ниса', 'meta.description': 'Проєктуємо будинки, інтер’єри та сади як єдине ціле. Архітектура, дизайн інтер’єру, авторський нагляд і реалізація під ключ у Нисі, Опольському воєводстві та Вроцлаві.',
     'skip': 'Перейти до вмісту', 'nav.realizations': 'Проєкти', 'nav.services': 'Послуги', 'nav.process': 'Процес', 'nav.studio': 'Студія', 'nav.contact': 'Контакти',
     'nav.main': 'Головна навігація', 'nav.chooseLanguage': 'Вибрати мову', 'nav.language': 'Мова', 'nav.book': 'Записатися на безкоштовну консультацію', 'nav.bookShort': 'Безкоштовна консультація', 'nav.open': 'Меню', 'nav.close': 'Закрити',
     'hero.head1': 'Дім, інтер’єр і сад.', 'hero.head2': 'Спроєктовані', 'hero.head3': 'як єдине ціле.', 'hero.lead': 'Від першої розмови до реалізації: одна команда, цілісне бачення та супровід на кожному етапі.', 'hero.meta': 'Ниса · Архітектура · Інтер’єри · Сади · Авторський нагляд', 'hero.primary': 'Записатися на безкоштовну консультацію', 'hero.secondary': 'Проєкти',
@@ -134,19 +137,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    document.documentElement.lang = language === 'uk' ? 'uk' : language
-    const titles: Record<Language, string> = {
-      pl: 'M Design House — Architektura, wnętrza i ogrody | Nysa',
-      en: 'M Design House — Architecture, interiors and gardens | Nysa',
-      uk: 'M Design House — Архітектура, інтер’єри та сади | Ниса',
-    }
-    document.title = titles[language]
-    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]')
-    if (description) description.content = language === 'pl'
-      ? 'Projektujemy domy, wnętrza i ogrody jako całość. Architektura, aranżacja wnętrz, nadzór autorski i realizacja pod klucz w Nysie, Opolskiem i we Wrocławiu.'
-      : language === 'en'
-        ? 'We design homes, interiors and gardens as one. Architecture, interior design, site supervision and turnkey delivery in Nysa, Opole region and Wrocław.'
-        : 'Проєктуємо будинки, інтер’єри та сади як єдине ціле. Архітектура, дизайн інтер’єру, авторський нагляд і реалізація під ключ у Нисі, Опольському воєводстві та Вроцлаві.'
+    document.documentElement.lang = language
+    // The Polish title and description are written into the prerendered
+    // HTML from these same keys (scripts/prerender.mjs).
+    document.title = translate(language, 'meta.title')
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', translate(language, 'meta.description'))
   }, [language])
 
   const value = useMemo<ContextValue>(() => ({
