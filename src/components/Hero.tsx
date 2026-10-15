@@ -25,7 +25,7 @@ export function Hero() {
   )
 
   return (
-    <section id="top" ref={root} className="relative flex min-h-svh items-end overflow-hidden bg-graphite">
+    <section id="top" ref={root} className="relative mx-auto flex min-h-svh w-full max-w-[1920px] items-end overflow-hidden bg-graphite">
       <Picture
         src={hero.image.src}
         alt={hero.image.alt}

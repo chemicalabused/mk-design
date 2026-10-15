@@ -63,7 +63,7 @@ export function Nav() {
         className={`pointer-events-none absolute inset-0 -z-10 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow] duration-300 ${
           solid
             ? `${open ? 'bg-stone/95' : 'bg-stone/75'} shadow-[0_12px_36px_rgba(30,28,26,0.08)]`
-            : 'bg-gradient-to-b from-graphite/70 via-graphite/35 to-transparent [mask-image:linear-gradient(to_bottom,black_80%,transparent)]'
+            : 'mx-auto max-w-[1920px] bg-gradient-to-b from-graphite/70 via-graphite/35 to-transparent [mask-image:linear-gradient(to_bottom,black_80%,transparent)]'
         }`}
       />
       <div className="container-page flex h-20 items-center justify-between gap-3">
