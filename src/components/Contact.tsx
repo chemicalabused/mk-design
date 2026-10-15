@@ -30,7 +30,7 @@ export function Contact() {
   }
 
   const field =
-    'w-full border-b border-line bg-transparent py-3 text-base placeholder:text-slate/60 focus:border-graphite focus:outline-none'
+    'w-full border-b border-line bg-transparent py-3 text-base placeholder:text-slate/85 focus:border-graphite focus:outline-none'
 
   return (
     <section id="kontakt" className="bg-plaster">
