@@ -27,6 +27,11 @@
 }
 
 @layer base {
+  /* No lone word on the last line: balance short headings, and let
+     paragraphs avoid orphans (e.g. the footer tagline left "klucz."
+     alone). Browsers without support simply wrap as before. */
+  h1, h2, h3, dt { text-wrap: balance; }
+  p, dd, li, figcaption, legend { text-wrap: pretty; }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;

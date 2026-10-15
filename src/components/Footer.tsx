@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container-page flex flex-col gap-10 py-14 md:flex-row md:items-start md:justify-between">
         <div>
           <img src="/images/mdh-logo-light.png" alt={brand.name} width={720} height={165} className="h-20 w-auto" />
-          <p className="mt-4 max-w-[36ch] text-sm text-plaster/70">
+          <p className="mt-4 max-w-[36ch] text-balance text-sm text-plaster/70">
             {t('footer.tagline')}
           </p>
         </div>
