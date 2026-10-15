@@ -1,6 +1,7 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { brand, scopes as SCOPES, type Scope } from '../content/site'
 import { translate, useLanguage } from '../lib/i18n'
+import { BrandIcon } from './BrandIcon'
 
 type Field = 'name' | 'contact' | 'message'
 type Errors = Partial<Record<Field, string>>
@@ -144,17 +145,19 @@ export function Contact() {
             <dl className="mt-10 space-y-5 text-base">
               <div>
                 <dt className="text-sm text-slate">{t('contact.phone')}</dt>
-                <dd className="mt-1 flex flex-wrap gap-x-4">
-                  <a href={brand.phoneHref} className="underline-offset-4 hover:underline">{brand.phone}</a>
-                  <a href={brand.whatsapp} target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
-                    WhatsApp
+                {/* py-2.5 below sm: 44px tap targets on phones. */}
+                <dd className="mt-1 flex flex-wrap items-center gap-x-6">
+                  <a href={brand.phoneHref} className="link-line inline-block py-2.5 sm:py-0">{brand.phone}</a>
+                  <a href={brand.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 py-2.5 sm:py-0">
+                    <BrandIcon brand="whatsapp" />
+                    <span className="link-line">{t('contact.whatsapp')}</span>
                   </a>
                 </dd>
               </div>
               <div>
                 <dt className="text-sm text-slate">{t('contact.email')}</dt>
                 <dd className="mt-1">
-                  <a href={`mailto:${brand.email}`} className="underline-offset-4 hover:underline">{brand.email}</a>
+                  <a href={`mailto:${brand.email}`} className="link-line inline-block py-2.5 sm:py-0">{brand.email}</a>
                 </dd>
               </div>
               <div>

@@ -1,5 +1,6 @@
 import { brand, nav } from '../content/site'
 import { useLanguage } from '../lib/i18n'
+import { BrandIcon } from './BrandIcon'
 
 export function Footer() {
   const { t } = useLanguage()
@@ -21,11 +22,17 @@ export function Footer() {
           ))}
         </nav>
         <div className="flex flex-col gap-2 text-sm text-plaster/80">
-          <a href={brand.phoneHref}>{brand.phone}</a>
-          <a href={`mailto:${brand.email}`}>{brand.email}</a>
-          <a href={brand.facebook} target="_blank" rel="noreferrer">Facebook</a>
+          <a href={brand.phoneHref} className="link-line-light self-start">{brand.phone}</a>
+          <a href={`mailto:${brand.email}`} className="link-line-light self-start">{brand.email}</a>
+          <a href={brand.facebook} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start">
+            <BrandIcon brand="facebook" />
+            <span className="link-line-light">Facebook</span>
+          </a>
           {brand.instagram && (
-            <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
+            <a href={brand.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start">
+              <BrandIcon brand="instagram" />
+              <span className="link-line-light">Instagram</span>
+            </a>
           )}
         </div>
       </div>
