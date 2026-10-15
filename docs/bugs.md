@@ -6,3 +6,4 @@
 5	Select jest niewidoczny (pola formularza nie wyglądają jak pola, zob. SCR-20261015-tamj.png, SCR-20261015-taoc.png)	Formularz	Zrobione (f82fb27)
 6	Scroll w scrollu w sekcji projektów	Projekty	Zrobione (4945c46)
 7	Brak drop-down wyboru jezyka - jest  tylko brzydki systemowy	Header	Zrobione (9c36cf1)
+8	Walidacja formularza jest systemowa (zob. SCR-20261015-tbsd.png)	Formularz	Zrobione (926ae3b)
