@@ -68,3 +68,10 @@ for (let i = 0; i < light.length; i += 4) {
 await sharp(light, { raw: { width: info.width, height: info.height, channels: 4 } })
   .trim().resize({ width: 800 }).png().toFile(path.join(OUT, 'logo-light.png'))
 console.log('ok logo')
+
+// Social preview: 1200x630 JPG (WebP is not shown by every link unfurler).
+await sharp(path.join(OUT, 'hero-pergola-poster.webp'))
+  .resize(1200, 630, { fit: 'cover', position: 'attention' })
+  .jpeg({ quality: 84, mozjpeg: true })
+  .toFile(path.join(OUT, 'og-image.jpg'))
+console.log('ok og-image')
