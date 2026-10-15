@@ -122,8 +122,21 @@ function readStoredLanguage(): Language | undefined {
 
 // Text in a given language, outside the current one (e.g. the Polish
 // labels in the email the studio receives).
+// Polish and Ukrainian typography keep one-letter conjunctions and
+// prepositions off the end of a line: a no-break space ties each to the next
+// word. Applied when text is rendered, so the copy above stays plain.
+const SINGLE_LETTER_WORD: Partial<Record<Language, RegExp>> = {
+  pl: /(?<=^|[\s(„"])([aiouwz])\s+/giu,
+  uk: /(?<=^|[\s(„"«])([авзійоу])\s+/giu,
+}
+
+export function typeset(language: Language, text: string) {
+  const pattern = SINGLE_LETTER_WORD[language]
+  return pattern ? text.replace(pattern, '$1\u00a0') : text
+}
+
 export function translate(language: Language, key: string) {
-  return messages[language][key] ?? messages.pl[key] ?? key
+  return typeset(language, messages[language][key] ?? messages.pl[key] ?? key)
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -159,16 +172,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return translate(language, key)
     },
     localizeProject: (project) => {
-      if (language === 'pl') return project
-      const alts = imageAlts[language]
+      const alts = language === 'pl' ? undefined : imageAlts[language]
       const localize = (image: ProjectImage) => {
-        const alt = alts[image.alt]
+        const alt = alts ? alts[image.alt] : image.alt
         if (import.meta.env.DEV && !alt) console.warn(`i18n: no ${language} alt for "${image.alt}" (src/lib/image-alts.ts)`)
-        return alt ? { ...image, alt } : image
+        return { ...image, alt: typeset(language, alt ?? image.alt) }
       }
+      const copy = { ...project, ...(language === 'pl' ? undefined : projectCopy[language][project.id]) }
+      const text = (value?: string) => (value === undefined ? value : typeset(language, value))
       return {
-        ...project,
-        ...projectCopy[language][project.id],
+        ...copy,
+        title: typeset(language, copy.title),
+        kind: typeset(language, copy.kind),
+        status: typeset(language, copy.status),
+        description: typeset(language, copy.description),
+        place: text(copy.place),
         images: project.images.map(localize),
         ...(project.coverImage ? { coverImage: localize(project.coverImage) } : {}),
       }
