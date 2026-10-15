@@ -32,6 +32,9 @@ export function Contact() {
     setScopes((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]))
   }
 
+  // Both paths land in the studio's inbox, so the email is always Polish.
+  const pl = (key: string) => translate('pl', key)
+
   // Sends through Web3Forms when brand.formKey is set; otherwise opens the
   // visitor's mail client with everything pre-filled.
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -63,7 +66,7 @@ export function Contact() {
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             access_key: brand.formKey,
-            subject: `${translate('pl', 'contact.subject')}: ${String(f.get('name')).trim()}`,
+            subject: `${pl('contact.subject')}: ${String(f.get('name')).trim()}`,
             from_name: brand.name,
             ...(EMAIL.test(contact) ? { replyto: contact } : {}),
             // Field names below arrive as-is in the studio's inbox, so they
@@ -88,14 +91,14 @@ export function Contact() {
     }
 
     const body = [
-      `${t('contact.mailName')}: ${f.get('name')}`,
-      `${t('contact.mailContact')}: ${f.get('contact')}`,
-      `${t('contact.mailWhere')}: ${f.get('where')}`,
-      `${t('contact.mailScope')}: ${scopes.map((s) => t(`scope.${s}`)).join(', ') || t('contact.notProvided')}`,
+      `${pl('contact.mailName')}: ${f.get('name')}`,
+      `${pl('contact.mailContact')}: ${f.get('contact')}`,
+      `${pl('contact.mailWhere')}: ${f.get('where')}`,
+      `${pl('contact.mailScope')}: ${scopes.map((s) => pl(`scope.${s}`)).join(', ') || pl('contact.notProvided')}`,
       '',
       String(f.get('message') ?? ''),
     ].join('\n')
-    const url = `mailto:${brand.email}?subject=${encodeURIComponent(t('contact.subject'))}&body=${encodeURIComponent(body)}`
+    const url = `mailto:${brand.email}?subject=${encodeURIComponent(pl('contact.subject'))}&body=${encodeURIComponent(body)}`
     window.location.href = url
     setStatus('mailto')
   }

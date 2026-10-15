@@ -38,7 +38,19 @@ export function LanguageMenu() {
   }
 
   return (
-    <div ref={root} className="relative" onKeyDown={onKeyDown}>
+    <div
+      ref={root}
+      className="relative"
+      onKeyDown={onKeyDown}
+      // Tabbing out of the panel closes it. Only when focus lands on a known
+      // element outside: Safari does not focus clicked buttons, so a click on
+      // another option blurs with no relatedTarget and must not close the
+      // panel first. Clicks outside are handled by the pointerdown listener.
+      onBlur={(event) => {
+        const next = event.relatedTarget as Node | null
+        if (open && next && !root.current?.contains(next)) setOpen(false)
+      }}
+    >
       <button
         ref={trigger}
         type="button"

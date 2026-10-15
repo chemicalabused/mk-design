@@ -74,8 +74,11 @@ export function ImageViewer({ images, index, onIndexChange, onClose }: Props) {
     if (!d.horizontal) return
     const width = event.currentTarget.clientWidth
     const threshold = Math.min(80, width * 0.18)
-    if (dragX <= -threshold && hasNext) onIndexChange(index + 1)
-    else if (dragX >= threshold && hasPrev) onIndexChange(index - 1)
+    // Measure from the release point, not the dragX state: on a fast flick
+    // the last pointermove may not have rendered yet.
+    const dx = event.clientX - d.x
+    if (dx <= -threshold && hasNext) onIndexChange(index + 1)
+    else if (dx >= threshold && hasPrev) onIndexChange(index - 1)
     setDragX(0)
     setDragging(false)
     dragged.current = true

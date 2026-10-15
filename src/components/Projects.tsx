@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
+import { ScrollTrigger, REDUCE } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
 import { ImageViewer } from './ImageViewer'
@@ -31,14 +31,17 @@ export function Projects() {
   const opener = useRef<HTMLElement | null>(null)
   const rows = Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => visible.slice(index * 2, index * 2 + 2))
 
-  // Cards re-mount on filter change; make sure the new ones are visible and
-  // scroll positions below are recalculated. Skipped on first render so the
-  // initial rows keep their scroll reveal (Motion.tsx).
+  // Rows re-mount on filter change (their key includes the filter), so the
+  // new ones were never hidden by Motion and show at once. Drop the reveal
+  // triggers Motion left on the removed rows and recalculate the positions
+  // below, since the section height changed.
   const shownFilter = useRef(filter)
   useEffect(() => {
     if (shownFilter.current === filter) return
     shownFilter.current = filter
-    gsap.set('#realizacje [data-reveal]', { clearProps: 'opacity,visibility,transform' })
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.trigger instanceof Element && !trigger.trigger.isConnected) trigger.kill()
+    })
     ScrollTrigger.refresh()
   }, [filter])
 
@@ -144,16 +147,18 @@ export function Projects() {
       <Lightbox
         key={active?.id ?? 'closed'}
         project={active}
-        onClose={() => {
+        onClose={(returnFocus = true) => {
           setActive(null)
-          requestAnimationFrame(() => opener.current?.focus())
+          // Not after the "ask about a similar project" link: that one moves
+          // on to #kontakt, and focusing the card would scroll back to it.
+          if (returnFocus) requestAnimationFrame(() => opener.current?.focus({ preventScroll: true }))
         }}
       />
     </section>
   )
 }
 
-function Lightbox({ project, onClose }: { project: Project | null; onClose: () => void }) {
+function Lightbox({ project, onClose }: { project: Project | null; onClose: (returnFocus?: boolean) => void }) {
   const { t } = useLanguage()
   const ref = useRef<HTMLDialogElement>(null)
   const [zoomIndex, setZoomIndex] = useState<number | null>(null)
@@ -187,7 +192,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
   return (
     <dialog
       ref={ref}
-      onClose={onClose}
+      onClose={() => onClose()}
       onCancel={(event) => {
         if (zoomIndex !== null) {
           event.preventDefault()
@@ -211,7 +216,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
               </p>
               <p className="mt-1 text-xs tracking-wide text-brass">{project.status}</p>
             </div>
-            <button type="button" onClick={onClose} className="shrink-0 text-sm underline-offset-4 hover:underline">
+            <button type="button" onClick={() => onClose()} className="shrink-0 text-sm underline-offset-4 hover:underline">
               {t('projects.close')}
             </button>
           </div>
@@ -262,7 +267,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
           </div>
           <a
             href="#kontakt"
-            onClick={onClose}
+            onClick={() => onClose(false)}
             className="mt-6 inline-block rounded-full bg-graphite px-5 py-3 text-sm font-medium text-plaster"
           >
             {t('projects.askSimilar')}
