@@ -30,7 +30,9 @@ export function Contact() {
   }
 
   const field =
-    'w-full border-b border-line bg-transparent py-3 text-base placeholder:text-slate/85 focus:border-graphite focus:outline-none'
+    // Boxed fields: an underline alone did not read as a place to type.
+    // slate/70 on white is 3.3:1, enough for a control boundary.
+    'mt-2 w-full rounded-media border border-slate/70 bg-white px-4 py-3 text-base text-ink placeholder:text-slate/85 transition-colors hover:border-graphite focus:border-graphite'
 
   return (
     <section id="kontakt" className="bg-plaster">
@@ -92,7 +94,7 @@ export function Contact() {
                       aria-pressed={on}
                       onClick={() => toggle(s)}
                       className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-                        on ? 'border-graphite bg-graphite text-plaster' : 'border-line hover:border-graphite'
+                        on ? 'border-graphite bg-graphite text-plaster' : 'border-slate/70 bg-white hover:border-graphite'
                       }`}
                     >
                       {s}
