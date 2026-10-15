@@ -55,7 +55,7 @@ export function LanguageMenu() {
       {open && (
         <ul
           id={panelId}
-          className="absolute right-0 top-full mt-2 min-w-44 rounded-2xl border border-line bg-plaster p-1.5 text-ink shadow-[0_18px_40px_rgba(30,28,26,0.16)]"
+          className="absolute right-0 top-full mt-2 min-w-44 rounded-media border border-line bg-plaster p-1.5 text-ink shadow-[0_18px_40px_rgba(30,28,26,0.16)]"
         >
           {languageOptions.map(([code, label]) => {
             const current = code === language

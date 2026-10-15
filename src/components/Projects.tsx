@@ -87,7 +87,7 @@ export function Projects() {
                       className="group block w-full text-left"
                       aria-label={`${p.title}${p.place ? `, ${p.place}` : ''}, ${t('projects.openGallery')}`}
                     >
-                      <div className="relative aspect-[4/3] overflow-hidden bg-plaster">
+                      <div className="relative isolate aspect-[4/3] overflow-hidden rounded-media bg-plaster">
                         {p.videos?.length ? (
                           <ProjectCover project={p} active={p.id === hoveredProjectId} />
                         ) : (
@@ -141,6 +141,17 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
     if (!el) return
     if (project && !el.open) el.showModal()
     if (!project && el.open) el.close()
+    if (!project) return
+    // Only the dialog should scroll while it is open; otherwise the wheel
+    // chains to the page underneath once the gallery reaches its end.
+    // Pad by the scrollbar width so the page does not jump sideways.
+    const root = document.documentElement
+    root.style.paddingRight = `${window.innerWidth - root.clientWidth}px`
+    root.style.overflow = 'hidden'
+    return () => {
+      root.style.overflow = ''
+      root.style.paddingRight = ''
+    }
   }, [project])
 
   return (
@@ -156,10 +167,10 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
       onClick={(e) => {
         if (e.target === ref.current) onClose()
       }}
-      className="m-auto max-h-[100svh] w-full max-w-5xl bg-plaster p-0 text-ink backdrop:bg-graphite/80 backdrop:backdrop-blur-sm"
+      className="m-auto max-h-[100svh] w-full max-w-5xl overflow-hidden bg-plaster p-0 text-ink backdrop:bg-graphite/80 backdrop:backdrop-blur-sm sm:max-h-[calc(100svh-3rem)] sm:w-[calc(100%-3rem)] sm:rounded-media"
     >
       {project && (
-        <article className="max-h-[100svh] overflow-y-auto p-5 sm:p-8">
+        <article className="max-h-[100svh] overflow-y-auto overscroll-contain p-5 sm:max-h-[calc(100svh-3rem)] sm:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>
               <h3 className="heading-md">{project.title}</h3>
@@ -176,7 +187,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {project.videos?.map((clip, index) => (
               <figure key={clip.src} className="min-w-0 sm:col-span-2">
-                <div className="aspect-video overflow-hidden bg-graphite">
+                <div className="isolate aspect-video overflow-hidden rounded-media bg-graphite">
                   <VideoFigure
                     src={clip.src}
                     startAt={clip.startAt}
@@ -192,7 +203,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
             ))}
             {project.images.map((img) => (
               <figure key={img.src} className="min-w-0">
-                <div className={`aspect-[4/3] overflow-hidden ${img.type === 'plan' || img.type === 'elevation' ? 'bg-white' : 'bg-graphite/5'}`}>
+                <div className={`isolate aspect-[4/3] overflow-hidden rounded-media ${img.type === 'plan' || img.type === 'elevation' ? 'bg-white' : 'bg-graphite/5'}`}>
                   <button
                     type="button"
                     onClick={(event) => {
@@ -247,7 +258,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: () =
               <img
                 src={`${zoomImage.src}.webp`}
                 alt={zoomImage.alt}
-                className="max-h-[86svh] max-w-[94vw] object-contain shadow-2xl"
+                className="max-h-[86svh] max-w-[94vw] rounded-media object-contain shadow-2xl"
               />
               <p className="absolute bottom-4 left-4 right-16 text-sm text-white/75 sm:bottom-7 sm:left-8">{zoomImage.alt}</p>
             </div>

@@ -11,6 +11,10 @@
   --color-line: rgb(30 28 26 / 0.16);
   --color-line-dark: rgb(246 243 238 / 0.18);
 
+  /* One corner radius for every photo, video and gallery tile. Buttons are
+     pills; images use this softer radius so the two read as one family. */
+  --radius-media: 1rem;
+
   --font-display: "Newsreader", "Times New Roman", serif;
   --font-sans: "Manrope", system-ui, sans-serif;
 
