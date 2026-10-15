@@ -54,7 +54,7 @@ export function Hero() {
     <section id="top" ref={root} className="relative mx-auto flex min-h-svh w-full max-w-[1920px] items-end overflow-hidden bg-graphite">
       <Picture
         src={hero.image.src}
-        alt={hero.image.alt}
+        alt={t(hero.image.altKey)}
         // 16:9 cover: on portrait screens the image is as wide as 16/9 of the height.
         sizes="(min-aspect-ratio: 16/9) min(100vw, 1920px), 178vh"
         priority

@@ -34,7 +34,7 @@ export const hero = {
   // Text: hero.* keys in i18n.tsx.
   primary: { href: '#kontakt' },
   secondary: { href: '#realizacje' },
-  image: { src: '/images/hero-pergola-poster', alt: 'Pergola ogrodowa z ciepłym oświetleniem' },
+  image: { src: '/images/hero-pergola-poster', altKey: 'hero.imageAlt' },
   video: '/videos/mdh-hero-loop-pergola.mp4',
 }
 
@@ -539,9 +539,9 @@ export const projects: Project[] = [
 export const caseStudy = {
   // Text: case.* keys in i18n.tsx.
   images: [
-    { src: '/images/skrzypiec-kuchnia', alt: 'Kuchnia z marmurową wyspą i szklanymi lampami' },
-    { src: '/images/skrzypiec-etap-instalacji', alt: 'Wnętrze domu w trakcie montażu instalacji i ogrzewania podłogowego' },
-    { src: '/images/skrzypiec-kuchnia-montaz', alt: 'Kuchnia w trakcie montażu zabudowy i wyposażenia' },
+    { src: '/images/skrzypiec-kuchnia', altKey: 'case.image1Alt' },
+    { src: '/images/skrzypiec-etap-instalacji', altKey: 'case.image2Alt' },
+    { src: '/images/skrzypiec-kuchnia-montaz', altKey: 'case.image3Alt' },
   ],
 }
 
