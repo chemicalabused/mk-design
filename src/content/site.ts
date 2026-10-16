@@ -19,7 +19,7 @@ export const brand = {
   // Web3Forms access key for the contact form (public by design: it can only
   // deliver to the inbox it was issued for). Empty = fall back to mailto:.
   // Get one at https://web3forms.com with the studio's address above.
-  formKey: '' as string,
+  formKey: 'e59b05f6-42fc-4fcb-ae70-9324e45104a6' as string,
 }
 
 export const nav = [
