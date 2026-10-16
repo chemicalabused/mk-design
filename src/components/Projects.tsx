@@ -15,6 +15,10 @@ import { useLanguage } from '../lib/i18n'
 const CARD_SIZES = '(min-width: 1600px) 860px, (min-width: 640px) 58vw, 260px'
 const TILE_SIZES = '(min-width: 1072px) 475px, (min-width: 640px) calc(50vw - 3.5rem), 260px'
 
+// "All" starts with this many projects (three full rows on desktop) and a
+// button for the rest; a category filter always shows its whole list.
+const PREVIEW_COUNT = 6
+
 export function Projects() {
   const { t, localizeProject } = useLanguage()
   const [filter, setFilter] = useState<Category | 'wszystkie'>('wszystkie')
@@ -30,21 +34,30 @@ export function Projects() {
   // Lightbox remounts per project (key below), so the dialog is gone before
   // the browser could restore focus itself.
   const opener = useRef<HTMLElement | null>(null)
-  const rows = Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => visible.slice(index * 2, index * 2 + 2))
+  const [expanded, setExpanded] = useState(false)
+  const collapsed = filter === 'wszystkie' && !expanded && visible.length > PREVIEW_COUNT
+  const shown = collapsed ? visible.slice(0, PREVIEW_COUNT) : visible
+  // An odd count would leave the last card alone with half the row empty;
+  // a consultation tile closes the grid instead.
+  const cells: (Project | 'cta')[] = shown.length % 2 ? [...shown, 'cta'] : shown
+  const rows = Array.from({ length: Math.ceil(cells.length / 2) }, (_, index) => cells.slice(index * 2, index * 2 + 2))
+  const list = useRef<HTMLUListElement>(null)
 
   // Rows re-mount on filter change (their key includes the filter), so the
   // new ones were never hidden by Motion and show at once. Drop the reveal
   // triggers Motion left on the removed rows and recalculate the positions
   // below, since the section height changed.
-  const shownFilter = useRef(filter)
+  // Same after "show all", which adds rows below the existing ones.
+  const layout = `${filter}-${collapsed}`
+  const shownLayout = useRef(layout)
   useEffect(() => {
-    if (shownFilter.current === filter) return
-    shownFilter.current = filter
+    if (shownLayout.current === layout) return
+    shownLayout.current = layout
     ScrollTrigger.getAll().forEach((trigger) => {
       if (trigger.trigger instanceof Element && !trigger.trigger.isConnected) trigger.kill()
     })
     ScrollTrigger.refresh()
-  }, [filter])
+  }, [layout])
 
   // On narrow phones the filter row scrolls sideways. Fade its right edge
   // while there is more to the right, so the cut-off pill reads as "scroll".
@@ -102,11 +115,12 @@ export function Projects() {
         </div>
       </div>
 
-      <ul className="mt-10 flex flex-col gap-y-10">
+      <ul ref={list} id="projects-list" className="mt-10 flex flex-col gap-y-10">
         {rows.map((pair, rowIndex) => {
-          const hoveredIndex = pair.findIndex((p) => p.id === hoveredProjectId)
-          // Keep the alternating 7/5 composition, but let the hovered card take the wider share.
-          const wideIndex = hoveredIndex >= 0 ? hoveredIndex : rowIndex % 2 === 0 ? 0 : 1
+          const hoveredIndex = pair.findIndex((p) => p !== 'cta' && p.id === hoveredProjectId)
+          // Keep the alternating 7/5 composition, but let the hovered card take
+          // the wider share. The consultation tile always takes the narrow one.
+          const wideIndex = hoveredIndex >= 0 ? hoveredIndex : pair[1] === 'cta' ? 0 : rowIndex % 2 === 0 ? 0 : 1
           return (
             <li
               key={`${filter}-${rowIndex}`}
@@ -118,6 +132,24 @@ export function Projects() {
             >
               {pair.map((p, index) => {
                 const wide = index === wideIndex
+                if (p === 'cta') {
+                  return (
+                    <div
+                      key="cta"
+                      className="w-full min-w-0 sm:basis-0 sm:transition-[flex-grow] sm:duration-700 sm:ease-in-out"
+                      style={{ flexGrow: wide ? 7 : 5 }}
+                    >
+                      <div className="flex h-full flex-col justify-end rounded-media bg-graphite p-6 text-plaster sm:aspect-[4/3] sm:h-auto sm:p-8 lg:p-10">
+                        <p className="text-xs uppercase tracking-[0.16em] text-brass-light">{t('projects.ctaLabel')}</p>
+                        <h3 className="heading-md mt-3 max-w-[18ch]">{t('projects.ctaHeading')}</h3>
+                        <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-plaster/75">{t('projects.ctaText')}</p>
+                        <a href="#kontakt" className="mt-6 self-start rounded-full bg-plaster px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-white">
+                          {t('hero.primary')}
+                        </a>
+                      </div>
+                    </div>
+                  )
+                }
                 return (
                   <div
                     key={p.id}
@@ -183,6 +215,26 @@ export function Projects() {
           )
         })}
       </ul>
+
+      {collapsed && (
+        <div className="mt-12 flex justify-center">
+          <button
+            type="button"
+            aria-controls="projects-list"
+            onClick={() => {
+              setExpanded(true)
+              // The button disappears; carry keyboard focus to the first
+              // project that was just added, where reading continues.
+              requestAnimationFrame(() => {
+                list.current?.querySelectorAll<HTMLElement>('button[aria-label]')[PREVIEW_COUNT]?.focus({ preventScroll: true })
+              })
+            }}
+            className="rounded-full border border-graphite px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:bg-graphite hover:text-plaster"
+          >
+            {t('projects.showAll').replace('{count}', String(visible.length))}
+          </button>
+        </div>
+      )}
 
       <Lightbox
         key={active?.id ?? 'closed'}
