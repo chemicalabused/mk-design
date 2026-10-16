@@ -31,6 +31,11 @@
      paragraphs avoid orphans (e.g. the footer tagline left "klucz."
      alone). Browsers without support simply wrap as before. */
   h1, h2, h3, dt { text-wrap: balance; }
+  /* Tailwind v4 dropped the pointer cursor on buttons; restore it for
+     everything clickable that is not a link. */
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]), select, summary, label:has(> input:is([type="checkbox"], [type="radio"])) {
+    cursor: pointer;
+  }
   p, dd, li, figcaption, legend { text-wrap: pretty; }
   html {
     scroll-behavior: smooth;
