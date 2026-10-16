@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, ScrollTrigger, REDUCE } from '../lib/motion'
 import { brand, nav } from '../content/site'
-import { languageOptions, useLanguage } from '../lib/i18n'
+import { languageFlag, languageOptions, useLanguage } from '../lib/i18n'
 import { LanguageMenu } from './LanguageMenu'
 import { Flag } from './Flag'
 
@@ -119,7 +119,7 @@ export function Nav() {
                   // the filled consultation button below.
                   className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-3.5 text-sm transition-colors ${code === language ? 'border-graphite bg-white font-medium text-ink' : 'border-line text-slate hover:border-graphite'}`}
                 >
-                  <Flag language={code} />
+                  <Flag code={languageFlag[code]} />
                   {label}
                 </button>
               ))}

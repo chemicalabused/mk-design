@@ -1,6 +1,6 @@
 # M Design House
 
-> Pracownia architektoniczna z Nysy (woj. opolskie). Projektujemy domy, wnętrza i ogrody jako całość oraz realizujemy je pod klucz własnym zespołem. Działamy w Nysie, na Opolszczyźnie i we Wrocławiu; strona jest po polsku, angielsku i ukraińsku.
+> Pracownia architektoniczna z Nysy (woj. opolskie). Projektujemy domy, wnętrza i ogrody jako całość oraz realizujemy je pod klucz własnym zespołem. Działamy w Nysie, na Opolszczyźnie i we Wrocławiu, a projektujemy także w Hiszpanii i na Ukrainie; strona jest po polsku, angielsku i ukraińsku.
 >
 > Architecture, interiors and landscape studio in Nysa, Poland: design and turnkey delivery of homes, interiors and gardens.
 
@@ -13,7 +13,7 @@
 
 ## Strona
 
-- [Realizacje](https://mdesignhouse.eu/#realizacje): 17 projektów (domy, wnętrza, inwestycje, ogrody) z galeriami i wizualizacjami.
+- [Realizacje](https://mdesignhouse.eu/#realizacje): 19 projektów (domy, wnętrza, inwestycje, ogrody) w Polsce, Hiszpanii i na Ukrainie, z galeriami i wizualizacjami.
 - [Proces](https://mdesignhouse.eu/#proces): konsultacja, koncepcja, dokumentacja, realizacja.
 - [Pracownia](https://mdesignhouse.eu/#pracownia): kim jesteśmy i jak pracujemy.
 - [Kontakt](https://mdesignhouse.eu/#kontakt): formularz zapytania i bezpłatna konsultacja.

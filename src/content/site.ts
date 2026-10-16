@@ -41,6 +41,8 @@ export const hero = {
 }
 
 export type Category = 'domy' | 'wnętrza' | 'inwestycje' | 'ogrody'
+// Where the project is; shown as a flag and name on its card (`country.*` keys).
+export type Country = 'pl' | 'es' | 'ua'
 
 export const categories: { id: Category | 'wszystkie'; key: string }[] = [
   { id: 'wszystkie', key: 'projects.all' },
@@ -68,6 +70,7 @@ export interface ProjectVideo {
 export interface Project {
   id: string
   title: string
+  country: Country
   place?: string
   year?: string
   category: Category
@@ -85,6 +88,7 @@ export const projects: Project[] = [
   {
     id: 'kompleks-nad-woda',
     title: 'Kompleks wielofunkcyjny nad wodą',
+    country: 'es',
     category: 'inwestycje',
     kind: 'Projekt wielofunkcyjny',
     status: 'Koncepcja architektoniczna',
@@ -112,7 +116,8 @@ export const projects: Project[] = [
   {
     id: 'park-biala-cerkiew',
     title: 'Park miejski w Białej Cerkwi',
-    place: 'Biała Cerkiew, Ukraina',
+    country: 'ua',
+    place: 'Biała Cerkiew',
     category: 'ogrody',
     kind: 'Projekt przestrzeni publicznej',
     status: 'Koncepcja architektoniczna',
@@ -138,6 +143,7 @@ export const projects: Project[] = [
   {
     id: 'rezydencja-skrzypiec',
     title: 'Rezydencja w Skrzypcu',
+    country: 'pl',
     place: 'Skrzypiec',
     year: '2023',
     category: 'domy',
@@ -185,6 +191,7 @@ export const projects: Project[] = [
   {
     id: 'dom-stalis-180',
     title: 'Dom parterowy z kamieniem i drewnem',
+    country: 'pl',
     category: 'domy',
     kind: 'Dom jednorodzinny',
     area: '180 m²',
@@ -216,6 +223,7 @@ export const projects: Project[] = [
   {
     id: 'dom-na-stoku-prudnik',
     title: 'Nowoczesny dom na stoku',
+    country: 'pl',
     place: 'Prudnik',
     category: 'domy',
     kind: 'Dom jednorodzinny',
@@ -238,7 +246,8 @@ export const projects: Project[] = [
   {
     id: 'apartament-altea',
     title: 'Apartament nad Morzem Śródziemnym',
-    place: 'Altea, Hiszpania',
+    country: 'es',
+    place: 'Altea',
     category: 'wnętrza',
     kind: 'Projekt wnętrza apartamentu',
     area: '81 m² + taras 41,3 m²',
@@ -258,6 +267,7 @@ export const projects: Project[] = [
   {
     id: 'klubowy-dom-kosciuszki-25',
     title: 'Klubowy Dom Kościuszki 25',
+    country: 'pl',
     place: 'Głuchołazy',
     year: '2026',
     category: 'inwestycje',
@@ -282,6 +292,7 @@ export const projects: Project[] = [
   {
     id: 'apartament-witolda-wroclaw',
     title: 'Apartament przy Księcia Witolda',
+    country: 'pl',
     place: 'Wrocław',
     category: 'wnętrza',
     kind: 'Projekt wnętrza mieszkania',
@@ -304,6 +315,7 @@ export const projects: Project[] = [
   {
     id: 'dom-110-wroclaw',
     title: 'Dom parterowy otwarty na ogród',
+    country: 'pl',
     place: 'Wrocław',
     year: '2026',
     category: 'domy',
@@ -330,6 +342,7 @@ export const projects: Project[] = [
   {
     id: 'dom-glucholazy',
     title: 'Dom jednorodzinny z garażem dwustanowiskowym',
+    country: 'pl',
     place: 'Głuchołazy',
     category: 'domy',
     kind: 'Dom jednorodzinny',
@@ -352,6 +365,7 @@ export const projects: Project[] = [
   {
     id: 'loft-wroclaw',
     title: 'LOFT Bar & Restaurant',
+    country: 'pl',
     place: 'Wrocław',
     year: '2024',
     category: 'wnętrza',
@@ -373,7 +387,8 @@ export const projects: Project[] = [
   {
     id: 'apartament-torrevieja',
     title: 'Apartament w słonecznej Torrevieja',
-    place: 'Torrevieja, Hiszpania',
+    country: 'es',
+    place: 'Torrevieja',
     category: 'wnętrza',
     kind: 'Projekt wnętrza apartamentu',
     area: '60 m²',
@@ -393,6 +408,7 @@ export const projects: Project[] = [
   {
     id: 'mieszkanie-2-pokoje-nysa',
     title: 'Mieszkanie z dwiema sypialniami',
+    country: 'pl',
     place: 'Nysa',
     category: 'wnętrza',
     kind: 'Projekt wnętrza mieszkania',
@@ -411,6 +427,7 @@ export const projects: Project[] = [
   {
     id: 'kawalerka-35m-nysa',
     title: 'Kawalerka z pomysłem na 35 m²',
+    country: 'pl',
     place: 'Nysa',
     category: 'wnętrza',
     kind: 'Projekt wnętrza mieszkania',
@@ -429,6 +446,7 @@ export const projects: Project[] = [
   {
     id: 'wnetrze-pod-skosami',
     title: 'Wnętrze pod skosami',
+    country: 'pl',
     place: 'Nysa',
     category: 'wnętrza',
     kind: 'Projekt wnętrza',
@@ -447,6 +465,7 @@ export const projects: Project[] = [
   {
     id: 'ogrod-rezydencjonalny',
     title: 'Ogród rezydencjonalny',
+    country: 'pl',
     category: 'ogrody',
     kind: 'Projekt ogrodu',
     status: 'Koncepcja i plan nasadzeń',
@@ -467,6 +486,7 @@ export const projects: Project[] = [
   {
     id: 'ogrod-w-lubrzy',
     title: 'Ogród z pergolą i sadem',
+    country: 'pl',
     place: 'Lubrza',
     year: '2024',
     category: 'ogrody',
@@ -498,6 +518,7 @@ export const projects: Project[] = [
   {
     id: 'kameralne-osiedle-pietrowice',
     title: 'Kameralne osiedle domów',
+    country: 'pl',
     place: 'Pietrowice',
     category: 'inwestycje',
     kind: 'Koncepcja zespołu domów jednorodzinnych',
@@ -518,6 +539,7 @@ export const projects: Project[] = [
   {
     id: 'palac-kachanowka',
     title: 'Pałac w Kachanówce',
+    country: 'ua',
     place: 'Kachanówka',
     category: 'inwestycje',
     kind: 'Koncepcja rezydencjonalna',

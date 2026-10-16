@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
-import { languageOptions, useLanguage } from '../lib/i18n'
+import { languageFlag, languageOptions, useLanguage } from '../lib/i18n'
 import { Flag } from './Flag'
 
 // Disclosure-style language switcher: a trigger with the current code and a
@@ -62,7 +62,7 @@ export function LanguageMenu() {
         // button next to the consultation CTA.
         className="inline-flex min-h-10 items-center gap-1.5 px-1 text-current/85 transition-opacity hover:opacity-70"
       >
-        <Flag language={language} />
+        <Flag code={languageFlag[language]} />
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className={`size-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
           <path d="m3 4.5 3 3 3-3" />
         </svg>
@@ -88,7 +88,7 @@ export function LanguageMenu() {
                   }}
                   className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors hover:bg-stone focus-visible:bg-stone ${current ? 'font-medium' : 'text-slate'}`}
                 >
-                  <Flag language={code} />
+                  <Flag code={languageFlag[code]} />
                   <span className="flex-1">{label}</span>
                   {current && (
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" className="size-4 text-brass">

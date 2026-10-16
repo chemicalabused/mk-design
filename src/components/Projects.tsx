@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollTrigger, REDUCE } from '../lib/motion'
 import { categories, projects, type Category, type Project } from '../content/site'
 import { Picture } from './Picture'
+import { Flag } from './Flag'
 import { ImageViewer } from './ImageViewer'
 import { imageAt } from '../lib/images'
 import { useLanguage } from '../lib/i18n'
@@ -67,7 +68,10 @@ export function Projects() {
   return (
     <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="heading-lg">{t('projects.heading')}</h2>
+        <div>
+          <h2 className="heading-lg">{t('projects.heading')}</h2>
+          <p className="mt-3 text-sm text-slate">{t('projects.where')}</p>
+        </div>
         {/* Buttons are 44px tall on phones (py-3) for touch; the underline
             sits on the inner span so it stays under the text. */}
         <div
@@ -135,7 +139,7 @@ export function Projects() {
                         setActive(p)
                       }}
                       className="group block w-full text-left"
-                      aria-label={`${p.title}${p.place ? `, ${p.place}` : ''}, ${t('projects.openGallery')}`}
+                      aria-label={`${p.title}, ${[p.place, t(`country.${p.country}`)].filter(Boolean).join(', ')}, ${t('projects.openGallery')}`}
                     >
                       <div className="relative isolate aspect-[4/3] overflow-hidden rounded-media bg-plaster">
                         {p.videos?.length ? (
@@ -154,6 +158,16 @@ export function Projects() {
                         >
                           {t('projects.open')}
                           <svg viewBox="0 0 20 20" fill="none" className="size-4" stroke="currentColor" strokeWidth="1.5"><path d="M3.5 10h12m-5-5 5 5-5 5" /></svg>
+                        </span>
+                        {/* Country label: same corner on every card, so it can be
+                            scanned down the grid. Above the cover video (z-10).
+                            The card's aria-label already names the country. */}
+                        <span
+                          className="pointer-events-none absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-plaster/90 py-1 pl-1 pr-2.5 text-xs font-medium text-ink shadow-sm sm:left-4 sm:top-4"
+                          aria-hidden="true"
+                        >
+                          <Flag code={p.country} className="size-4" />
+                          {t(`country.${p.country}`)}
                         </span>
                       </div>
                       <h3 className="heading-sm mt-4 max-w-[28ch] underline decoration-transparent underline-offset-[5px] transition-colors duration-300 group-hover:decoration-graphite/60">{p.title}</h3>
@@ -238,7 +252,7 @@ function Lightbox({ project, onClose }: { project: Project | null; onClose: (ret
             <div>
               <h3 className="heading-md">{project.title}</h3>
               <p className="mt-1 text-sm text-slate">
-                {[project.kind, project.place, project.year, project.area].filter(Boolean).join(' · ')}
+                {[project.kind, [project.place, t(`country.${project.country}`)].filter(Boolean).join(', '), project.year, project.area].filter(Boolean).join(' · ')}
               </p>
               <p className="mt-1 text-xs tracking-wide text-brass">{project.status}</p>
             </div>
