@@ -38,8 +38,20 @@ for (let i = 0; i < data.length; i += 4) {
 const logoPng = await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } }).png().toBuffer()
 // The mark occupies roughly the top 45% of the square
 const markPng = await sharp(logoPng).extract({ left: 0, top: 0, width: info.width, height: Math.round(info.height * 0.52) }).png().toBuffer()
-await sharp(markPng).trim().resize({ width: 400 }).png().toFile(path.join(OUT, 'logo-mark.png'))
-console.log('ok logo-mark')
+const mark = await sharp(markPng).trim().png().toBuffer()
+// Browsers draw a favicon into a square, so a wide file gets squeezed (the
+// old 400x251 one made the "M" look narrow in tabs). Pad the mark onto a
+// transparent square instead; 512 px also meets Google's square, multiple-of-
+// 48 rule for search-result icons.
+const square = async (size, markWidth, background) =>
+  sharp({ create: { width: size, height: size, channels: 4, background } })
+    .composite([{ input: await sharp(mark).resize({ width: markWidth }).png().toBuffer(), gravity: 'center' }])
+    .png()
+await (await square(512, 496, { r: 0, g: 0, b: 0, alpha: 0 })).toFile(path.join(OUT, 'favicon-512.png'))
+// Home-screen icon: iOS fills transparency with black, so use the plaster
+// background, with room around the mark for the rounded mask.
+await (await square(180, 136, '#f6f3ee')).flatten({ background: '#f6f3ee' }).toFile(path.join(OUT, 'apple-touch-icon.png'))
+console.log('ok favicon-512, apple-touch-icon')
 
 // Social preview: 1200x630 JPG (WebP is not shown by every link unfurler).
 await sharp(path.join(OUT, 'hero-pergola-poster.webp'))
