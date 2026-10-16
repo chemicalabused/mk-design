@@ -36,6 +36,8 @@ export const hero = {
   secondary: { href: '#realizacje' },
   image: { src: '/images/hero-pergola-poster', altKey: 'hero.imageAlt' },
   video: '/videos/mdh-hero-loop-pergola.mp4',
+  // 3:4 crop for portrait screens, built by scripts/videos.mjs.
+  videoPortrait: '/videos/mdh-hero-loop-pergola-portrait.mp4',
 }
 
 export type Category = 'domy' | 'wnętrza' | 'inwestycje' | 'ogrody'

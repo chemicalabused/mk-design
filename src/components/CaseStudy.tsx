@@ -9,7 +9,9 @@ export function CaseStudy() {
     <section className="bg-graphite text-plaster">
       <div className="container-page section">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+          {/* The photo column is about three times taller than the text, so
+              the text stays in view beside it instead of leaving a gap. */}
+          <div className="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
             <h2 className="heading-lg">{t('case.heading')}</h2>
             {[t('case.text1'), t('case.text2')].map((text) => (
               <p key={text} className="mt-6 max-w-[52ch] leading-relaxed text-plaster/80">

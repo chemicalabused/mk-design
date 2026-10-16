@@ -45,11 +45,39 @@ export function Projects() {
     ScrollTrigger.refresh()
   }, [filter])
 
+  // On narrow phones the filter row scrolls sideways. Fade its right edge
+  // while there is more to the right, so the cut-off pill reads as "scroll".
+  const filterRow = useRef<HTMLDivElement>(null)
+  const [moreRight, setMoreRight] = useState(false)
+  useEffect(() => {
+    const row = filterRow.current
+    if (!row) return
+    const update = () => setMoreRight(row.scrollLeft + row.clientWidth < row.scrollWidth - 1)
+    update()
+    row.addEventListener('scroll', update, { passive: true })
+    const observer = new ResizeObserver(update)
+    observer.observe(row)
+    return () => {
+      row.removeEventListener('scroll', update)
+      observer.disconnect()
+    }
+    // t: labels change width with the language.
+  }, [t])
+
   return (
     <section id="realizacje" className="container-page section">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <h2 className="heading-lg">{t('projects.heading')}</h2>
-        <div className="-mx-5 flex gap-x-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]" role="group" aria-label={t('projects.filter')}>
+        {/* Buttons are 44px tall on phones (py-3) for touch; the underline
+            sits on the inner span so it stays under the text. */}
+        <div
+          ref={filterRow}
+          className={`-mx-5 -my-3 flex gap-x-5 overflow-x-auto px-5 sm:mx-0 sm:my-0 sm:flex-wrap sm:px-0 [scrollbar-width:none] ${
+            moreRight ? '[mask-image:linear-gradient(to_left,transparent,black_3rem)]' : ''
+          }`}
+          role="group"
+          aria-label={t('projects.filter')}
+        >
           {categories.map((c) => {
             const on = c.id === filter
             return (
@@ -61,11 +89,9 @@ export function Projects() {
                   setHoveredProjectId(null)
                   setFilter(c.id)
                 }}
-                className={`shrink-0 border-b pb-0.5 text-sm transition-colors ${
-                  on ? 'border-graphite text-ink' : 'border-transparent text-slate hover:text-ink'
-                }`}
+                className={`shrink-0 py-3 text-sm transition-colors sm:py-1 ${on ? 'text-ink' : 'text-slate hover:text-ink'}`}
               >
-                {t(c.key)}
+                <span className={`border-b pb-0.5 ${on ? 'border-graphite' : 'border-transparent'}`}>{t(c.key)}</span>
               </button>
             )
           })}

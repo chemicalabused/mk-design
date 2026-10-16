@@ -8,22 +8,33 @@ import { useLanguage } from '../lib/i18n'
 export function Hero() {
   const { t } = useLanguage()
   const root = useRef<HTMLElement>(null)
-  // The loop is 1.4 MB. Attach it only after the page has loaded so it does
-  // not compete with the app bundle on slow connections; the poster shows
-  // until then. Skipped when the visitor asked to save data, and under reduced
-  // motion, where the video is hidden anyway (index.css).
+  // The loop is 1.4 MB (0.6 MB as the portrait crop phones get). Attach it
+  // only after the page has loaded so it does not compete with the app bundle;
+  // the poster shows until then. Skipped when the visitor asked to save data,
+  // on 3G or slower, and under reduced motion, where the video is hidden
+  // anyway (index.css).
   const [videoSrc, setVideoSrc] = useState<string>()
 
   useEffect(() => {
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    if (connection?.saveData || window.matchMedia(REDUCE).matches) return
-    const attach = () => setVideoSrc(hero.video)
-    if (document.readyState === 'complete') {
-      attach()
-      return
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    if (connection?.saveData || /2g|3g/.test(connection?.effectiveType ?? '') || window.matchMedia(REDUCE).matches) return
+    // The crop matches the mobile object-position, so it covers any screen
+    // narrower than 3:4 with the same framing; turning the phone swaps it.
+    const portrait = window.matchMedia('(max-aspect-ratio: 3/4)')
+    const pick = () => setVideoSrc(portrait.matches ? hero.videoPortrait : hero.video)
+    let loaded = document.readyState === 'complete'
+    const onLoad = () => {
+      loaded = true
+      pick()
     }
-    window.addEventListener('load', attach, { once: true })
-    return () => window.removeEventListener('load', attach)
+    const onChange = () => loaded && pick()
+    if (loaded) pick()
+    else window.addEventListener('load', onLoad, { once: true })
+    portrait.addEventListener('change', onChange)
+    return () => {
+      window.removeEventListener('load', onLoad)
+      portrait.removeEventListener('change', onChange)
+    }
   }, [])
 
   useGSAP(

@@ -7,29 +7,30 @@ export function Footer() {
   const legal = [brand.company, brand.nip && `NIP ${brand.nip}`, brand.address].filter(Boolean)
   return (
     <footer className="bg-graphite text-plaster">
-      <div className="container-page flex flex-col gap-10 py-14 md:flex-row md:items-start md:justify-between">
+      <div className="container-page flex flex-col gap-6 py-14 sm:gap-10 md:flex-row md:items-start md:justify-between">
         <div>
           <img src="/images/mdh-logo-light.png" alt={brand.name} width={720} height={165} className="h-20 w-auto" />
           <p className="mt-4 max-w-[36ch] text-balance text-sm text-plaster/70">
             {t('footer.tagline')}
           </p>
         </div>
-        <nav className="flex flex-col gap-2 text-sm" aria-label={t('footer.nav')}>
+        {/* py-3 below sm: 44px tap targets on phones, as in Contact. */}
+        <nav className="flex flex-col text-sm sm:gap-2" aria-label={t('footer.nav')}>
           {nav.map((i) => (
-            <a key={i.href} href={i.href} className="text-plaster/80 hover:text-plaster">
+            <a key={i.href} href={i.href} className="self-start py-3 text-plaster/80 hover:text-plaster sm:py-0">
               {t(i.key)}
             </a>
           ))}
         </nav>
-        <div className="flex flex-col gap-2 text-sm text-plaster/80">
-          <a href={brand.phoneHref} className="link-line-light self-start">{brand.phone}</a>
-          <a href={`mailto:${brand.email}`} className="link-line-light self-start">{brand.email}</a>
-          <a href={brand.facebook} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start">
+        <div className="flex flex-col text-sm text-plaster/80 sm:gap-2">
+          <a href={brand.phoneHref} className="link-line-light self-start py-3 sm:py-0">{brand.phone}</a>
+          <a href={`mailto:${brand.email}`} className="link-line-light self-start py-3 sm:py-0">{brand.email}</a>
+          <a href={brand.facebook} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start py-3 sm:py-0">
             <BrandIcon brand="facebook" />
             <span className="link-line-light">Facebook</span>
           </a>
           {brand.instagram && (
-            <a href={brand.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start">
+            <a href={brand.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 self-start py-3 sm:py-0">
               <BrandIcon brand="instagram" />
               <span className="link-line-light">Instagram</span>
             </a>
